@@ -3,7 +3,7 @@ from random import *
 n=1
 d=0
 e=0
-while n<1001:
+while n<5001:
     a=randint(1,8)
     b=randint(1,8)
     print(a,b,end=" ")
