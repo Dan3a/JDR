@@ -2,10 +2,6 @@
 
 from random import randint
 
-piece1=0
-piece2=0
-piece3=0
-piece4=0
 n=0
 
 while n<100:
