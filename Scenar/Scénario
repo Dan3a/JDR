@@ -23,3 +23,16 @@ le voleur qui doit les rapporter au royaume ennemi de Crezantis, le voleur doit 
 -Inventaire
 -Quêtes
 ok pour les quetes mais par énormément non plus mais l'inventaire a par quelques items ca fais pas trop JDR
+
+
+Systeme de 1D20 pour toutes les actions mais on augmente le resultat minimum plus l'action à réaliser est compliquée
+
+caractéristiques de tous les perso:
+    -Force
+    -Ruse
+    -éloquence
+    -Poid
+    -Connaisance astral (jeter un sort)
+
+    -Argent 
+    -vitesse
