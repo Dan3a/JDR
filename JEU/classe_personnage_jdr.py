@@ -261,6 +261,80 @@ class Perso:
         else :
             return True
 
+    
+    def fight_Refus(self, nom, att, ca, vit, dex, pv, distance) :
+        
+        nb_recul = 1
+        nb_recul_m = 2
+        print ("Les gardes vous attaquent")
+        self.inventaire()
+        self.selection(True,True,False)
+        while pv > 0 and self.pv_physique > 0 :
+            self.inventaire()
+            print("Les gardes sont à ",distance,"mètres de distance. Ils",pv,"pv")
+            choix = ""
+            while (choix != "avancer" and choix != "reculer" and choix != "rien"
+                   and choix != "attaque" and choix != "sort") :
+                choix = input("Que fais-tu? ")
+            if choix == "avancer" and distance > self.vitesse :
+                distance -= self.vitesse
+            elif choix == "avancer" and distance <= self.vitesse :
+                distance = 1
+            elif choix == "reculer" and nb_recul > 0 :
+                nb_recul -= 1
+                distance += self.vitesse
+            elif choix == "reculer" and nb_recul < 0 :
+                print("Tu ne peux plus reculer")
+            elif choix == "attaque" and distance == 1 :
+                self.selection(1,0,0)
+                toucher = randrange(1, 20)
+                if toucher <= sdes :
+                    pv -= self.arme[0]
+                    print("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                else :
+                    print("Tu le rates")
+            elif choix == "attaque" and distance > 1 :
+                print("Impossible tu es trop loin de la cible")
+                choix = ""
+            elif choix == "sort" :
+                self.selection(False,False,True)
+                if self.sort[2] <= distance :
+                    if self.sort[1] == "att" :
+                        pv -= self.sort[0]
+                        print("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
+                    else :
+                        choix = ""
+                else :
+                    print("Tu es trop pr�s pour pouvoir lancer ton sort")
+                    choix = ""
+                choix = ""
+            else : ()
+            if pv <= 0 :
+                print("Tu as vaincu!")
+                return True
+            else :
+                if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
+                    print("Le",nom,"recule")
+                    distance += vit
+                    nb_recul_m -= 1
+                elif (distance > 1 and att > self.arme[0]) or (distance > 1 and nb_recul_m == 0) :
+                    print("Les gardes avancent")
+                    if vit > distance :
+                        distance = 1
+                    else :
+                        distance -= vit
+                elif distance == 1 :
+                    toucher = randrange(1, 20)
+                    if toucher <= sdes :
+                        print("Ils t'attaquent et t'infligent",att,"points de dégàts")
+                    else :
+                        print("Ils n'arrivent pas à te toucher")
+        if self.pva <= 0 :
+            print("Ils t'ont tué!")
+            return False
+        else :
+            return True
+
 
             
 
