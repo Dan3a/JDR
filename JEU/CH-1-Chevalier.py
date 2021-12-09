@@ -136,7 +136,7 @@ class histoire_chevalier:
                     print("le royaume court un grave danger, mais")
                     print("cette longue marche vous a fatiguée")
                     self.place = 6
-                if choix == "revenir à la clairrière" :
+                elif choix == "revenir à la clairrière" :
                     print("Vous avez un mauvais présage et préférer rentrer à la clairrière")
                     self.place = 1
                 
@@ -148,3 +148,61 @@ class histoire_chevalier:
                     choix = choix.lower()
                 if choix == "chercher des traces du voleur" :
                     print("")
+                    print("En fesant le tour de l'entrée, vous tomber")
+                    print("sur des traces de pas, les traces s'enfoncent")
+                    print("dans la neige en direction du Nord du royaume.")
+                    print("Vous en etes certain, ce sont les traces du voleur")
+                    print("vous décidez donc de les suivre.")
+                    print("")
+                    print("Vous arrivez dans la contrée de starhill lieu où peu de gens")
+                    print("se rende en raison du peu d'intérêt de cette région,")
+                    print("mais s'est également ici qu'habite un de vos ami.")
+                    self.place = 3
+                elif choix == "regarder dans la montagne" :
+                    print("")
+                    print("Les trois crystaux étant sensé être renfermer")
+                    print("dans la montagne, vous décider d'aller y jeter")
+                    print("un oeil, vous entrez à l'interieur et vous vous")
+                    print("enfoncer au coeur de la grande salle, quand soudain...")
+                    self.place = "combat gardien"
+                elif choix == "aller voir les guardiens" :
+                    print("")
+                    print("Après une longue exploration des lieux,")
+                    print("vous etes forcé de constater que les ")
+                    print("guardiens ont disparuent.")
+                    choix2 =""
+                    while (choix2 != "chercher dans la montagne" and choix2 != "trouver des traces du voleur"):
+                        choix2 = input("Que souhaitez-vous faire? (chercher dans la montagne/ trouver des traces du voleur")
+                        choix2 = choix2.lower()
+                    if choix2 == "chercher dans la montagne" :
+                        print("")
+                        print("A la recherche des guardien vous vous aventurez")
+                        print("dans la montagne, vous décider d'aller y jeter")
+                        print("un oeil, vous entrez à l'interieur et vous vous")
+                        print("enfoncer au coeur de la grande salle, quand soudain...")
+                        self.place = "combat gardien"
+                    elif choix2 == "trouver des traces du voleur" :
+                        print("")
+                        print("En fesant le tour de l'entrée, vous tomber")
+                        print("sur des traces de pas, les traces s'enfoncent")
+                        print("dans la neige en direction du Nord du royaume.")
+                        print("Vous en etes certain, ce sont les traces du voleur")
+                        print("vous décidez donc de les suivre.")
+                        print("")
+                        print("Vous arrivez dans la contrée de starhill lieu où peu de gens")
+                        print("se rende en raison du peu d'intérêt de cette région,")
+                        print("mais s'est également ici qu'habite un de vos ami.")
+                        self.place = 3
+
+            while self.place == 5: #avoir les clés du vieux guardien
+                choix =""
+                while (choix != "menacer le vieu guardien" and choix != "amadouer le vieu guardien" and choix != "demander poliment"):
+                    choix = input("Que faites-vous ? ( menacer le vieu guardien/ amadoué le vieu guardien/ demander poliment")
+                    choix = choix.lower()
+                if choix == "menacer le vieu guardien" :
+                    print("")
+                elif choix == "amadoué le vieu guardien" :
+                    print("")
+                elif choix == "demander poliment" :
+                    print("")
+
