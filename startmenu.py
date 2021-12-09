@@ -1,6 +1,6 @@
 from tkinter import *
 
-class Window(Frame):
+class StartMenu(Frame):
     def __init__(self, root):
         Frame.__init__(self, root)
         self.root = root
@@ -12,11 +12,3 @@ class Window(Frame):
         self.img = PhotoImage(file="logolarge.gif")  # Use self.image
         logo = canvas.create_image(400,0, anchor=N, image=self.img) 
     
-
-    def playButton(self):
-
-if __name__ == "__main__":
-    root = Tk()
-    Window(root).pack(fill="both", expand=True)
-    root.mainloop()
-
