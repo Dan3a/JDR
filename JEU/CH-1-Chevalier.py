@@ -92,10 +92,59 @@ class histoire_chevalier:
                     choix = choix.lower()
                 if choix == "se rendre à Icegate" :
                     print("")
+                    print("Vous remontez donc le royaume vers Icegate, cet endroit reculé")
+                    print("de Dahal à la frontière avec le royaume énemi: Crézantis, ")
+                    print("ednroit où le royaume garde précieusement ses trois crystaux")
+                    print("")
+                    print("A votre arrivé dans ce lieu habituellement rempli de garde, ")
+                    print("vous n'etes acceuilli que par un vent glacé et un étrange présentiment")
                     self.place = 4
                 elif choix == "interroger une autre personne" :
                     print("")
+                    print("Vous portez que peu d'importance à cette dîte histoire,")
+                    print("Vous ne trouvez pas important de se rendre aussi loin ")
+                    print("pour confirmer cette rumeur. Mais un peu plus loin, ")
+                    print("vous apercevez une autre personne, vous décider d'aller")
+                    print("lui parler pour essayer d'avoir d'autre information.")
+                    print("")
+                    print("- Excusez moi Sir, est-ce que vous auriez entendu parler d'un voleur trainant dans les parrage?")
+                    print("- Bonsoir à vous, en effet je suppose que c'est en rapport avec la nuit qui s'est abbatu sur le royaume")
+                    print("- Il est vrai que cela est un lien, mais auriez vous des information sur ce qu'il s'est passé ?")
+                    print("- Non, veuillez m'en excusez, je suis le vieux gardien des souterrains de Deadfalls je n'entend que peut de chose là bas.")
+                    print("")
+                    print("Vous aviez déjà entendu parler de ce vieux gardien,")
+                    print("on raconte qu'il aurait les clés ouvrant les portes")
+                    print("de ce fameux souterrain à Deadfalls, il y renfermerait")
+                    print("Un monstre mythique mais également un incroyable trésor.")
+                    print(" et vous savez que vous aurez besoin de ce tresor pour")
+                    print("survire à cette aventure; il vous faut ces clés.")
                     self.place = 5
 
             while self.place == 3: #chemin hazard(Starhill)
                 choix = ""
+                while (choix != "rendre visite à cet ami" and choix != "revenir à la clairrière"):
+                    choix = input("Que voulez-vous faire? ( rendre visite à cet ami/ revenir à la clairrière")
+                    choix = choix.lower()
+                if choix == "rendre visite à cet ami" :
+                    print("")
+                    print("Vous vous diriger vers sa demeure,")
+                    print("vous ayant apperçut, il vous ouvre la porte.")
+                    print("Cela fait plusieurs années que vous ne l'avez pas vu,")
+                    print("vous le trouver changer, mais n'y prétant pas")
+                    print("pas d'importance, vous entrez dans la maison")
+                    print("Vous savez que vous ne devez pas tarder,")
+                    print("le royaume court un grave danger, mais")
+                    print("cette longue marche vous a fatiguée")
+                    self.place = 6
+                if choix == "revenir à la clairrière" :
+                    print("Vous avez un mauvais présage et préférer rentrer à la clairrière")
+                    self.place = 1
+                
+            while self.place == 4: #aller à Icegate
+                choix = ""
+                while (choix != "chercher des traces du voleur" and choix != "regarder dans la montagne"
+                        and choix != "aller voir les guardiens"):
+                    choix = input("Que faites vous ? ( chercher des traces du voleur/ regarder dans la montagne/ aller voir les guardiens)")
+                    choix = choix.lower()
+                if choix == "chercher des traces du voleur" :
+                    print("")
