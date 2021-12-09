@@ -38,6 +38,7 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
 
 from tkinter import *
 import base64
+import pygame
 
 # Classe du menu principal
 class StartMenu(Frame):
@@ -54,3 +55,8 @@ class StartMenu(Frame):
         img = base64.b64decode(iconimgdata)
         photo = PhotoImage(data=img)
         root.iconphoto(False, photo)
+    
+def playIntroSong():
+    pygame.mixer.music.load("assets/songs/intro.wav")
+    pygame.mixer.music.play(loops=0)
+
