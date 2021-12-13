@@ -1,4 +1,3 @@
-# Image en base64
 iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'4gc1xU9971XVV3V1b/pVqtHI9mjsUbIRDKGxFmZBBKTRRZJcIwXgWyyTggEvM' \
               b'w6i6xs8MLbEAwhCs4i5IMhiBCMkBkTy8lYsjUfW5rpmemZ/lV3dVXX55n7qmc' \
@@ -35,56 +34,21 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'ejW1sj8wVP/g3d3H/sCf5sYPo1E2RbO9MuDgFAcCxAa7RKEFOgfhGdJpCVJ3d' \
               b'84RNCd6OOd0UItHPT/+DWFOtMvQGa688cPgGEvepISQ36WZPgCVhY7eBY73j4' \
               b'AAAAASUVORK5CYII='
-
 import tkinter as tk
-import base64, pyglet, os
-from pygame import mixer
+import base64
 
-
-# Classe du menu principal
-class StartMenu(tk.Frame):
-    def __init__(self, startWindow):
-        tk.Frame.__init__(self, startWindow)
-        self.startWindow = startWindow
-        startWindow.geometry("800x600")
-        startWindow.resizable(False, False)
-        startWindow.wm_title("Crystal Quest Launcher")
+class GameMenu(tk.Frame):
+    def __init__(self, gameWindow):
+        tk.Frame.__init__(self, gameWindow)
+        self.gameWindow = gameWindow
+        gameWindow.geometry("800x600")
+        gameWindow.resizable(False, False)
+        gameWindow.wm_title("Crystal Quest")
 
         img = base64.b64decode(iconimgdata)
         photo = tk.PhotoImage(data=img)
-        startWindow.iconphoto(False, photo)
+        gameWindow.iconphoto(False, photo)
 
         self.img = tk.PhotoImage(file="logolarge.gif")  # Use self.image
-        background_label = tk.Label(startWindow, image=self.img)
+        background_label = tk.Label(gameWindow, image=self.img)
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-        mixer.init()
-        playIntroSong() 
-
-        quitButton = tk.Button(
-            startWindow,
-            width=20, 
-            height=5,
-            command=lambda: startWindow.quit()
-            )
-        quitButton.place(x=325, y=460)   
-
-        playButton = tk.Button(
-            startWindow,
-            width=20,
-            height=5,
-            command=lambda: changePlayButtonState(),
-        )
-        playButton.place(x=325, y=355)
-        
-        def changePlayButtonState():
-            playButtonState=True
-            startWindow.quit()
-    
-# Purement pour la musique
-def playIntroSong(): 
-    mixer.music.load("assets/songs/intro.wav")
-    mixer.music.play(loops=0)
-
-global playButtonState
-playButtonState = False
