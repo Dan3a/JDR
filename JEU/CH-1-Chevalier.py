@@ -201,8 +201,60 @@ class histoire_chevalier:
                     choix = choix.lower()
                 if choix == "menacer le vieu guardien" :
                     print("")
+                    print("Vous etes pressé, et vous ne voulez pas discuter plus longtemps,")
+                    print("une folie vous emporte et vous menacer le guardien de votre dague.")
+                    print("Ce dernier paniquer se tétanisé, après quelques secondes,")
+                    print("vous remet faibrillement les clés avant de partir sans se retourner")
+                    print("")
+                    print("")
                 elif choix == "amadoué le vieu guardien" :
                     print("")
+                    print("Vous vous doutez que qu'il ne vous donnera les clés aussi facilement,")
+                    print("vous lui proposez donc 10 PO en échange des clés, après réflexion")
+                    print("Il vous remet les clés en échange de 20 PO, satisfait vous le saluez et repartez.")
+                    print("Ayant enfin ces clés, vous vous rendez à Deadfalls pour ouvrir ces souterrains.")
+                    self.place = 7
                 elif choix == "demander poliment" :
                     print("")
+                    print("Vous avez confiance en votre incroyable capacité à vous exprimer,")
+                    print("vous entamer une longue discussion en commencant à vous lié d'amitié")
+                    print("avec cette personne, qui finira par vous céder volontier les clés.")
+                    print("Ayant enfin ces clés, vous prenez le chemin Deadfalls pour ouvrir ces souterrains.")
+                    self.place = 7
 
+            while self.place == 6: #rester chez ami ou pas
+                choix = ""
+                while (choix != "rester se reposer" and choix != "continuer les recherches"):
+                    choix = input("Que voulez-vous faire? ( rester se reposer/ continuer les recherches")
+                    choix = choix.lower()
+                if choix == "rester se reposer":
+                    print("")
+                    print("Après une courte réflexion, vous vous dites qu'une nuit dans un bon")
+                    print("lit ne vous fera pas de mal après autant de marche. Vous montez donc à l'étage")
+                    print("vous alonger et commencer à sombrer dans un profond sommeil...")
+                    print("")
+                    print(".......")
+                    print("")
+                    print("De ce sommeil, vous ne vous réveillerais jamais et vous n'en saurait donc jamais la raison.")
+                    self.prologue = False
+
+                elif choix == "continuer les recherches":
+                    print("")
+                    print("Vous décidez de na pas rester trop longtemps, et entamez avant de partir")
+                    print("une petite discussion autour de ce qui pèse sur le royaume et vous essayez")
+                    print("d'en savoir un peu plus. Au moment de vous quitter, votre ami vous apprendra")
+                    print("que les crystaux ont étés créés par les sorciers de cet même contrée de Starhill.")
+                    print("Vous décidez donc de vous rendre chez un des dernier sorcier habitant pas loin d'ici.")
+                    self.place = 8
+
+            while self.place == 7: #retourner à DeadFalls avec les clés
+                choix = ""
+                while (choix != "aller dans la taverne" and choix != "aller dans les souterrains"):
+                    choix = input("Que choisissez-vous? ( aller dans la taverne/ aller dans les souterrains")
+                    choix = choix.lower()
+                if choix == "aller dans la taverne":
+                    print("")
+                    print("")
+                elif choix == "aller dans les souterrains":
+                    print("")
+                    print("")
