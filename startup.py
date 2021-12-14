@@ -1,10 +1,4 @@
-from startMenu import *
 from gameMenu import *
-
-startWindow = tk.Tk()
-StartMenu(startWindow).pack(fill="both", expand=True)
-startWindow.mainloop()
-
-
-if playButtonState==True:
-    startWindow.quit()
+gameWindow = tk.Tk()
+GameMenu(gameWindow).pack(fill="both", expand=True)
+gameWindow.mainloop()

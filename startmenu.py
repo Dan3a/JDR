@@ -37,40 +37,38 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'AAAAASUVORK5CYII='
 
 import tkinter as tk
-import base64, pyglet, os
+import base64,os,sys
 from pygame import mixer
-
 
 # Classe du menu principal
 class StartMenu(tk.Frame):
-    def __init__(self, startWindow):
-        tk.Frame.__init__(self, startWindow)
-        self.startWindow = startWindow
-        startWindow.geometry("800x600")
-        startWindow.resizable(False, False)
-        startWindow.wm_title("Crystal Quest Launcher")
+    def __init__(self, root):
+        tk.Frame.__init__(self, root)
+        root.geometry("800x600")
+        root.resizable(False, False)
+        root.wm_title("Crystal Quest Launcher")
 
         img = base64.b64decode(iconimgdata)
         photo = tk.PhotoImage(data=img)
-        startWindow.iconphoto(False, photo)
+        root.iconphoto(False, photo)
 
         self.img = tk.PhotoImage(file="logolarge.gif")  # Use self.image
-        background_label = tk.Label(startWindow, image=self.img)
+        background_label = tk.Label(root, image=self.img)
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         mixer.init()
         playIntroSong() 
 
-        quitButton = tk.Button(
-            startWindow,
-            width=20, 
-            height=5,
-            command=lambda: startWindow.quit()
-            )
-        quitButton.place(x=325, y=460)   
+        # quitButton = tk.Button(
+        #     root,
+        #     width=20, 
+        #     height=5,
+        #     command=lambda: root.quit()
+        #     )
+        # quitButton.place(x=325, y=460)   
 
         playButton = tk.Button(
-            startWindow,
+            root,
             width=20,
             height=5,
             command=lambda: changePlayButtonState(),
@@ -78,13 +76,13 @@ class StartMenu(tk.Frame):
         playButton.place(x=325, y=355)
         
         def changePlayButtonState():
-            playButtonState=True
-            startWindow.quit()
-    
+            mixer.music.stop()
+            os.system("python startup.py")
 # Purement pour la musique
 def playIntroSong(): 
     mixer.music.load("assets/songs/intro.wav")
     mixer.music.play(loops=0)
 
-global playButtonState
-playButtonState = False
+startWindow = tk.Tk()
+StartMenu(startWindow).pack(fill="both", expand=True)
+startWindow.mainloop() 

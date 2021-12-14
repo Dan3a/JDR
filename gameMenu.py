@@ -49,6 +49,6 @@ class GameMenu(tk.Frame):
         photo = tk.PhotoImage(data=img)
         gameWindow.iconphoto(False, photo)
 
-        self.img = tk.PhotoImage(file="logolarge.gif")  # Use self.image
-        background_label = tk.Label(gameWindow, image=self.img)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        # self.img = tk.PhotoImage(file="logolarge.gif")  # Use self.image
+        # background_label = tk.Label(gameWindow, image=self.img)
+        # background_label.place(x=0, y=0, relwidth=1, relheight=1)
