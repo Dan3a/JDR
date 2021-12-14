@@ -41,7 +41,17 @@ class GameMenu(tk.Frame):
     def __init__(self, gameWindow):
         tk.Frame.__init__(self, gameWindow)
         self.gameWindow = gameWindow
-        gameWindow.geometry("800x600")
+        w = 800 # width for the Tk gameWindow
+        h = 600 # height for the Tk gameWindow
+        # get screen width and height
+        ws = gameWindow.winfo_screenwidth() # width of the screen
+        hs = gameWindow.winfo_screenheight() # height of the screen
+        # calculate x and y coordinates for the Tk gameWindow window
+        x = (ws/2) - (w/2)
+        y = (hs/2) - (h/2)
+        # set the dimensions of the screen 
+        # and where it is placed
+        gameWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))
         gameWindow.resizable(False, False)
         gameWindow.wm_title("Crystal Quest")
 
@@ -49,6 +59,6 @@ class GameMenu(tk.Frame):
         photo = tk.PhotoImage(data=img)
         gameWindow.iconphoto(False, photo)
 
-        # self.img = tk.PhotoImage(file="logolarge.gif")  # Use self.image
-        # background_label = tk.Label(gameWindow, image=self.img)
-        # background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.img = tk.PhotoImage(file="frame.gif")  # Use self.image
+        background_label = tk.Label(gameWindow, image=self.img)
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)

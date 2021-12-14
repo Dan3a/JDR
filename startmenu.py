@@ -37,8 +37,9 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'AAAAASUVORK5CYII='
 
 import tkinter as tk
-import base64,os,sys
+import base64,os,pyglet
 from pygame import mixer
+
 
 # Classe du menu principal
 class StartMenu(tk.Frame):
@@ -46,14 +47,10 @@ class StartMenu(tk.Frame):
         tk.Frame.__init__(self, root)
         w = 800 # width for the Tk root
         h = 600 # height for the Tk root
-        # get screen width and height
         ws = root.winfo_screenwidth() # width of the screen
         hs = root.winfo_screenheight() # height of the screen
-        # calculate x and y coordinates for the Tk root window
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        # set the dimensions of the screen 
-        # and where it is placed
         root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
         root.resizable(False, False)
@@ -70,21 +67,37 @@ class StartMenu(tk.Frame):
         mixer.init()
         playIntroSong() 
 
+        
+        quitButton = tk.Button(
+            root,
+            font=('Middle Ages PERSONAL USE',25),
+            text="Quit",
+            fg='white',
+            bg='black',
+            command=lambda: root.quit(),
+        )
+        quitButton.place(x=340, y=470)
+
         playButton = tk.Button(
             root,
-            width=20,
-            height=5,
-            command=lambda: changePlayButtonState(),
+            font=('Middle Ages PERSONAL USE',30),
+            text="Play",
+            fg='white',
+            bg='black',
+            command=lambda: StartGameMenu(),
         )
         playButton.place(x=325, y=355)
         
-        def changePlayButtonState():
+        def StartGameMenu():
             mixer.music.stop()
             os.system("python startup.py")
+
 # Purement pour la musique
 def playIntroSong(): 
     mixer.music.load("assets/songs/intro.wav")
     mixer.music.play(loops=999)
+
+pyglet.font.add_file('MiddleAges_PERSONAL_USE.ttf')
 
 startWindow = tk.Tk()
 StartMenu(startWindow).pack(fill="both", expand=True)
