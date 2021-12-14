@@ -12,6 +12,7 @@ class histoire_chevalier:
         self.choix_moral2 = ""
         self.choix_moral3 = ""
         self.fight_debut = False
+        self.fight_dernier_guardien = False
 
 
         
@@ -164,7 +165,7 @@ class histoire_chevalier:
                     print("dans la montagne, vous décider d'aller y jeter")
                     print("un oeil, vous entrez à l'interieur et vous vous")
                     print("enfoncer au coeur de la grande salle, quand soudain...")
-                    self.place = "combat gardien"
+                    self.place = "combat_gardien"
                 elif choix == "aller voir les guardiens" :
                     print("")
                     print("Après une longue exploration des lieux,")
@@ -180,7 +181,7 @@ class histoire_chevalier:
                         print("dans la montagne, vous décider d'aller y jeter")
                         print("un oeil, vous entrez à l'interieur et vous vous")
                         print("enfoncer au coeur de la grande salle, quand soudain...")
-                        self.place = "combat gardien"
+                        self.place = "combat_gardien"
                     elif choix2 == "trouver des traces du voleur" :
                         print("")
                         print("En fesant le tour de l'entrée, vous tomber")
@@ -206,13 +207,44 @@ class histoire_chevalier:
                     print("Ce dernier paniquer se tétanisé, après quelques secondes,")
                     print("vous remet faibrillement les clés avant de partir sans se retourner")
                     print("")
-                    print("")
+                    print("Comme vous avez enfin ces clés, vous vous rendez à Deadfalls,")
+                    print("sur le chemin une lueure attire votre attention.")
+                    choix2 = "" #suivre ou pas illusion
+                    while (choix2 != "aller voir de plus près" and choix != "continuer vers Deadfalls"):
+                        choix2 = input("Que choisissez-vous? ( aller voir de plus près/ continuer vers Deadfalls")
+                        choix2 = choix.lower()
+                    if choix2 == "aller voir de plus près":
+                        print("")
+                        print("Cette lueure vous intrigue et vous décidez de vous approcher.")
+                        print("Au pied d'un arbre se trouve une petite fiole fluorenscente.")
+                        choix3 = "" # boire ou pas -6 pv physique
+                        while (choix3 != "repartir" and choix3 != "boire la fiole"):
+                            choix3 = input("Que faites-vous? ( repartir/ boire la fiole)")
+                            choix3 = choix.lower()
+                        if choix3 == "repartir":
+                            print("")
+                            print("En y réfléchissant, vous songer que boire cette substance,")
+                            print("n'est pas une bonne idée, vous décidez donc de continuer")
+                            print("votre chemin vers Deadfalls et ses souterrains.")
+                            print("")
+                            print("Lorsque que vous arrivez, cette longue marche vous a fatigué,")
+                            print("et une taverne se trouve près de l'entrée de Deadfalls.")
+                            self.place = 7
+                        elif choix3 == "boire la fiole":
+                            print("")
+                            print("")
+                    elif choix2 == "continuer vers Deadfalls":
+                        print("")
+                        print("Vous continuer votre chemin vers Deadfalls pour enfin ouvrir ces souterrains.")
+                        print("Mais où etes fatigué et une taverne se trouve non loin.")
+                        self.place = 7
                 elif choix == "amadoué le vieu guardien" :
                     print("")
                     print("Vous vous doutez que qu'il ne vous donnera les clés aussi facilement,")
                     print("vous lui proposez donc 10 PO en échange des clés, après réflexion")
                     print("Il vous remet les clés en échange de 20 PO, satisfait vous le saluez et repartez.")
                     print("Ayant enfin ces clés, vous vous rendez à Deadfalls pour ouvrir ces souterrains.")
+                    print("Mais où etes fatigué et une taverne se trouve non loin.")
                     self.place = 7
                 elif choix == "demander poliment" :
                     print("")
@@ -220,6 +252,7 @@ class histoire_chevalier:
                     print("vous entamer une longue discussion en commencant à vous lié d'amitié")
                     print("avec cette personne, qui finira par vous céder volontier les clés.")
                     print("Ayant enfin ces clés, vous prenez le chemin Deadfalls pour ouvrir ces souterrains.")
+                    print("Mais où etes fatigué et une taverne se trouve non loin.")
                     self.place = 7
 
             while self.place == 6: #rester chez ami ou pas
@@ -236,7 +269,7 @@ class histoire_chevalier:
                     print(".......")
                     print("")
                     print("De ce sommeil, vous ne vous réveillerais jamais et vous n'en saurait donc jamais la raison.")
-                    self.prologue = False
+                    self.place = 0
 
                 elif choix == "continuer les recherches":
                     print("")
@@ -254,7 +287,30 @@ class histoire_chevalier:
                     choix = choix.lower()
                 if choix == "aller dans la taverne":
                     print("")
-                    print("")
+                    print("Vous vous sentez un peu fatigué et vous avez faim, vous vous rendez donc dans la")
+                    print("taverne. Vous manger un petit peu et une table de jeu attire votre attention,")
+                    print("vous décidez donc en grand amateur de jeu de chance de vous joindre à la partie.")
+                    self.place = "jeu_taverne"
                 elif choix == "aller dans les souterrains":
                     print("")
+                    self.place = "souterrain"
+
+            while self.place == 8: #aller cher le sorcier
+                choix = ""
+                while (choix != "aller à Bayfort"):
+                    choix = input("Que faites-vous? ( aller à Bayfort )")
+                    choix = choix.lower()
+                if choix == "aller à Bayfort":
                     print("")
+                    self.place = 9
+
+            while self.place == "combat_gardien": #combat contre dernier guardien
+                self.fight_dernier_guardien = AA.fight_dernier_guardien
+                if self.fight_dernier_guardien is False:
+                    print("")
+                    self.place = 0
+                else:
+                    print("")
+                    print("")
+
+             
