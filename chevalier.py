@@ -18,7 +18,7 @@ class histoire_chevalier:
 
         
     
-    def jeu(self, debut):
+    def jeu(self):
         
         while self.place > 0:
 
@@ -37,7 +37,7 @@ class histoire_chevalier:
                 print("et vous en savez le danger, mais vous vous rappelez également")
                 print("vos mauvaises relations récentes avec le Roi. Vous devez prendre une décision.")
                 while self.choix_moral1 != "accepter l'ordre" and self.choix_moral1 != "refuser l'ordre" :
-                    self.choix_moral1 = input("Que faites vous ? (accepter l'ordre/ refuser l'ordre) ")
+                    # self.choix_moral1 = input("Que faites vous ? (accepter l'ordre/ refuser l'ordre) ")
                     self.choix_moral1 = self.choix_moral1.lower()
 
                 if self.choix_moral1 == "accepter l'ordre" :
@@ -68,7 +68,7 @@ class histoire_chevalier:
             while self.place == 1 : #aller clairrière
                 choix = ""
                 while (choix != "interriger un passant" and choix != "prendre un chemin au hazard"):
-                    choix = input("Que faites vous ? ( interroger un passant/ prendre un chemin au hazard)")
+                    # choix = input("Que faites vous ? ( interroger un passant/ prendre un chemin au hazard)")
                     choix = choix.lower()
                 if choix == "interroger un passant" :
                     print("")
@@ -90,7 +90,7 @@ class histoire_chevalier:
             while self.place == 2 : #demander passant
                 choix = ""
                 while (choix != "se rendre à Icegate" and choix != "interroger une autre personne"):
-                    choix = input("Que faites vous ? ( se rendre à Icegate/ interroger une autre personne")
+                    # choix = input("Que faites vous ? ( se rendre à Icegate/ interroger une autre personne")
                     choix = choix.lower()
                 if choix == "se rendre à Icegate" :
                     print("")
@@ -125,7 +125,7 @@ class histoire_chevalier:
             while self.place == 3: #chemin hazard(Starhill)
                 choix = ""
                 while (choix != "rendre visite à cet ami" and choix != "revenir à la clairrière"):
-                    choix = input("Que voulez-vous faire? ( rendre visite à cet ami/ revenir à la clairrière")
+                    # choix = input("Que voulez-vous faire? ( rendre visite à cet ami/ revenir à la clairrière")
                     choix = choix.lower()
                 if choix == "rendre visite à cet ami" :
                     print("")
@@ -146,7 +146,7 @@ class histoire_chevalier:
                 choix = ""
                 while (choix != "chercher des traces du voleur" and choix != "regarder dans la montagne"
                         and choix != "aller voir les guardiens"):
-                    choix = input("Que faites vous ? ( chercher des traces du voleur/ regarder dans la montagne/ aller voir les guardiens)")
+                    # choix = input("Que faites vous ? ( chercher des traces du voleur/ regarder dans la montagne/ aller voir les guardiens)")
                     choix = choix.lower()
                 if choix == "chercher des traces du voleur" :
                     print("")
@@ -174,7 +174,7 @@ class histoire_chevalier:
                     print("guardiens ont disparuent.")
                     choix2 =""
                     while (choix2 != "chercher dans la montagne" and choix2 != "trouver des traces du voleur"):
-                        choix2 = input("Que souhaitez-vous faire? (chercher dans la montagne/ trouver des traces du voleur")
+                        # choix2 = input("Que souhaitez-vous faire? (chercher dans la montagne/ trouver des traces du voleur")
                         choix2 = choix2.lower()
                     if choix2 == "chercher dans la montagne" :
                         print("")
@@ -199,7 +199,7 @@ class histoire_chevalier:
             while self.place == 5: #avoir les clés du vieux guardien
                 choix =""
                 while (choix != "menacer le vieu guardien" and choix != "amadouer le vieu guardien" and choix != "demander poliment"):
-                    choix = input("Que faites-vous ? ( menacer le vieu guardien/ amadoué le vieu guardien/ demander poliment")
+                    # choix = input("Que faites-vous ? ( menacer le vieu guardien/ amadoué le vieu guardien/ demander poliment")
                     choix = choix.lower()
                 if choix == "menacer le vieu guardien" :
                     print("")
@@ -212,7 +212,7 @@ class histoire_chevalier:
                     print("sur le chemin une lueure attire votre attention.")
                     choix2 = "" #suivre ou pas illusion
                     while (choix2 != "aller voir de plus près" and choix != "continuer vers Deadfalls"):
-                        choix2 = input("Que choisissez-vous? ( aller voir de plus près/ continuer vers Deadfalls")
+                        # choix2 = input("Que choisissez-vous? ( aller voir de plus près/ continuer vers Deadfalls")
                         choix2 = choix.lower()
                     if choix2 == "aller voir de plus près":
                         print("")
@@ -220,7 +220,7 @@ class histoire_chevalier:
                         print("Au pied d'un arbre se trouve une petite fiole fluorenscente.")
                         choix3 = "" # boire ou pas -6 pv physique
                         while (choix3 != "repartir" and choix3 != "boire la fiole"):
-                            choix3 = input("Que faites-vous? ( repartir/ boire la fiole)")
+                            # choix3 = input("Que faites-vous? ( repartir/ boire la fiole)")
                             choix3 = choix.lower()
                         if choix3 == "repartir":
                             print("")
@@ -259,7 +259,7 @@ class histoire_chevalier:
             while self.place == 6: #rester chez ami ou pas
                 choix = ""
                 while (choix != "rester se reposer" and choix != "continuer les recherches"):
-                    choix = input("Que voulez-vous faire? ( rester se reposer/ continuer les recherches")
+                    # choix = input("Que voulez-vous faire? ( rester se reposer/ continuer les recherches")
                     choix = choix.lower()
                 if choix == "rester se reposer":
                     print("")
@@ -294,7 +294,7 @@ class histoire_chevalier:
                     print("aider lors de votre combat.")
                     choix2 = "" #accepter ou refuser l'aide du sorcier
                     while (choix2 != "accepter son aide" and choix2 != "refuser son aide"):
-                        choix2 = input("Que voulez-vous faire? ( accepter son aide/ refuser son aide")
+                        # choix2 = input("Que voulez-vous faire? ( accepter son aide/ refuser son aide")
                         choix2 = choix2.lower()
                     if choix2 == "accepter son aide":
                         print("")
@@ -315,7 +315,7 @@ class histoire_chevalier:
                         print("pour lui de les retrouvé rapidement pour le bien du royaume...")
                         choix3 = "" #sorcier insiste choix
                         while (choix3 != "accpeter finalement son aide" and choix3 != "continuer à refuser poliment"):
-                            choix3 = input("Que décidez-vous? ( accepter finalement son aide/ continuer à refuser poliment")
+                            # choix3 = input("Que décidez-vous? ( accepter finalement son aide/ continuer à refuser poliment")
                             choix3 = choix3.lower()
                         if choix3 == "accepter finalement son aide":
                             print("")
@@ -337,7 +337,7 @@ class histoire_chevalier:
             while self.place == 7: #retourner à DeadFalls avec les clés
                 choix = ""
                 while (choix != "aller dans la taverne" and choix != "aller dans les souterrains"):
-                    choix = input("Que choisissez-vous? ( aller dans la taverne/ aller dans les souterrains")
+                    # choix = input("Que choisissez-vous? ( aller dans la taverne/ aller dans les souterrains")
                     choix = choix.lower()
                 if choix == "aller dans la taverne":
                     print("")
@@ -352,7 +352,7 @@ class histoire_chevalier:
             while self.place == 8: #aller à Bayfort
                 choix = ""
                 while (choix != "aller à Bayfort"):
-                    choix = input("Que faites-vous? ( aller à Bayfort )")
+                    # choix = input("Que faites-vous? ( aller à Bayfort )")
                     choix = choix.lower()
                 if choix == "aller à Bayfort":
                     print("")
@@ -386,5 +386,4 @@ class histoire_chevalier:
                     print("Vous arrivé près des souterrains de Deadfalls vous vous sentez fatigué par ce combat.")
                     self.place = 7
 
-
-             
+histoire_chevalier().jeu()

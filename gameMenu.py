@@ -36,6 +36,7 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'AAAAASUVORK5CYII='
 import tkinter as tk
 import base64
+import chevalier as ch
 
 class GameMenu(tk.Frame):
     def __init__(self, gameWindow):
@@ -63,8 +64,26 @@ class GameMenu(tk.Frame):
         background_label = tk.Label(gameWindow, image=self.img)
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        left_frame = tk.Frame(gameWindow, borderwidth=2)
-        left_frame.pack(side="left", padx=50, pady=10)
+        minimap=tk.Label(gameWindow)
+        minimap["fg"] = "#e1dbd3"
+        minimap["justify"] = "center"
+        minimap["text"] = "label"
+        minimap.place(x=640,y=50,width=110,height=110)
 
-        tk.Label(left_frame, text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        tk.Entry(left_frame, text="Frame 1").pack(side='bottom')
+        listeInventaire=tk.Listbox(gameWindow)
+        listeInventaire["borderwidth"] = "1px"
+        listeInventaire["fg"] = "#e1dbd3"
+        listeInventaire["justify"] = "center"
+        listeInventaire.place(x=640,y=170,width=110,height=380)
+
+        boiteSortieDeTexte=tk.Label(gameWindow)
+        boiteSortieDeTexte["fg"] = "#e1dbd3"
+        boiteSortieDeTexte["justify"] = "center"
+        boiteSortieDeTexte["text"] = ch.histoire_chevalier().jeu()
+        boiteSortieDeTexte.place(x=50,y=50,width=550,height=450)
+
+        boiteEntreeDeTexte=tk.Entry(gameWindow)
+        boiteEntreeDeTexte["borderwidth"] = "1px"
+        boiteEntreeDeTexte["fg"] = "#e1dbd3"
+        boiteEntreeDeTexte["justify"] = "center"
+        boiteEntreeDeTexte.place(x=50,y=510,width=550,height=40)

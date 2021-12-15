@@ -10,7 +10,7 @@ class Perso:
     def __init__(self):
 
         #global
-        self.name = ""
+        # self.name = ""
         self.force = 1
         self.ruse = 1
         self.eloquence = 1
@@ -37,7 +37,7 @@ class Perso:
 
     #REPARTITION DES CARACTERISTIQUE DES PERSONNAGE AU DEBUT DE LA PARTIE
     def debut(self):
-        self.name = input("Quel est votre nom ? : ")
+        # self.name = input("Quel est votre nom ? : ")
         self.pv_physique = 20
         self.pv_mental = 10
         if personnage == "chevalier":
@@ -173,7 +173,7 @@ class Perso:
         else :
             self.etat = "est gravement blessé"
         print("")
-        print (self.name,self.etat)
+        # print (self.name,self.etat)
         print("### Argent :",self.argent,"Pièce d'or")
         print("Force :",self.force,"### Ruse :",self.ruse)
         for key,nb in self.Armes.items() :
