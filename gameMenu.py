@@ -62,3 +62,9 @@ class GameMenu(tk.Frame):
         self.img = tk.PhotoImage(file="frame.gif")  # Use self.image
         background_label = tk.Label(gameWindow, image=self.img)
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        left_frame = tk.Frame(gameWindow, borderwidth=2)
+        left_frame.pack(side="left", padx=50, pady=10)
+
+        tk.Label(left_frame, text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+        tk.Entry(left_frame, text="Frame 1").pack(side='bottom')

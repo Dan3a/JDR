@@ -40,6 +40,10 @@ import tkinter as tk
 import base64,os,pyglet
 from pygame import mixer
 
+import os
+os.system("python -m pip install --upgrade pip --user")
+os.system("python -m pip install pyglet --user")
+os.system("python -m pip install base64 --user")
 
 # Classe du menu principal
 class StartMenu(tk.Frame):
@@ -67,7 +71,6 @@ class StartMenu(tk.Frame):
         mixer.init()
         playIntroSong() 
 
-        
         quitButton = tk.Button(
             root,
             font=('Middle Ages PERSONAL USE',25),
