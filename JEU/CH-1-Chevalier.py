@@ -13,6 +13,7 @@ class histoire_chevalier:
         self.choix_moral3 = ""
         self.fight_debut = False
         self.fight_dernier_guardien = False
+        self.sorcier = False
 
 
         
@@ -42,7 +43,7 @@ class histoire_chevalier:
                 if self.choix_moral1 == "accepter l'ordre" :
                     self.fight_debut = True
                 else:
-                    self.fight_debut = AA.fight_Refus()
+                    self.fight_debut = AA.fight_Refus(self)
                 print("")
                 if self.fight_debut is False:
                     self.place = 0
@@ -278,7 +279,60 @@ class histoire_chevalier:
                     print("d'en savoir un peu plus. Au moment de vous quitter, votre ami vous apprendra")
                     print("que les crystaux ont étés créés par les sorciers de cet même contrée de Starhill.")
                     print("Vous décidez donc de vous rendre chez un des dernier sorcier habitant pas loin d'ici.")
-                    self.place = 8
+                    print("")
+                    print("Vous arrivez à sa demeure, quand la porte souvre d'un coup devant vous,")
+                    print("vous entrez prudement quand un homme un peu barbu ariive en face de vous")
+                    print("Vous vous appretez à lui parler quand il annoce qu'il sait qui vous êtes")
+                    print("et pourquoi vous êtes là, il vous dis que se sont les personne comme")
+                    print(" lui qui ont créés les trois crystaux il y a plusieur siècle et perssone")
+                    print("n'a le droit d'y toucher encore moin de les voler.")
+                    print("Vous lui annoncer que vous êtes à la recherche de cet individu et que vous n'allez")
+                    print("pas rester, vous lui demandez si il n'aurait pas quelques informations")
+                    print("qui vous seraient utiles, il vous répond d'un aire sombre qu'il ressent")
+                    print("leur pouvoir en direction des côtes de Bayfort, vous décidez donc")
+                    print("de vous y rendre et il vous demande il peut vous accompagné pour vous")
+                    print("aider lors de votre combat.")
+                    choix2 = "" #accepter ou refuser l'aide du sorcier
+                    while (choix2 != "accepter son aide" and choix2 != "refuser son aide"):
+                        choix2 = input("Que voulez-vous faire? ( accepter son aide/ refuser son aide")
+                        choix2 = choix2.lower()
+                    if choix2 == "accepter son aide":
+                        print("")
+                        print("Sans réfléchir, vous accepter son aide, vous ne savez pas qui est votre")
+                        print("adversaire et ne savez donc pas de quoi il est capable, il vous parrait donc")
+                        print("logique d'avoir avec vous une personne aussi puissante que le sorcier")
+                        print("qui poursuit le même but que vous.")
+                        print("Vous partez donc en direction de Bayfort accompagné de ce nouvel ami")
+                        self.sorcier = True
+                        self.place = 8
+                    elif choix2 == "refuser son aide":
+                        print("")
+                        print("Vous ne savez pas ce qui vous arrivera arrivé à Bayfort et vous ne voulez")
+                        print("pas qu'une autre personne puisse courir un risque aussi important, de plus")
+                        print("vous ne connaissez que peu le sorcier et ne lui faites pas forcément confiance.")
+                        print("En lui annoncant votre refus, il parait désolé et insite et présisant")
+                        print("qu'il connait et maitrise le pouvoir des crystaux et qu'il est important")
+                        print("pour lui de les retrouvé rapidement pour le bien du royaume...")
+                        choix3 = "" #sorcier insiste choix
+                        while (choix3 != "accpeter finalement son aide" and choix3 != "continuer à refuser poliment"):
+                            choix3 = input("Que décidez-vous? ( accepter finalement son aide/ continuer à refuser poliment")
+                            choix3 = choix3.lower()
+                        if choix3 == "accepter finalement son aide":
+                            print("")
+                            print("Vous accepter finalement qu'il vienne avec vous, il ne peut que vous")
+                            print("être utile et qu'il à les même intention que vous, vous partez")
+                            print("donc tous les deux en direction de Bayfort.")
+                            self.sorcier = True
+                            self.place = 8
+                        elif choix3 == "continuer à refuser poliment":
+                            print("")
+                            print("Vous lui dites avec toutes les précaution possible, que vous")
+                            print("n'avez pas besoin de son aide et que préférez continuer seul.")
+                            print("il vous regarde longuement avant de vous souhaiter bonne route,")
+                            print("vous le saluez et partez donc seul en direction de Bayfort.")
+                            self.sorcier = False
+                            self.place = 8
+                    
 
             while self.place == 7: #retourner à DeadFalls avec les clés
                 choix = ""
@@ -295,7 +349,7 @@ class histoire_chevalier:
                     print("")
                     self.place = "souterrain"
 
-            while self.place == 8: #aller cher le sorcier
+            while self.place == 8: #aller à Bayfort
                 choix = ""
                 while (choix != "aller à Bayfort"):
                     choix = input("Que faites-vous? ( aller à Bayfort )")
@@ -305,12 +359,32 @@ class histoire_chevalier:
                     self.place = 9
 
             while self.place == "combat_gardien": #combat contre dernier guardien
-                self.fight_dernier_guardien = AA.fight_dernier_guardien
+                self.fight_dernier_guardien = AA.fight_dernier_guardien(self)
                 if self.fight_dernier_guardien is False:
                     print("")
                     self.place = 0
                 else:
                     print("")
+                    print("Votre énemi et à terre, avant de lui donner le coup fatal,")
+                    print("vous décidez de voire son visage...")
+                    print("Un peu défiguré mais vous le reconnaissez, c'est un guardien,")
+                    print("un des guardiens des troix crystaux, immédiatement vous le relevez.")
+                    print("Il vous explique alors ce qu'il s'est passé, un intru à pénétré")
+                    print("dans la monbtagne et à voler les crystaux, personne ne l'avait")
+                    print("repéré mais quand les gardiens ont couluent s'interposer lors de sa fuite,")
+                    print("il a utilisé le pouvoir des crystaux, tous les guardiens")
+                    print("y sont restés, lui a réussit à fuire et vous voyant pensant que c'était le voleur")
+                    print("venu l'achevé, à voulu vous tué.")
+                    print("Après avoir vous avoir conté son histoire, vous remarquer qu'il ne va pas bien")
+                    print("il est blessé en plusieurs endroits, vous proposé de le ramener à Farville pour le soigner.")
+                    print("Il refuse et vous pris d'aller arrêter l'intru, pour vous aider, il vous laisse")
+                    print("les clés des souterrains de Deadfalls ou se trouverait un grand trésor et également")
+                    print("une épée, une épée mythique des guardiens: FROSTMOURNE.")
+                    print("vous décidez donc de continuer votre quête et de partir en direction de Deadfalls")
+                    print("laissant le derniers des guardiens de Icegate succomber.")
                     print("")
+                    print("Vous arrivé près des souterrains de Deadfalls vous vous sentez fatigué par ce combat.")
+                    self.place = 7
+
 
              
