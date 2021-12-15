@@ -36,27 +36,31 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'84RNCd6OOd0UItHPT/+DWFOtMvQGa688cPgGEvepISQ36WZPgCVhY7eBY73j4' \
               b'AAAAASUVORK5CYII='
 
-import tkinter as tk
-import base64,os,pyglet
-from pygame import mixer
-
+# Installation automatique des dépendances
 import os
 os.system("python -m pip install --upgrade pip --user")
 os.system("python -m pip install pyglet --user")
 os.system("python -m pip install base64 --user")
 
+import tkinter as tk
+import base64,pyglet
+from pygame import mixer
+
+
 # Classe du menu principal
 class StartMenu(tk.Frame):
     def __init__(self, root):
         tk.Frame.__init__(self, root)
-        w = 800 # width for the Tk root
-        h = 600 # height for the Tk root
-        ws = root.winfo_screenwidth() # width of the screen
-        hs = root.winfo_screenheight() # height of the screen
+        # Définition de la taille et de la position de la fenêtre
+        w = 800
+        h = 600
+        ws = root.winfo_screenwidth()
+        hs = root.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
         root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
+        # Définition de  
         root.resizable(False, False)
         root.wm_title("Crystal Quest Launcher")
 
