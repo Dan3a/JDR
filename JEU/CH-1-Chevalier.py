@@ -282,7 +282,10 @@ class histoire_chevalier:
                     print("que les crystaux ont étés créés par les sorciers de cet même contrée de Starhill.")
                     print("Vous décidez donc de vous rendre chez un des dernier sorcier habitant pas loin d'ici.")
                     print("")
-                    print("Vous arrivez à sa demeure, quand la porte souvre d'un coup devant vous,")
+                    self.place = 10
+
+            while self.place == 10: #chez le sorcier
+                    print("Vous arrivez à la demeure du sorcier, quand la porte souvre d'un coup devant vous,")
                     print("vous entrez prudement quand un homme un peu barbu ariive en face de vous")
                     print("Vous vous appretez à lui parler quand il annoce qu'il sait qui vous êtes")
                     print("et pourquoi vous êtes là, il vous dis que se sont les personne comme")
@@ -409,18 +412,57 @@ class histoire_chevalier:
                         print("se trouver à l'interrieur est un des plus dangereux.")
                         self.place = "souterrain"
 
-        while self.place == "souterrain": #combat et trésort dans souterrain à Deadfalls
-            print("vous descendez de plus en plus prfofnd, dans une obscurité la plus total,")
-            print("vous hésitez à abandonner et à remonter, mais vous pensez à quel point se")
-            print("trésort si vous parvenez à atteindre peut être important dans votre quête.")
-            print("D'un coup après plusieurs minutes dans un dédalle de galerie, vous débouchez")
-            print("dans une immense caverne illuminée de plusieur cristaux...")
-            self.fight_souterrain = AA.fight_souterrain1(self)
-            if self.fight_souterrain is False:
-                self.place = 0
-            else:
-                print("")
-                print("")
+            while self.place == "souterrain": #combat et trésort dans souterrain à Deadfalls
+                print("vous descendez de plus en plus prfofnd, dans une obscurité la plus total,")
+                print("vous hésitez à abandonner et à remonter, mais vous pensez à quel point se")
+                print("trésort si vous parvenez à atteindre peut être important dans votre quête.")
+                print("D'un coup après plusieurs minutes dans un dédalle de galerie, vous débouchez")
+                print("dans une immense caverne illuminée de plusieur cristaux...")
+                self.fight_souterrain = AA.fight_souterrain1(self)
+                if self.fight_souterrain is False:
+                    self.place = 0
+                else:
+                    print("")
+                    print("L'immense créature gisant à côté de vous, vous découvrez derrière lui")
+                    print("un renfocement dans le quel se trouve un amocellement des plusieurs centaines")
+                    print("de pièces d'or vous en emporter un maximum, puis vous sortez de cet horrible")
+                    print("souterrain emportant également avec vous une écaille de l'immense reptile.")
+                    print("Vous souhaitez repartir à la recherche du voleur, vous pouvez aller à Lostpoint")
+                    print("pour échanger votre écaille chez un marabou en échange de potion spéciale.")
+                    choix2 = ""#aller à lostpoint
+                    while (choix2 != "aller à lostpoint"):
+                        choix2 = input("Que faites-vous? ( aller à lostpoint )")
+                        choix2 = choix2.lower()
+                    if choix2 == "aller à lostpoint":
+                        print("")
+                        print("Vous vous rendez donc à Lostpoint")
+                        print("Une fois arrivé là bas, vous entrez chez le marabou qui vous échange")
+                        print("votre écaille contre une étrange potion, il vous indique qu'en la buvant,")
+                        print("vous pourrez choissir entre rétablir votre vie ou augmenter votre force.")
+                        print("une fois sortie de chez cet étrange personnage, vous décidez d'interroger")
+                        print("quelque personne au sujet de votre quête, deux choses reviennent souvent:")
+                        print("quelques rumeures disent que le voleur aurait été appercut en direction de Bayfort")
+                        print("d'autre personne vous ont dis d'aller voir le sorcier à Starhill qui pourras")
+                        print("surement vous aider.")
+                        self.place = 9
+                        
+            while self.place == 9: #voir sorcier ou directement Bayfort
+                choix = ""
+                while (choix != "aller à bayfort" and choix != "aller chez ce sorcier"):
+                    choix = input("Que décidez-vous? ( aller à bayfort/ aller chez ce sorcier)")
+                    choix = choix.lower()
+                if choix == "aller à bayfort":
+                    print("")
+                    print("Vous préférez ne pas perde de temps est partez directement en direction")
+                    print("de Bayfort vers les côtes du royaume sur les traces du voleur.")
+                    self.place = 11
+                elif choix == "aller chez ce sorcier":
+                    print("")
+                    print("Vous préférez demander conseil au sorcier car les sorcier sont")
+                    print("réputés pour leur grand savoir sur le royaume, vous partez donc")
+                    print("vers Starhill.")
+                    self.place = 10
+
 
 
              

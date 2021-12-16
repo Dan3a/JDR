@@ -1,6 +1,6 @@
 #classe_personnage_jdr
 
-from random import randrange
+from random import randint, randrange
 
 personnage = "voleur"
 sdes = 12
@@ -21,7 +21,7 @@ class Perso:
         self.pv_mental = 10 
         self.etat = ""
         self.vitesse = 0
-        self.argent = 1
+        self.PO = 1
         self.arme = []
         self.armure = []
         self.sort = []
@@ -358,7 +358,7 @@ class Perso:
         self.selection(True,True,False)
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
-            print("Les gardes sont à ",distance,"mètres de distance. Ils",pv,"pv")
+            print("il est à ",distance,"mètres de distance. il a",pv,"pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
                    and choix != "attaque" and choix != "sort") :
@@ -401,11 +401,11 @@ class Perso:
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
-                    print("Les guardes reculent")
+                    print("Il recule")
                     distance += vit
                     nb_recul_m -= 1
                 elif (distance > 1 and att > self.arme[0]) or (distance > 1 and nb_recul_m == 0) :
-                    print("Les gardes avancent")
+                    print("Il avance")
                     if vit > distance :
                         distance = 1
                     else :
@@ -413,18 +413,165 @@ class Perso:
                 elif distance == 1 :
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
-                        print("Ils t'attaquent et t'infligent",att,"points de dégàts")
+                        print("Il t'attaque et t'inflige",att,"points de dégàts")
                     else :
-                        print("Ils n'arrivent pas à te toucher")
+                        print("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
-            print("Ils t'ont tué!")
+            print("Il t'as tué")
             return False
         else :
             return True
 
 
+    def fight_souterrain1(self) : #combat dans souterrain contre basillic
+        
+        print("")
+        print("Quand soudain, les murs de cette immense caverne se mettent à bouger")
+        print("comme un très grande spirale, jusqu'au moment où une tête faisant 5 fois")
+        print("votre taille descend vers vous, une tête au yeux mortelle et pleine d'écailles.")
+        print("Le Basillic, ce monstre ancestral que toutes les personnes ayant croisé son")
+        print("on fini pétrifié, vous restez figé, il s'immobilise jusqu'au moment où...")
+        nb_recul = 1
+        nb_recul_m = 2
+        distance = 10
+        pv = 200
+        vit = 2
+        att = 15
+        print ("Il vous attaque")
+        self.inventaire()
+        self.selection(True,True,False)
+        while pv > 0 and self.pv_physique > 0 :
+            self.inventaire()
+            print("il est à ",distance,"mètres de distance. il a",pv,"pv")
+            choix = ""
+            while (choix != "avancer" and choix != "reculer" and choix != "rien"
+                   and choix != "attaque" and choix != "sort") :
+                choix = input("Que fais-tu? ")
+            if choix == "avancer" and distance > self.vitesse :
+                distance -= self.vitesse
+            elif choix == "avancer" and distance <= self.vitesse :
+                distance = 1
+            elif choix == "reculer" and nb_recul > 0 :
+                nb_recul -= 1
+                distance += self.vitesse
+            elif choix == "reculer" and nb_recul < 0 :
+                print("Tu ne peux plus reculer")
+            elif choix == "attaque" and distance == 1 :
+                self.selection(1,0,0)
+                toucher = randrange(1, 20)
+                if toucher <= sdes :
+                    pv -= self.arme[0]
+                    print("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                else :
+                    print("Tu le rates")
+            elif choix == "attaque" and distance > 1 :
+                print("Impossible tu es trop loin de la cible")
+                choix = ""
+            elif choix == "sort" :
+                self.selection(False,False,True)
+                if self.sort[2] <= distance :
+                    if self.sort[1] == "att" :
+                        pv -= self.sort[0]
+                        print("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
+                    else :
+                        choix = ""
+                else :
+                    print("Tu es trop près pour pouvoir lancer ton sort")
+                    choix = ""
+                choix = ""
+            else : ()
+            if pv <= 0 :
+                print("Tu as vaincu!")
+                return True
+            else :
+                if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
+                    print("Il recule")
+                    distance += vit
+                    nb_recul_m -= 1
+                elif (distance > 1 and att > self.arme[0]) or (distance > 1 and nb_recul_m == 0) :
+                    print("Il avance")
+                    if vit > distance :
+                        distance = 1
+                    else :
+                        distance -= vit
+                elif distance == 1 :
+                    toucher = randrange(1, 20)
+                    if toucher <= sdes :
+                        print("Il t'attaque et t'inflige",att,"points de dégàts")
+                    else :
+                        print("Il n'arrive pas à te toucher")
+        if self.pva <= 0 :
+            print("Il t'as tué")
+            return False
+        else :
+            return True
+
+
+    def jeu_taverne1(self, mise): #jeu de chance dans la taverne 
+
+        print("")
+        print("les régles sont simples: devant vous se trouve un dé à 8 faces,")
+        print("Avant qu'il soit lancé, vous devez misez une somme de pièce d'or")
+        print("et en suite parier soit sur un résultat paire ou impaire ce qui doublera")
+        print("votre mise soit sur un résultat précis ce qui quadruplera votre mise.")
+        print("Vous vous asseyez.")
+        print(", vous avez actuellement ",self.PO," pièces d'or")
+        mise = 0
+        mise = int(input("Combien voulez vous miser?"))
+        int("Vous avez misez ",mise," pièces d'or")
+        choix = ""
+        while (choix != "miser sur un chiffre paire ou impaire" and choix != "miser sur un chiffre précis"):
+            choix = input("Comment misez vous? ( miser sur un chiffre paire ou impaire/ miser sur un chiffre précis)")
+            choix = choix.lower()
+        if choix == "miser sur un chiffre paire ou impaire":
+            print("Vous avez choisi de miser sur un chiffre paire ou impaire")
+            choix2 = ""
+            while (choix2 != "paire" and choix2 != "impaire"):
+                choix2 = input("Sur quoi misez vous? ( paire/ impaire)")
+                choix2 = choix2.lower()
+            if choix2 == "paire":
+                print("Vous avez choisi un résultat paire, le dé est lancé...")
+                dé = randrange(1, 8)
+                if (dé == 2 or 4 or 6 or 8):
+                    print(dé,"vous avez gagné")
+                    self.PO = self.PO + (mise * 2)
+                    print("vous avez donc maintenant: ",self.PO," pièces d'or")
+                else:
+                    print(dé,"Vous avez perdu")
+                    self.PO = self.PO - mise
+                    print("vous avez donc maintenant: ",self.PO," pièces d'or")
+            else:
+                print("Vous avez choisi un résultat impaire, le dé est lancé...")
+                dé = randrange(1, 8)
+                if (dé == 1 or 3 or 5 or 7):
+                    print(dé,"vous avez gagné")
+                    self.PO = self.PO + (mise * 2)
+                    print("vous avez donc maintenant: ",self.PO," pièces d'or")
+                else:
+                    print(dé,"Vous avez perdu")
+                    self.PO = self.PO - mise
+                    print("vous avez donc maintenant: ",self.PO," pièces d'or")
+        elif choix == "miser sur un chiffre précis":
+            print("vous avez choisi de miser sur un chiffre précis")
+            choix2 = ""
+            while (choix2 != 1 and choix2 != 2 and choix2 != 3 and choix2 != 4 and choix2 != 5 and choix2 != 6 and choix2 != 7 and choix2 != 8):
+                choix2 = int(input("Quel chiffre choisissez-vous? ( un chffre en 1 et 8)"))
+                print("Vous avez choisit le chiffre: ",choix2,"le dé est lancé")
+                dé = randrange(1, 8)
+            if choix2 == dé:
+                print(dé,"vous avez gagné")
+                self.PO = self.PO + (mise * 4)
+                print("vous avez donc maintenant: ",self.PO," pièces d'or")
+            else:
+                print(dé,"vous avez perdu")
+                self.PO = self.PO - mise
+                print("vous avez donc maintenant: ",self.PO," pièces d'or")
+        return True 
+
+
+
             
 
 
-test = Perso()
+test = Perso() 
 test.debut()
