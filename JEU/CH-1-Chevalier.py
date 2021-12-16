@@ -349,14 +349,16 @@ class histoire_chevalier:
                     print("")
                     self.place = "souterrain"
 
-            while self.place == 8: #aller à Bayfort
+            while self.place == 8: #forgeron avant bayfort
+                print("")
+                print("Sur votre route vers Bayfort, vous passez près de la boutique d'un forgeron")
                 choix = ""
-                while (choix != "aller à Bayfort"):
-                    choix = input("Que faites-vous? ( aller à Bayfort )")
+                while (choix != "rentrez dans la boutique"):
+                    choix = input("Que faites-vous? ( aller dans la boutique )")
                     choix = choix.lower()
-                if choix == "aller à Bayfort":
+                if choix == "aller dans la boutique":
                     print("")
-                    self.place = 9
+                    self.place = "boutique_forgeron"
 
             while self.place == "combat_gardien": #combat contre dernier guardien
                 self.fight_dernier_guardien = AA.fight_dernier_guardien(self)
@@ -385,6 +387,17 @@ class histoire_chevalier:
                     print("")
                     print("Vous arrivé près des souterrains de Deadfalls vous vous sentez fatigué par ce combat.")
                     self.place = 7
+
+            while self.place == "jeu_taverne": #jeu de chance code dans personnage
+                print("")
+                print("Vous vous approchez de la table pour y voir unn petit groupe de personne")
+                print("à un jeu de dès peu commun.")
+                choix = ""
+                while (choix != "jouer au jeu"):
+                    choix = input("Alors que faites-vous? ( jouer au jeu ) ")
+                    choix = choix.lower()
+                if choix == "jouer au jeu":
+                    AA.jeu_taverne
 
 
              
