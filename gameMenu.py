@@ -35,36 +35,112 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'84RNCd6OOd0UItHPT/+DWFOtMvQGa688cPgGEvepISQ36WZPgCVhY7eBY73j4' \
               b'AAAAASUVORK5CYII='
 import tkinter as tk
-import base64
+import base64, click, sys
+from io import StringIO
 
-class GameMenu(tk.Frame):
-    def __init__(self, gameWindow):
-        tk.Frame.__init__(self, gameWindow)
-        self.gameWindow = gameWindow
-        w = 800 # width for the Tk gameWindow
-        h = 600 # height for the Tk gameWindow
-        # get screen width and height
-        ws = gameWindow.winfo_screenwidth() # width of the screen
-        hs = gameWindow.winfo_screenheight() # height of the screen
-        # calculate x and y coordinates for the Tk gameWindow window
-        x = (ws/2) - (w/2)
-        y = (hs/2) - (h/2)
-        # set the dimensions of the screen 
-        # and where it is placed
-        gameWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))
-        gameWindow.resizable(False, False)
-        gameWindow.wm_title("Crystal Quest")
+def GameWindow(cli_group, app_name="Crystal Quest"):
+    gameWindow = tk.Tk()
+    w = 800 # width for the Tk gameWindow
+    h = 600 # height for the Tk gameWindow
+    ws = gameWindow.winfo_screenwidth() # width of the screen
+    hs = gameWindow.winfo_screenheight() # height of the screen
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    gameWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    gameWindow.resizable(False, False)
+    gameWindow.wm_title(app_name)
 
-        img = base64.b64decode(iconimgdata)
-        photo = tk.PhotoImage(data=img)
-        gameWindow.iconphoto(False, photo)
+    img = base64.b64decode(iconimgdata)
+    photo = tk.PhotoImage(data=img)
+    gameWindow.iconphoto(False, photo)
 
-        self.img = tk.PhotoImage(file="frame.gif")  # Use self.image
-        background_label = tk.Label(gameWindow, image=self.img)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    frame = tk.Frame(gameWindow)
+    frame.grid(row=0, column=0, sticky="nsew")
+    frame.columnconfigure(0, weight=1)
+    frame.columnconfigure(1, weight=1)
+    frame.columnconfigure(2, weight=1)
+    frame.rowconfigure(0, weight=1)
+    frame.rowconfigure(1, weight=1)
 
-        left_frame = tk.Frame(gameWindow, borderwidth=2)
-        left_frame.pack(side="left", padx=50, pady=10)
+    initial_output = "Vous vous réveiller par un bruit de pas ;\nle bruit de pas de gardes royaux au pied de votre porte.\nVous vous levez, ouvrez la porte et un message vous est tendu : \n*** Sir, le royaume court un grave danger, ***\n*** les 3 cristaux de Dahal ont été volé à Icegate. ***\n*** Le royaume est tombé dans une nuit éternelle ***\n*** où les monstres peuvent y refaire leur apparition. ***\n*** Par ordre du roi, vous devez les retrouver  ***\n*** et arrêter celui qui les a dérobés… ***\nVous n'avez pas besoin d'en lire plus, vous saviez que cela allait arriver,\net vous en savez le danger, mais vous vous rappelez également\nvos mauvaises relations récentes avec le Roi. Vous devez prendre une décision.\nCommandes disponibles : accepter / refuser\n"
 
-        tk.Label(left_frame, text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-        tk.Entry(left_frame, text="Frame 1").pack(side='bottom')
+    run_string = tk.StringVar()
+    entry_run = tk.Entry(gameWindow, textvariable=run_string, width=50)
+    scrollbar_widget = tk.Scrollbar(gameWindow)
+    text_widget = tk.Text(gameWindow)
+
+    def clear_callback():
+        # Because the text widget is usually disabled, we have to explicitly enable it before we can write to it.
+        text_widget.config(state='normal')
+        text_widget.delete(1.0, tk.END)
+        text_widget.insert(tk.END, initial_output)
+        text_widget.config(state='disabled')
+
+    def run_callback():
+        command_args = []
+        try:
+            command_parts = run_string.get().split()
+            command_name = command_parts[0]
+        except IndexError:
+            return
+        if len(command_parts) > 1:
+            command_args = command_parts[1:]
+
+        if command_name:
+            try:
+                # Redirect stdout so we can read the output into a string for display within out GUI
+                real_stdout = sys.stdout
+                fake_stdout = StringIO()
+                sys.stdout.flush()
+                sys.stdout = fake_stdout
+
+                # Obtain list of available commands
+                available_commands = cli_group.commands
+                command_name_list = list(cli_group.commands.keys())
+                if command_name in command_name_list:
+                    try:
+                        # Make a fake context in which to run the command
+                        context = available_commands[command_name].make_context("tk", command_args)
+                        # Invoke the command within the fake context
+                        available_commands[command_name].invoke(context)
+                    except click.exceptions.UsageError as e:
+                        print(e)
+                        print(initial_output)
+                else:
+                    print("Command not found.\n")
+                    print(initial_output)
+
+                # Put stdout back
+                sys.stdout.flush()
+                sys.stdout = real_stdout
+                sys.stdout.flush()
+                output_string = fake_stdout.getvalue()
+                fake_stdout.close()
+
+                # Update the text output widget
+                text_widget.config(state='normal')
+                text_widget.delete(1.0, tk.END)
+                text_widget.insert(tk.END, output_string)
+                text_widget.config(state='disabled')
+
+            except IndexError:
+                pass
+
+    # More GUI widgets
+    button_run = tk.Button(gameWindow, text="Run", command=run_callback)
+    button_clear = tk.Button(gameWindow, text="Clear", command=clear_callback)
+
+    text_widget.delete(1.0, tk.END)
+    text_widget.insert(tk.END, initial_output)
+
+    entry_run.grid(row=0, column=0, sticky="new")
+    button_run.grid(row=0, column=1, sticky="n")
+    button_clear.grid(row=0, column=2, sticky="n")
+    text_widget.grid(row=1, column=0, columnspan=2, sticky="nsew")
+    scrollbar_widget.grid(row=1, column=2, sticky="ns")
+
+    scrollbar_widget.config(command=text_widget.yview)
+    text_widget.config(yscrollcommand=scrollbar_widget.set)
+    text_widget.config(state='disabled')
+
+    gameWindow.mainloop()
