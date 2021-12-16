@@ -340,7 +340,7 @@ class Perso:
             return True
 
     
-    def fight_dernier_guardien(self) : #combat contre le dernier guardien à Icegate
+    def fight_dernier_guardien1(self) : #combat contre le dernier guardien à Icegate
         
         print("")
         print("Vous entez une présence très poche juste derrière vous,")

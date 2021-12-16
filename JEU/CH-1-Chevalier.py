@@ -14,6 +14,8 @@ class histoire_chevalier:
         self.fight_debut = False
         self.fight_dernier_guardien = False
         self.sorcier = False
+        self.jeu_taverne = False
+        self.fight_souterrain = False
 
 
         
@@ -361,7 +363,7 @@ class histoire_chevalier:
                     self.place = "boutique_forgeron"
 
             while self.place == "combat_gardien": #combat contre dernier guardien
-                self.fight_dernier_guardien = AA.fight_dernier_guardien(self)
+                self.fight_dernier_guardien = AA.fight_dernier_guardien1(self)
                 if self.fight_dernier_guardien is False:
                     print("")
                     self.place = 0
@@ -397,7 +399,28 @@ class histoire_chevalier:
                     choix = input("Alors que faites-vous? ( jouer au jeu ) ")
                     choix = choix.lower()
                 if choix == "jouer au jeu":
-                    AA.jeu_taverne
+                    print("")
+                    self.jeu_taverne = AA.jeu_taverne1(self)
+                    if self.jeu_taverne is True:
+                        print("")
+                        print("Vous ressorter de la taverne en pleine forme, il ne vous reste")
+                        print("plus qu'à oubrir les portes des souterrains, vous vous y dirigez")
+                        print("d'un pas pressé mais en gardant en tête que le monstre sensé")
+                        print("se trouver à l'interrieur est un des plus dangereux.")
+                        self.place = "souterrain"
+
+        while self.place == "souterrain": #combat et trésort dans souterrain à Deadfalls
+            print("vous descendez de plus en plus prfofnd, dans une obscurité la plus total,")
+            print("vous hésitez à abandonner et à remonter, mais vous pensez à quel point se")
+            print("trésort si vous parvenez à atteindre peut être important dans votre quête.")
+            print("D'un coup après plusieurs minutes dans un dédalle de galerie, vous débouchez")
+            print("dans une immense caverne illuminée de plusieur cristaux...")
+            self.fight_souterrain = AA.fight_souterrain1(self)
+            if self.fight_souterrain is False:
+                self.place = 0
+            else:
+                print("")
+                print("")
 
 
              
