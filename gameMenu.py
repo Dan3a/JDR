@@ -1,3 +1,6 @@
+# MODULE TKINTERIFY MODIFIÉ (https://github.com/rbricheno/tkinterify)
+
+
 iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'4gc1xU9971XVV3V1b/pVqtHI9mjsUbIRDKGxFmZBBKTRRZJcIwXgWyyTggEvM' \
               b'w6i6xs8MLbEAwhCs4i5IMhiBCMkBkTy8lYsjUfW5rpmemZ/lV3dVXX55n7qmc' \
@@ -38,36 +41,36 @@ import tkinter as tk
 import base64, click, sys
 from io import StringIO
 
+
+
+
 def GameWindow(cli_group, app_name="Crystal Quest"):
-    gameWindow = tk.Tk()
-    w = 800 # width for the Tk gameWindow
-    h = 600 # height for the Tk gameWindow
-    ws = gameWindow.winfo_screenwidth() # width of the screen
-    hs = gameWindow.winfo_screenheight() # height of the screen
+    root = tk.Tk()
+    w = 800 # width for the Tk root
+    h = 600 # height for the Tk root
+    ws = root.winfo_screenwidth() # width of the screen
+    hs = root.winfo_screenheight() # height of the screen
     x = (ws/2) - (w/2)
     y = (hs/2) - (h/2)
-    gameWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))
-    gameWindow.resizable(False, False)
-    gameWindow.wm_title(app_name)
+    root.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    root.resizable(False, False)
+    root.wm_title(app_name)
 
     img = base64.b64decode(iconimgdata)
     photo = tk.PhotoImage(data=img)
-    gameWindow.iconphoto(False, photo)
+    root.iconphoto(False, photo)
 
-    frame = tk.Frame(gameWindow)
-    frame.grid(row=0, column=0, sticky="nsew")
-    frame.columnconfigure(0, weight=1)
-    frame.columnconfigure(1, weight=1)
-    frame.columnconfigure(2, weight=1)
-    frame.rowconfigure(0, weight=1)
-    frame.rowconfigure(1, weight=1)
+    minimap_img = tk.PhotoImage(file="map.gif", width=180, height=180)
+    minimap_label = tk.Label(root, image=minimap_img)
+    minimap_label.place(x=0, y=620, relwidth=1, relheight=1)
 
     initial_output = "Vous vous réveiller par un bruit de pas ;\nle bruit de pas de gardes royaux au pied de votre porte.\nVous vous levez, ouvrez la porte et un message vous est tendu : \n*** Sir, le royaume court un grave danger, ***\n*** les 3 cristaux de Dahal ont été volé à Icegate. ***\n*** Le royaume est tombé dans une nuit éternelle ***\n*** où les monstres peuvent y refaire leur apparition. ***\n*** Par ordre du roi, vous devez les retrouver  ***\n*** et arrêter celui qui les a dérobés… ***\nVous n'avez pas besoin d'en lire plus, vous saviez que cela allait arriver,\net vous en savez le danger, mais vous vous rappelez également\nvos mauvaises relations récentes avec le Roi. Vous devez prendre une décision.\nCommandes disponibles : accepter / refuser\n"
 
     run_string = tk.StringVar()
-    entry_run = tk.Entry(gameWindow, textvariable=run_string, width=50)
-    scrollbar_widget = tk.Scrollbar(gameWindow)
-    text_widget = tk.Text(gameWindow)
+    entry_run = tk.Entry(root, textvariable=run_string, width=50)
+    scrollbar_widget = tk.Scrollbar(root)
+    text_widget = tk.Text(root)
+
 
     def clear_callback():
         # Because the text widget is usually disabled, we have to explicitly enable it before we can write to it.
@@ -107,8 +110,7 @@ def GameWindow(cli_group, app_name="Crystal Quest"):
                         print(e)
                         print(initial_output)
                 else:
-                    print("Command not found.\n")
-                    print(initial_output)
+                    print("Command non trouvée.\n")
 
                 # Put stdout back
                 sys.stdout.flush()
@@ -127,20 +129,15 @@ def GameWindow(cli_group, app_name="Crystal Quest"):
                 pass
 
     # More GUI widgets
-    button_run = tk.Button(gameWindow, text="Run", command=run_callback)
-    button_clear = tk.Button(gameWindow, text="Clear", command=clear_callback)
+    button_run = tk.Button(root, text="Run", command=run_callback)
 
     text_widget.delete(1.0, tk.END)
     text_widget.insert(tk.END, initial_output)
 
-    entry_run.grid(row=0, column=0, sticky="new")
-    button_run.grid(row=0, column=1, sticky="n")
-    button_clear.grid(row=0, column=2, sticky="n")
-    text_widget.grid(row=1, column=0, columnspan=2, sticky="nsew")
-    scrollbar_widget.grid(row=1, column=2, sticky="ns")
+    entry_run.place(x=0, y=550, width=590, height=20)
+    button_run.place(x=590, y=550, height=20)
+    text_widget.place(x=0, y=0, width=620, height=550)
 
-    scrollbar_widget.config(command=text_widget.yview)
-    text_widget.config(yscrollcommand=scrollbar_widget.set)
-    text_widget.config(state='disabled')
 
-    gameWindow.mainloop()
+
+    root.mainloop()

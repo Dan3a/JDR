@@ -1,6 +1,6 @@
 #CH-1-Chevalier
 from random import *
-import classe_personnage_jdr as AA
+import classe_personnage_fix as AA
 
 class histoire_chevalier:
 

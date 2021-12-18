@@ -2,7 +2,7 @@
 
 from random import randint, randrange
 
-personnage = "voleur"
+personnage = "chevalier"
 sdes = 12
 
 class Perso:
@@ -37,7 +37,7 @@ class Perso:
 
     #REPARTITION DES CARACTERISTIQUE DES PERSONNAGE AU DEBUT DE LA PARTIE
     def debut(self):
-        self.name = input("Quel est votre nom ? : ")
+        # self.name = input("Quel est votre nom ? : ")
         self.pv_physique = 20
         self.pv_mental = 10
         if personnage == "chevalier":
@@ -49,24 +49,24 @@ class Perso:
             self.pouvoir = 0
             self.argent = 20
             print("a")
-        elif personnage == "voleur":
-            self.force = 2
-            self.eloquence = 3
-            self.ruse = 10
-            self.attaque = 7
-            self.armure = 2
-            self.pouvoir = 0
-            self.argent = 5
-            print("b")
-        elif personnage == "sorcier":
-            self.force = 4
-            self.eloquence = 7
-            self.ruse = 5
-            self.attaque = 5
-            self.armure = 3
-            self.pouvoir = 6
-            self.argent = 10
-            print("c")
+        # elif personnage == "voleur":
+        #     self.force = 2
+        #     self.eloquence = 3
+        #     self.ruse = 10
+        #     self.attaque = 7
+        #     self.armure = 2
+        #     self.pouvoir = 0
+        #     self.argent = 5
+        #     print("b")
+        # elif personnage == "sorcier":
+        #     self.force = 4
+        #     self.eloquence = 7
+        #     self.ruse = 5
+        #     self.attaque = 5
+        #     self.armure = 3
+        #     self.pouvoir = 6
+        #     self.argent = 10
+        #     print("c")
 
     #SELECTION DES ARMES, ARMURES, ET SORTS LORS DE LA PARTIE
     def selection(self, arme, armure, sort):

@@ -41,6 +41,8 @@ import os
 os.system("python -m pip install --upgrade pip --user")
 os.system("python -m pip install pyglet --user")
 os.system("python -m pip install base64 --user")
+os.system("python -m pip install click --user")
+
 
 import tkinter as tk
 import base64,pyglet
@@ -97,7 +99,7 @@ class StartMenu(tk.Frame):
         
         def StartGameMenu():
             mixer.music.stop()
-            os.system("python startup.py")
+            os.system("python GameStartup.py")
 
 # Purement pour la musique
 def playIntroSong(): 
