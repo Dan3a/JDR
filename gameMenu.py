@@ -38,7 +38,7 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
               b'84RNCd6OOd0UItHPT/+DWFOtMvQGa688cPgGEvepISQ36WZPgCVhY7eBY73j4' \
               b'AAAAASUVORK5CYII='
 import tkinter as tk
-import base64, click, sys
+import base64, sys
 from io import StringIO
 
 
@@ -68,66 +68,10 @@ def GameWindow(cli_group, app_name="Crystal Quest"):
 
     run_string = tk.StringVar()
     entry_run = tk.Entry(root, textvariable=run_string, width=50)
-    scrollbar_widget = tk.Scrollbar(root)
     text_widget = tk.Text(root)
 
-
-    def clear_callback():
-        # Because the text widget is usually disabled, we have to explicitly enable it before we can write to it.
-        text_widget.config(state='normal')
-        text_widget.delete(1.0, tk.END)
-        text_widget.insert(tk.END, initial_output)
-        text_widget.config(state='disabled')
-
     def run_callback():
-        command_args = []
-        try:
-            command_parts = run_string.get().split()
-            command_name = command_parts[0]
-        except IndexError:
-            return
-        if len(command_parts) > 1:
-            command_args = command_parts[1:]
-
-        if command_name:
-            try:
-                # Redirect stdout so we can read the output into a string for display within out GUI
-                real_stdout = sys.stdout
-                fake_stdout = StringIO()
-                sys.stdout.flush()
-                sys.stdout = fake_stdout
-
-                # Obtain list of available commands
-                available_commands = cli_group.commands
-                command_name_list = list(cli_group.commands.keys())
-                if command_name in command_name_list:
-                    try:
-                        # Make a fake context in which to run the command
-                        context = available_commands[command_name].make_context("tk", command_args)
-                        # Invoke the command within the fake context
-                        available_commands[command_name].invoke(context)
-                    except click.exceptions.UsageError as e:
-                        print(e)
-                        print(initial_output)
-                else:
-                    print("Command non trouvée.\n")
-
-                # Put stdout back
-                sys.stdout.flush()
-                sys.stdout = real_stdout
-                sys.stdout.flush()
-                output_string = fake_stdout.getvalue()
-                fake_stdout.close()
-
-                # Update the text output widget
-                text_widget.config(state='normal')
-                text_widget.delete(1.0, tk.END)
-                text_widget.insert(tk.END, output_string)
-                text_widget.config(state='disabled')
-
-            except IndexError:
-                pass
-
+        
     # More GUI widgets
     button_run = tk.Button(root, text="Run", command=run_callback)
 
@@ -141,3 +85,5 @@ def GameWindow(cli_group, app_name="Crystal Quest"):
 
 
     root.mainloop()
+
+    
