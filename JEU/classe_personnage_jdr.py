@@ -331,6 +331,7 @@ class Perso:
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
                         print("Ils t'attaquent et t'infligent",att,"points de dégàts")
+                        self.pv_physique -= att
                     else :
                         print("Ils n'arrivent pas à te toucher")
         if self.pva <= 0 :
@@ -414,6 +415,7 @@ class Perso:
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
                         print("Il t'attaque et t'inflige",att,"points de dégàts")
+                        self.pv_physique -= att
                     else :
                         print("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
@@ -498,6 +500,7 @@ class Perso:
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
                         print("Il t'attaque et t'inflige",att,"points de dégàts")
+                        self.pv_physique -= att
                     else :
                         print("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
@@ -639,6 +642,7 @@ class Perso:
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
                         print("Il t'attaque et t'inflige",att,"points de dégàts")
+                        self.pv_physique -= att
                     else :
                         print("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
