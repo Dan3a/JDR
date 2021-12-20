@@ -16,6 +16,8 @@ class histoire_chevalier:
         self.sorcier = False
         self.jeu_taverne = False
         self.fight_souterrain = False
+        self.combat_final1 = False
+        self.combat_final2 = False
 
 
         
@@ -462,6 +464,43 @@ class histoire_chevalier:
                     print("réputés pour leur grand savoir sur le royaume, vous partez donc")
                     print("vers Starhill.")
                     self.place = 10
+
+            while self.place == 11: #bataille final:
+                if self.sorcier == False: #sans l'aide du sorcier
+                    print("")
+                    print("Vous arrivez à l'entrée du pont menant à Bayfort, vous appercevez dans")
+                    print("la pénombre de l'autre côté une silhouette s'arreter de courir en")
+                    print("direction des bateaux poue désormais vous faire face.")
+                    print("Vous êtes sure, c'est bien la personne que vous traquez depuis tout ce temps,")
+                    print("sans hésitation, arme à la main vous traversez le pont pour le combat")
+                    print("qui vous permettra de récupéré les crystaux du royaume.")
+                    print("arrivé à la moitié du pont, vous vous arrétez net, le voleur vient de sortir")
+                    print("de son sac un des trois crystaux...")
+                    self.combat_final1 = AA.combat_final1
+                    if self.combat_final1 is False: #combat perdu
+                        print("")
+                        self.place = 0
+                    else: #combat gagné
+                        print("")
+                        print("Epuisé, et blessé, vous regardez votre énemi gisant face contre terre,")
+                        print("")
+                elif self.sorcier == True: #avec l'aide du sorcier
+                    print("")
+                    print("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous appercevez dans")
+                    print("la pénombre de l'autre côté une silhouette s'arreter de courir en")
+                    print("direction des bateaux poue désormais vous faire face.")
+                    print("Vous êtes sure, c'est bien la personne que vous traquez depuis tout ce temps,")
+                    print("sans hésitation, arme à la main, à vous deux vous traversez le pont pour le combat")
+                    print("qui vous permettra de récupéré les crystaux du royaume.")
+                    print("arrivés à la moitié du pont, vous vous arrétez net, le voleur vient de sortir")
+                    print("de son sac un des trois crystaux...")
+                    self.combat_final2 = AA.combat_final2
+                    if self.combat_final2 is False: #combat perdu
+                        print("")
+                        self.place = 0
+                    else: #combat gagné
+                        print("")
+                        print("")
 
 
 
