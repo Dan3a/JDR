@@ -26,7 +26,7 @@ class Perso:
 
         #global
         self.name = ""
-        self.force = 1
+        self.force = 30
         self.ruse = 1
         self.eloquence = 1
         self.attaque = 1
@@ -41,16 +41,11 @@ class Perso:
         self.armure = []
         self.sort = []
         #Armes [degats, prix, nombre, force mini]
-<<<<<<< Updated upstream
-        self.Armes = {"dague":[4, 5, 1, 1], "épée":[10, 15, 0, 3], "masse":[15, 20, 0, 5], "fléau":[18, 25, 0, 5],
-                        "Master_Sword":[35, 50, 0, 10], "Mjölnir":[42, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
-=======
-        self.Armes = {"dague":[5, 5, 1, 1], "épée":[7, 15, 0, 3], "masse":[8, 20, 0, 5], "fléau":[10, 25, 0, 5],
-                        "Master_Sword":[12, 50, 0, 10], "Mjölnir":[15, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
->>>>>>> Stashed changes
+        self.Armes = {"dague":[4, 5, 1, 1], "épée":[10, 15, 0, 1], "masse":[15, 20, 0, 5], "fléau":[18, 25, 0, 1],
+                        "Master_Sword":[35, 50, 0, 1], "Mjölnir":[42, 70, 0, 1], "FROSTMOURNE":[50, 0, 0, 1]}
         #Armures [protection, prix, nombre, force mini]
-        self.Armures = {"gambison de cuir":[1, 10, 0, 1], "armure de fer":[3, 30, 0, 3], "armure d'acier":[4, 40, 0, 5],
-                        "Armure_ancestral":[10, 60, 0, 7], "Bouclier_Hylien":[20, 80, 0, 10], "DAEDRIQUE":[60, 0, 0, 20]}
+        self.Armures = {"gambison de cuir":[1, 10, 0, 1], "armure de fer":[3, 30, 0, 1], "armure d'acier":[4, 40, 0, 1],
+                        "Armure_ancestral":[10, 60, 0, 1], "Bouclier_Hylien":[20, 80, 0, 1], "DAEDRIQUE":[60, 0, 0, 1]}
 
     #REPARTITION DES CARACTERISTIQUE DES PERSONNAGE AU DEBUT DE LA PARTIE
     def debut(self, mainWindow):
@@ -75,6 +70,7 @@ class Perso:
             while (choix in self.Armes) == False:
                 choix = self.mainWindow.waitForEntryText("Choix d'arme : ")
                 choix = choix.lower()
+                
             
             if (self.Armes[choix][2] > 0 and self.Armes[choix][3] <= self.force):
                 self.arme = self.Armes[choix]
@@ -278,21 +274,16 @@ class Perso:
 
     
     def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
-<<<<<<< Updated upstream
-    
-        self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
-=======
         
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Vous sentez une présence très poche juste derrière vous,")
->>>>>>> Stashed changes
         self.mainWindow.printInTextArea("Vous distinguez à quelques mètres de vous un homme")
         self.mainWindow.printInTextArea("de votre taille lourdement habillé, il se trouve dans l'ombre")
         self.mainWindow.printInTextArea("et vous ne voyer pas son visage vous aller demander qui il est quand...")
         nb_recul = 1
         nb_recul_m = 2
         distance = 3
-        pv = 25
+        pv = 24
         vit = 4
         att = 6
         sdes1 = 12
@@ -345,13 +336,9 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
-<<<<<<< Updated upstream
+
                     toucher = randrange(1, 50)
                     if toucher <= sdes :
-=======
-                    toucher = randrange(1, 20)
-                    if toucher <= sdes2 :
->>>>>>> Stashed changes
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
 
@@ -426,7 +413,7 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
-                    toucher = randrange(1, 20)
+                    toucher = randrange(1, 50)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
@@ -499,6 +486,8 @@ class Perso:
                 self.mainWindow.printInTextArea(dé,"Vous avez perdu")
                 self.PO = self.PO - mise
                 self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
+        self.pv_physique = 30
+        self.inventaire()
         return True 
 
     def combat_final1(self): #combat final sans l'aide du sorcier
@@ -599,7 +588,7 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "épée"
+                self.Armes.update({"épée":[10, 15, 1, 3]})
                 self.PO -= 15
                 self.mainWindow.printInTextArea("Vous avez acheté une épée il vous reste ", self.PO ," pièces d'or")
         elif choix == "masse":
@@ -607,7 +596,7 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "masse"
+                self.Armes.update({"masse":[15, 20, 1, 5]})
                 self.PO -= 20
                 self.mainWindow.printInTextArea("Vous avez acheté une masse il vous reste ", self.PO ," pièces d'or")
         elif choix == "Master_Sword":
@@ -615,7 +604,7 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "masse"
+                self.Armes.update({"Master_Sword":[35, 50, 1, 10]})
                 self.PO -= 50
                 self.mainWindow.printInTextArea("Vous avez acheté Mester_Sword il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
@@ -630,7 +619,7 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "armure de fer"
+                self.Armures.update({"armure de fer":[3, 30, 1, 3]})
                 self.PO -= 30
                 self.mainWindow.printInTextArea("Vous avez acheté une arumre de fer il vous reste ", self.PO ," pièces d'or")
         elif choix == "armure d'acier":
@@ -638,7 +627,7 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "armure d'acier"
+                self.Armures.update({"armure d'acier":[4, 40, 1, 5]})
                 self.PO -= 40
                 self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste ", self.PO ," pièces d'or")
         elif choix == "Bouclier_Hylien":
@@ -646,9 +635,26 @@ class Perso:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.arme = "Bouclier_Hylien"
+                self.Armures.update({"Bouclier_Hylien":[20, 80, 1, 10]})
                 self.PO -= 80
                 self.mainWindow.printInTextArea("Vous avez acheté un Bouclier_Hylien il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
             self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         return True
+
+    def frostmourne1(self): #recevoir l'arme FROSTMOURNE
+        self.Armes.update({"FROSTMOURNE":[50, 0, 1, 20]})
+
+    def illusion_mental(self):#-4 pv mentaux a cause du mauvais choix
+        self.pv_mental -= 4
+
+    def illusion_physique(self): #-6 pv physique à cause de l'illusion
+        self.pv_physique -= 6
+        self.inventaire
+
+    def potion(self):# bonus de pv physique avec la potion
+        self.pv_physique = 50
+        self.inventaire()
+
+    def tresor_basilic(self): # +100 pièce d'or quand basilic battu
+        self.PO += 100
