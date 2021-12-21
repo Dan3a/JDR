@@ -413,7 +413,7 @@ def jeu(mainWindow):
             else:
                 mainWindow.printInTextArea("L'immense créature gisant à côté de vous, vous découvrez derrière lui")
                 mainWindow.printInTextArea("un renfoncement dans lequel se trouve un amoncellement des plusieurs centaines")
-                mainWindow.printInTextArea("de pièces d'or. Vous en emportez un maximum, puis vous sortez de cet ")
+                mainWindow.printInTextArea("de pièces d'or. Vous en emportez un maximum, puis vous sortez de cet")
                 mainWindow.printInTextArea("horrible souterrain emportant avec vous une écaille de l'immense reptile.")
                 mainWindow.printInTextArea("Vous souhaitez repartir à la recherche du voleur, vous pouvez aller à Lostpoint")
                 mainWindow.printInTextArea("pour échanger votre écaille chez un marabou en échange d'une potion spéciale.")
@@ -476,6 +476,7 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("mi-clos: cet homme se pencher et récupérer les crystaux vavnt de dire ce mot:")
                     mainWindow.printInTextArea("-Enfin.")
                     place = "fin1"
+                    raise SystemExit(0)
             elif sorcier == True: #avec l'aide du sorcier
                 mainWindow.printInTextArea("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous apercevez dans")
                 mainWindow.printInTextArea("la pénombre de l'autre côté une silhouette s'arreter de courir en")

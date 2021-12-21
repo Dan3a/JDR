@@ -55,7 +55,7 @@ class Perso:
             "gambison de cuir":[1, 10, 0, 1], 
             "armure de fer":[3, 30, 0, 3], 
             "armure d'acier":[4, 40, 0, 5],
-            "Armure_ancestral":[10, 60, 0, 7], 
+            "armure_ancestral":[10, 60, 0, 7], 
             "bouclier_hylien":[20, 80, 0, 10], 
             "daedrique":[60, 0, 0, 20]}
 
@@ -103,15 +103,15 @@ class Perso:
             elif (choix == list(self.Armures.keys())[2] and self.Armures["armure de fer"][2] > 0
                   and self.Armures["armure de fer"][3] <= self.cons) :
                 self.armure = self.Armures["armure de fer"]
-            elif (choix == list(self.Armures.keys())[0] and self.Armures["DAEDRIQUE"][2] > 0
-                  and self.Armures["DAEDRIQUE"][3] <= self.cons) :
-                self.armure = self.Armures["DAEDRIQUE"]
-            elif (choix == list(self.Armures.keys())[3] and self.Armures["Bouclier_Hylien"][2] > 0
-                  and self.Armures["Bouclier_Hylien"][3] <= self.cons) :
-                self.armure = self.Armures["Bouclier_Hylien"]
-            elif (choix == list(self.Armures.keys())[4] and self.Armures["Armure_ancestral"][2] > 0
-                  and self.Armures["Armure_ancestral"][3] <= self.cons) :
-                self.armure = self.Armures["Armure_ancestral"]
+            elif (choix == list(self.Armures.keys())[0] and self.Armures["daedrique"][2] > 0
+                  and self.Armures["daedrique"][3] <= self.cons) :
+                self.armure = self.Armures["daedrique"]
+            elif (choix == list(self.Armures.keys())[3] and self.Armures["bouclier_hylien"][2] > 0
+                  and self.Armures["bouclier_hylien"][3] <= self.cons) :
+                self.armure = self.Armures["bouclier_hylien"]
+            elif (choix == list(self.Armures.keys())[4] and self.Armures["armure_ancestral"][2] > 0
+                  and self.Armures["armure_ancestral"][3] <= self.cons) :
+                self.armure = self.Armures["armure_ancestral"]
             elif (choix == list(self.Armures.keys())[5] and self.Armures["armure d'acier"][2] > 0
                   and self.Armures["armure d'acier"][3] <= self.cons) :
                 self.armure = self.Armures["armure d'acier"]
@@ -411,6 +411,7 @@ class Perso:
 
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
+                self.PO += 100
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
@@ -575,7 +576,7 @@ class Perso:
         self.mainWindow.printInTextArea("se que vous souhaitez acheter vous regarder alors les prix sur")
         self.mainWindow.printInTextArea("les étagères: [épée 15 PO], [masse 20 PO], [Master_Sword 50 PO]")
         self.mainWindow.printInTextArea("Vous pensez à garder de l'argent pour acheter une armure:")
-        self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [Bouclier_Hylien 80 PO]")
+        self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [bouclier_hylien 80 PO]")
         self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
         self.mainWindow.printInTextArea("vous avez actuellement : ", self.PO ," pièces d'or.")
         choix = ""
@@ -610,8 +611,8 @@ class Perso:
             self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         self.mainWindow.printInTextArea("vous pouvez maintenant acheter une armure.")
         choix = ""
-        while (choix != "armure de fer" and choix != "armure d'acier" and choix != "Bouclier_Hylien" and choix != "rien"): #choix armure
-            choix = self.mainWindow.waitForEntryText(" Qu'achetez-vous? ( armure de fer/ armure d'acier/ Bouclier_Hylien/ rien")
+        while (choix != "armure de fer" and choix != "armure d'acier" and choix != "bouclier_hylien" and choix != "rien"): #choix armure
+            choix = self.mainWindow.waitForEntryText(" Qu'achetez-vous? ( armure de fer/ armure d'acier/ bouclier_hylien/ rien")
             choix = choix.lower()
         if choix == "armure de fer":
             if self.PO < 30:
@@ -629,14 +630,14 @@ class Perso:
                 self.Armures.update({"armure d'acier":[4, 40, 1, 5]})
                 self.PO -= 40
                 self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste ", self.PO ," pièces d'or")
-        elif choix == "Bouclier_Hylien":
+        elif choix == "bouclier_hylien":
             if self.PO < 80:
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
-                self.Armures.update({"Bouclier_Hylien":[20, 80, 1, 10]})
+                self.Armures.update({"bouclier_hylien":[20, 80, 1, 10]})
                 self.PO -= 80
-                self.mainWindow.printInTextArea("Vous avez acheté un Bouclier_Hylien il vous reste ", self.PO ," pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté un bouclier_hylien il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
             self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         return True
@@ -651,6 +652,3 @@ class Perso:
     def potion(self):# bonus de pv physique avec la potion
         self.pv_physique = 50
         self.inventaire()
-
-    def tresor_basilic(self): # +100 pièce d'or quand basilic battu
-        self.PO += 100
