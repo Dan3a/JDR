@@ -147,7 +147,6 @@ class Perso:
             self.etat = " est blessé et a besoin de soins"
         else :
             self.etat = " est gravement blessé"
-        self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea (self.name,self.etat)
 
         self.mainWindow.printInTextArea("### Argent : ",self.argent," pièces d'or")
@@ -155,6 +154,8 @@ class Perso:
         self.mainWindow.printInTextArea("### Force  : ",self.force)
 
         self.mainWindow.printInTextArea("### Ruse   : ",self.ruse)
+
+        self.mainWindow.printInTextArea("### Vie      : ",self.pv_physique)
 
         self.mainWindow.printInTextArea("Inventaire :")
 
@@ -174,9 +175,9 @@ class Perso:
         
         nb_recul = 1
         nb_recul_m = 2
-        self.mainWindow.printInTextArea ("Un ",nom," attaque")
         self.inventaire()
         self.selection(True,True,False)
+        self.mainWindow.printInTextArea ("Un ",nom," attaque")
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
             self.mainWindow.printInTextArea("Le",nom,"est à ",distance," mètres de distance. Il a ",pv," pv")
@@ -238,7 +239,7 @@ class Perso:
                         self.pv_physique -= att
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
-        if self.pva <= 0 :
+        if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
@@ -253,12 +254,12 @@ class Perso:
         pv = 100
         vit = 3
         att = 7
-        self.mainWindow.printInTextArea ("Les gardes vous attaquent")
         self.inventaire()
         self.selection(True,True)
+        self.mainWindow.printInTextArea ("Les gardes vous attaquent")
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
-            self.mainWindow.printInTextArea("Les gardes sont à ",distance," mètres de distance. Ils ont",pv," pv")
+            self.mainWindow.printInTextArea("Les gardes sont à ",distance," mètres de distance. Ils ont ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
                    and choix != "attaquer" and choix != "sort") :
@@ -277,25 +278,14 @@ class Perso:
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégàts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop près pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
+
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 return True
@@ -313,17 +303,20 @@ class Perso:
                 elif distance == 1 :
                     toucher = randrange(1, 20)
                     if toucher <= sdes :
-                        self.mainWindow.printInTextArea("Ils t'attaquent et t'infligent",att,"points de dégàts")
+                        self.mainWindow.printInTextArea("Ils t'attaquent et t'infligent ",att," points de dégàts")
+                        self.pv_physique -= att
                     else :
                         self.mainWindow.printInTextArea("Ils n'arrivent pas à te toucher")
-        if self.pva <= 0 :
+        if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Ils t'ont tué!")
-            return False
+            mainWindow.printInTextArea("VOUS ÊTES MORT")
+            mainWindow.printInTextArea("FIN LAMENTABLE")
+            raise SystemExit(0) 
         else :
             return True
 
     
-    def fight_dernier_guardien1(self) : #combat contre le dernier guardien à Icegate
+    def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
         
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
@@ -401,8 +394,9 @@ class Perso:
 
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
-        if self.pva <= 0 :
+        if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
+            
             return False
         else :
             return True
@@ -486,7 +480,7 @@ class Perso:
                         self.pv_physique -= att
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
-        if self.pva <= 0 :
+        if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
@@ -627,7 +621,7 @@ class Perso:
                         self.pv_physique -= att
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
-        if self.pva <= 0 :
+        if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
@@ -635,7 +629,6 @@ class Perso:
 
 
     def boutique_forgeron1(self): #achat arme et armure
-        self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Vous rentrez dans cette boutique où sont accrochés diverses armes")
         self.mainWindow.printInTextArea("et armures, un homme robuste arrive vers vous et vous demande")
         self.mainWindow.printInTextArea("se que vous souhaitez acheter vous regarder alors les prix sur")
@@ -643,45 +636,37 @@ class Perso:
         self.mainWindow.printInTextArea("Vous pensez à garder de l'argent pour acheter une armure:")
         self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [Bouclier_Hylien 80 PO]")
         self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
-        self.mainWindow.printInTextArea("vous avez actuellement :", self.PO ,"pièces d'or.")
+        self.mainWindow.printInTextArea("vous avez actuellement : ", self.PO ," pièces d'or.")
         choix = ""
         while (choix != "épée" and choix != "masse" and choix != "Master_Sword"and choix != "rien"): #choix arme
             choix = self.mainWindow.waitForEntryText("Qu'achetez-vous? ( épée/ masse/ Master_Sword/ rien")
             choix = choix.lower()
         if choix == "épée":
             if self.PO < 15:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "épée"
                 self.PO -= 15
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté une épée il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté une épée il vous reste ", self.PO ," pièces d'or")
         elif choix == "masse":
             if self.PO < 20:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "masse"
                 self.PO -= 20
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté une masse il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté une masse il vous reste ", self.PO ," pièces d'or")
         elif choix == "Master_Sword":
             if self.PO < 50:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "masse"
                 self.PO -= 50
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté Mester_Sword il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté Mester_Sword il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
-            self.mainWindow.printInTextArea("")
-            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste", self.PO ,"pièces d'or")
-        self.mainWindow.printInTextArea("")
+            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         self.mainWindow.printInTextArea("vous pouvez maintenant acheter une armure.")
         choix = ""
         while (choix != "armure de fer" and choix != "armure d'acier" and choix != "Bouclier_Hylien" and choix != "rien"): #choix armure
@@ -689,35 +674,28 @@ class Perso:
             choix = choix.lower()
         if choix == "armure de fer":
             if self.PO < 30:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "armure de fer"
                 self.PO -= 30
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté une arumre de fer il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté une arumre de fer il vous reste ", self.PO ," pièces d'or")
         elif choix == "armure d'acier":
             if self.PO < 40:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "armure d'acier"
                 self.PO -= 40
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste ", self.PO ," pièces d'or")
         elif choix == "Bouclier_Hylien":
             if self.PO < 80:
-                self.mainWindow.printInTextArea("")
                 self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
                 self.mainWindow.printInTextArea("vous sortez de la boutique")
             else:
                 self.arme = "Bouclier_Hylien"
                 self.PO -= 80
-                self.mainWindow.printInTextArea("")
-                self.mainWindow.printInTextArea("Vous avez acheté un Bouclier_Hylien il vous reste", self.PO ,"pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez acheté un Bouclier_Hylien il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
-            self.mainWindow.printInTextArea("")
-            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste", self.PO ,"pièces d'or")
+            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         return True

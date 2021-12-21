@@ -124,5 +124,5 @@ class MainWindow(tk.Tk):
             pass
         text = self.lastEntry
         self.lastEntry = ""
-        self.printInTextArea(text)
+        self.text_widget.delete(1.0, tk.END)
         return text
