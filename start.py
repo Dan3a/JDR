@@ -57,6 +57,8 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
 import os
 os.system("python -m pip install --upgrade pip --user")
 os.system("python -m pip install pyglet --user")
+os.system("python -m pip install pygame --user")
+
 # os.system("python -m pip install base64 --user")
 
 import tkinter as tk

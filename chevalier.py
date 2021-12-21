@@ -16,7 +16,6 @@
 #     along with Crystal Quest.  If not, see https://www.gnu.org/licenses/. 
 
 from random import *
-
 import classe_personnage_fix as AA
 
 def jeu(mainWindow):
@@ -500,4 +499,3 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Après être sorti de la boutique, vous pouvez enfin vous rendre à Bayfort.")
                 place = 11
 
-            
