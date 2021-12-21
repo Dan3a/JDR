@@ -41,11 +41,23 @@ class Perso:
         self.armure = []
         self.sort = []
         #Armes [degats, prix, nombre, force mini]
-        self.Armes = {"dague":[4, 5, 1, 1], "épée":[10, 15, 0, 1], "masse":[15, 20, 0, 5], "fléau":[18, 25, 0, 1],
-                        "Master_Sword":[35, 50, 0, 1], "Mjölnir":[42, 70, 0, 1], "FROSTMOURNE":[50, 0, 0, 1]}
+        self.Armes = {
+            "dague":[4, 5, 1, 1], 
+            "épée":[10, 15, 0, 3], 
+            "masse":[15, 20, 0, 5], 
+            "fléau":[18, 25, 0, 5],
+            "master_sword":[35, 50, 0, 10], 
+            "mjölnir":[42, 70, 0, 10], 
+            "frostmourne":[50, 0, 0, 20]}
+
         #Armures [protection, prix, nombre, force mini]
-        self.Armures = {"gambison de cuir":[1, 10, 0, 1], "armure de fer":[3, 30, 0, 1], "armure d'acier":[4, 40, 0, 1],
-                        "Armure_ancestral":[10, 60, 0, 1], "Bouclier_Hylien":[20, 80, 0, 1], "DAEDRIQUE":[60, 0, 0, 1]}
+        self.Armures = {
+            "gambison de cuir":[1, 10, 0, 1], 
+            "armure de fer":[3, 30, 0, 3], 
+            "armure d'acier":[4, 40, 0, 5],
+            "Armure_ancestral":[10, 60, 0, 7], 
+            "bouclier_hylien":[20, 80, 0, 10], 
+            "daedrique":[60, 0, 0, 20]}
 
     #REPARTITION DES CARACTERISTIQUE DES PERSONNAGE AU DEBUT DE LA PARTIE
     def debut(self, mainWindow):
@@ -63,22 +75,22 @@ class Perso:
 
     #SELECTION DES ARMES, ARMURES, ET SORTS LORS DE LA PARTIE
     def selection(self, arme, armure):
-
         choix = ""
+
         #choix des armes
         if arme is True:
             while (choix in self.Armes) == False:
                 choix = self.mainWindow.waitForEntryText("Choix d'arme : ")
                 choix = choix.lower()
-                
+                if (self.Armes[choix][2] > 0 and self.Armes[choix][3] <= self.force):
             
-            if (self.Armes[choix][2] > 0 and self.Armes[choix][3] <= self.force):
-                self.arme = self.Armes[choix]
+                    self.arme = self.Armes[choix]
 
             
 
         #choix des armures
         if armure is True :
+            # choix = ""
             while (choix != list(self.Armures.keys())[0] and choix != list(self.Armures.keys())[1]
                    and choix != list(self.Armures.keys())[2] and choix != list(self.Armures.keys())[3]
                    and choix != list(self.Armures.keys())[4] and choix != list(self.Armures.keys())[5]
@@ -274,9 +286,8 @@ class Perso:
 
     
     def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
-        
-        self.mainWindow.printInTextArea("")
-        self.mainWindow.printInTextArea("Vous sentez une présence très poche juste derrière vous,")
+    
+        self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
         self.mainWindow.printInTextArea("Vous distinguez à quelques mètres de vous un homme")
         self.mainWindow.printInTextArea("de votre taille lourdement habillé, il se trouve dans l'ombre")
         self.mainWindow.printInTextArea("et vous ne voyer pas son visage vous aller demander qui il est quand...")
@@ -286,8 +297,6 @@ class Perso:
         pv = 24
         vit = 4
         att = 6
-        sdes1 = 12
-        sdes2 = 9
         self.mainWindow.printInTextArea ("Il vous attaque")
         self.inventaire()
         self.selection(True,True)
@@ -310,7 +319,7 @@ class Perso:
             elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
-                if toucher <= sdes1 :
+                if toucher <= sdes :
                     pv -= self.arme[0]
                     self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
                 else :
@@ -323,6 +332,11 @@ class Perso:
 
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
+                self.force = 20
+                self.Armes["frostmourne"] = [50, 0, 1, 20]
+                print(self.Armes["frostmourne"])
+                print(self.force)
+                
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
@@ -336,7 +350,6 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
-
                     toucher = randrange(1, 50)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
@@ -385,12 +398,12 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaquer" and distance == 1 :
+            elif choix == "attaquer" and distance <= 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégâts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
             elif choix == "attaquer" and distance > 1 :
@@ -529,18 +542,6 @@ class Perso:
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop près pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu l'as tué!")

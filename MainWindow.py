@@ -17,6 +17,7 @@
 
 import tkinter as tk
 import base64, pyglet, AnimatedGif
+from chevalier import jeu
 
 class MainWindow(tk.Tk):
     iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
@@ -82,11 +83,17 @@ class MainWindow(tk.Tk):
         photo = tk.PhotoImage(data=img)
         self.iconphoto(False, photo)
 
-        # minimap
-        self.minimapGif = AnimatedGif.AnimatedGif(self, 'mapanim.gif', 30)
-        self.minimapGif.place(x=620, y=0)
-        self.minimapGif.configure(bd=0)
-        self.minimapGif.start()
+        # minimap animée
+        # self.minimapGif = AnimatedGif.AnimatedGif(self, 'mapanim.gif', 30)
+        # self.minimapGif.place(x=620, y=0)
+        # self.minimapGif.configure(bd=0)
+        # self.minimapGif.start()
+
+        # minimap statique
+        self.minimapImg = tk.PhotoImage(file="mapmini.gif")
+        self.minimapLabel = tk.Label(self, image=self.minimapImg)
+        self.minimapLabel.configure(bd=0)
+        self.minimapLabel.place(x=620, y=0)
 
         # defintion des widgets
         run_string = tk.StringVar()
@@ -96,7 +103,7 @@ class MainWindow(tk.Tk):
 
         self.button_run = tk.Button(self, text="Run", command = self.runCallback)
         
-        self.placeIndicatorMap = tk.Label(self, text="!", font=('Luxurious Roman',20))
+        # self.placeIndicatorMap = tk.Label(self, text="!", font=('Luxurious Roman',20))
 
         self.text_widget.configure(bg='#111111', fg='white', font=('Luxurious Roman',12))
         self.entry_run.configure(bg='#3a3a3a', fg='white', font=('Luxurious Roman',12))
@@ -114,6 +121,7 @@ class MainWindow(tk.Tk):
         self.text_widget.insert(tk.END, end)
         self.text_widget.see(tk.END)
 
+    # obtient le texte de la boite de texte, renvoie le string, et clear le screen
     def getEntryText(self):
         text = self.entry_run.get()
         self.entry_run.delete(0, tk.END)
@@ -137,8 +145,7 @@ class MainWindow(tk.Tk):
         self.text_widget.delete(1.0, tk.END)
         return text
 
-    def placeIndicatorMapLocation(self, place):
+    # def placeIndicatorMapLocation(self, jeu):
 
-        
-        self.placeIndicatorMap.place()
+    #     self.placeIndicatorMap.place()
 
