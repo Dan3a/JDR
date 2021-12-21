@@ -528,7 +528,7 @@ def jeu(mainWindow):
             boutique_forgeron = perso.boutique_forgeron1
             if boutique_forgeron == True:
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Après être sortie de la boutique, vous pouvez enfin vous rendre à Bayfort.")
+                mainWindow.printInTextArea("Après être sorti de la boutique, vous pouvez enfin vous rendre à Bayfort.")
                 place = 11
 
             
