@@ -158,16 +158,16 @@ class Perso:
         
         nb_recul = 1
         nb_recul_m = 2
-        self.mainWindow.printInTextArea ("Un",nom,"attaque")
+        self.mainWindow.printInTextArea ("Un ",nom," attaque")
         self.inventaire()
         self.selection(True,True,False)
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
-            self.mainWindow.printInTextArea("Le",nom,"est �",distance,"m�tres de distance. Il a ",pv," pv")
+            self.mainWindow.printInTextArea("Le",nom,"est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaque" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ")
+                   and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -177,15 +177,15 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaque" and distance == 1 :
+            elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige" ),self.arme[0]," dégàts"
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaque" and distance > 1 :
+            elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             # elif choix == "sort" :
@@ -245,8 +245,8 @@ class Perso:
             self.mainWindow.printInTextArea("Les gardes sont à ",distance," mètres de distance. Ils ont",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaque" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ")
+                   and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -256,15 +256,15 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaque" and distance == 1 :
+            elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaque" and distance > 1 :
+            elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             # elif choix == "sort" :
@@ -328,8 +328,8 @@ class Perso:
             self.mainWindow.printInTextArea("il est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaque" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ")
+                   and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -339,15 +339,15 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaque" and distance == 1 :
+            elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaque" and distance > 1 :
+            elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             # elif choix == "sort" :
@@ -386,7 +386,7 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
-            self.mainWindow.printInTextArea("Il t'as tué")
+            self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
             return True
@@ -396,10 +396,10 @@ class Perso:
         
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Quand soudain, les murs de cette immense caverne se mettent à bouger")
-        self.mainWindow.printInTextArea("comme un très grande spirale, jusqu'au moment où une tête faisant 5 fois")
-        self.mainWindow.printInTextArea("votre taille descend vers vous, une tête au yeux mortelle et pleine d'écailles.")
-        self.mainWindow.printInTextArea("Le Basillic, ce monstre ancestral que toutes les personnes ayant croisé son")
-        self.mainWindow.printInTextArea("on fini pétrifié, vous restez figé, il s'immobilise jusqu'au moment où...")
+        self.mainWindow.printInTextArea("comme une très grande spirale, jusqu'au moment où une tête faisant 5 fois")
+        self.mainWindow.printInTextArea("votre taille descend vers vous, une tête au yeux mortels et pleine d'écailles.")
+        self.mainWindow.printInTextArea("Le Basillic, ce monstre mythique que toutes les personnes ayant croisé")
+        self.mainWindow.printInTextArea("ont finis pétrifiés. Vous restez figé, il s'immobilise jusqu'au moment où...")
         nb_recul = 1
         nb_recul_m = 2
         distance = 10
@@ -414,8 +414,8 @@ class Perso:
             self.mainWindow.printInTextArea("il est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaque" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ")
+                   and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? ( avancer/ reculer/ attaquer/ rien)")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -425,15 +425,15 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaque" and distance == 1 :
+            elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige"),self.arme[0],"dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaque" and distance > 1 :
+            elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             # elif choix == "sort" :
@@ -471,7 +471,7 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
-            self.mainWindow.printInTextArea("Il t'as tué")
+            self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
             return True
@@ -480,9 +480,9 @@ class Perso:
     def jeu_taverne1(self, mise): #jeu de chance dans la taverne 
 
         self.mainWindow.printInTextArea("")
-        self.mainWindow.printInTextArea("les régles sont simples: devant vous se trouve un dé à 8 faces,")
-        self.mainWindow.printInTextArea("Avant qu'il soit lancé, vous devez misez une somme de pièce d'or")
-        self.mainWindow.printInTextArea("et en suite parier soit sur un résultat paire ou impaire ce qui doublera")
+        self.mainWindow.printInTextArea("les règles sont simples: devant vous se trouve un dé à 8 faces,")
+        self.mainWindow.printInTextArea("Avant qu'il ne soit lancé, vous devez miser une somme de pièce d'or")
+        self.mainWindow.printInTextArea("et ensuite parier soit sur un résultat paire ou impaire ce qui doublera")
         self.mainWindow.printInTextArea("votre mise soit sur un résultat précis ce qui quadruplera votre mise.")
         self.mainWindow.printInTextArea("Vous vous asseyez.")
         self.mainWindow.printInTextArea(", vous avez actuellement ",self.PO," pièces d'or")
@@ -503,39 +503,39 @@ class Perso:
                 self.mainWindow.printInTextArea("Vous avez choisi un résultat paire, le dé est lancé...")
                 dé = randrange(1, 8)
                 if (dé == 2 or 4 or 6 or 8):
-                    self.mainWindow.printInTextArea(dé,"vous avez gagné")
+                    self.mainWindow.printInTextArea(dé,"Vous avez gagné")
                     self.PO = self.PO + (mise * 2)
-                    self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                    self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
                     self.mainWindow.printInTextArea(dé,"Vous avez perdu")
                     self.PO = self.PO - mise
-                    self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                    self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
             else:
                 self.mainWindow.printInTextArea("Vous avez choisi un résultat impaire, le dé est lancé...")
                 dé = randrange(1, 8)
                 if (dé == 1 or 3 or 5 or 7):
-                    self.mainWindow.printInTextArea(dé,"vous avez gagné")
+                    self.mainWindow.printInTextArea(dé,"Vous avez gagné")
                     self.PO = self.PO + (mise * 2)
-                    self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                    self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
                     self.mainWindow.printInTextArea(dé,"Vous avez perdu")
                     self.PO = self.PO - mise
-                    self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                    self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
         elif choix == "miser sur un chiffre précis":
-            self.mainWindow.printInTextArea("vous avez choisi de miser sur un chiffre précis")
+            self.mainWindow.printInTextArea("Vous avez choisi de miser sur un chiffre précis")
             choix2 = ""
             while (choix2 != 1 and choix2 != 2 and choix2 != 3 and choix2 != 4 and choix2 != 5 and choix2 != 6 and choix2 != 7 and choix2 != 8):
                 choix2 = int(self.mainWindow.waitForEntryText("Quel chiffre choisissez-vous? ( un chffre en 1 et 8)"))
-                self.mainWindow.printInTextArea("Vous avez choisit le chiffre: ",choix2,"le dé est lancé")
+                self.mainWindow.printInTextArea("Vous avez choisi le chiffre: ",choix2,"le dé est lancé")
                 dé = randrange(1, 8)
             if choix2 == dé:
-                self.mainWindow.printInTextArea(dé,"vous avez gagné")
+                self.mainWindow.printInTextArea(dé,"Vous avez gagné")
                 self.PO = self.PO + (mise * 4)
-                self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
             else:
-                self.mainWindow.printInTextArea(dé,"vous avez perdu")
+                self.mainWindow.printInTextArea(dé,"Vous avez perdu")
                 self.PO = self.PO - mise
-                self.mainWindow.printInTextArea("vous avez donc maintenant: ",self.PO," pièces d'or")
+                self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
         return True 
 
     def combat_final1(self): #combat final sans l'aide du sorcier
@@ -555,8 +555,8 @@ class Perso:
             self.mainWindow.printInTextArea("Le voleur est à ",distance," mètres de distance. Ils ont",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaque" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ")
+                   and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -566,15 +566,15 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaque" and distance == 1 :
+            elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégàts")
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégàts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaque" and distance > 1 :
+            elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             # elif choix == "sort" :
@@ -595,7 +595,7 @@ class Perso:
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
-                    self.mainWindow.printInTextArea("le voleur recule")
+                    self.mainWindow.printInTextArea("Le voleur recule")
                     distance += vit
                     nb_recul_m -= 1
                 elif (distance > 1 and att > self.arme[0]) or (distance > 1 and nb_recul_m == 0) :
@@ -612,7 +612,7 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pva <= 0 :
-            self.mainWindow.printInTextArea("Il t'as tué!")
+            self.mainWindow.printInTextArea("Il t'a tué!")
             return False
         else :
             return True

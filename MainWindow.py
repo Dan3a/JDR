@@ -1,5 +1,5 @@
 import tkinter as tk
-import base64
+import base64, pyglet
 
 class MainWindow(tk.Tk):
     iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
@@ -40,6 +40,7 @@ class MainWindow(tk.Tk):
                 b'AAAAASUVORK5CYII='
     windowTitle = "Crystal Quest"
     lastEntry = ""
+    pyglet.font.add_file('LuxuriousRoman-Regular.ttf')
 
     def __init__(self, width=800, height=600):
         super().__init__()
@@ -56,6 +57,7 @@ class MainWindow(tk.Tk):
         self.geometry('%dx%d+%d+%d' % (width, height, x, y))
         self.resizable(False, False)
         self.wm_title(self.windowTitle)
+        self.configure(bg='black')
 
         img = base64.b64decode(self.iconimgdata)
         photo = tk.PhotoImage(data=img)
@@ -63,7 +65,8 @@ class MainWindow(tk.Tk):
 
         self.minimapImg = tk.PhotoImage(file="map.gif")
         self.minimapLabel = tk.Label(self, image=self.minimapImg)
-        self.minimapLabel.place(x=620, y=-2)
+        self.minimapLabel.configure(bd=0)
+        self.minimapLabel.place(x=620, y=0)
 
         run_string = tk.StringVar()
 
@@ -72,9 +75,14 @@ class MainWindow(tk.Tk):
 
         self.button_run = tk.Button(self, text="Run", command = self.runCallback)
 
-        self.entry_run.place(x=0, y=550, width=590, height=20)
-        self.button_run.place(x=590, y=550, height=20)
-        self.text_widget.place(x=0, y=0, width=620, height=550)        
+        self.text_widget.configure(bg='#111111', fg='white', font=('Luxurious Roman',12))
+        self.entry_run.configure(bg='#3a3a3a', fg='white', font=('Luxurious Roman',12))
+        self.button_run.configure(bg='#3a3a3a', fg='white', font=('Luxurious Roman',12))
+
+        self.entry_run.place(x=0, y=550, width=570, height=50)
+        self.button_run.place(x=570, y=550, height=50, width=50)
+        self.text_widget.place(x=0, y=0, width=620, height=550)    
+
 
     def printInTextArea(self, *args, end="\n"):
         for i in range(len(args)):

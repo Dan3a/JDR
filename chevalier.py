@@ -420,11 +420,11 @@ def jeu(mainWindow):
             else:
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("L'immense créature gisant à côté de vous, vous découvrez derrière lui")
-                mainWindow.printInTextArea("un renfocement dans le quel se trouve un amocellement des plusieurs centaines")
-                mainWindow.printInTextArea("de pièces d'or vous en emporter un maximum, puis vous sortez de cet horrible")
+                mainWindow.printInTextArea("un renfoncement dans lequel se trouve un amoncellement des plusieurs centaines")
+                mainWindow.printInTextArea("de pièces d'or. Vous en emportez un maximum, puis vous sortez de cet horrible")
                 mainWindow.printInTextArea("souterrain emportant également avec vous une écaille de l'immense reptile.")
                 mainWindow.printInTextArea("Vous souhaitez repartir à la recherche du voleur, vous pouvez aller à Lostpoint")
-                mainWindow.printInTextArea("pour échanger votre écaille chez un marabou en échange de potion spéciale.")
+                mainWindow.printInTextArea("pour échanger votre écaille chez un marabou en échange d'une potion spéciale.")
                 choix2 = ""#aller à lostpoint
                 while (choix2 != "aller à lostpoint"):
                     choix2 = mainWindow.waitForEntryText("Que faites-vous? ( aller à lostpoint )")
@@ -435,11 +435,11 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("Une fois arrivé là bas, vous entrez chez le marabou qui vous échange")
                     mainWindow.printInTextArea("votre écaille contre une étrange potion, il vous indique qu'en la buvant,")
                     mainWindow.printInTextArea("vous pourrez choissir entre rétablir votre vie ou augmenter votre force.")
-                    mainWindow.printInTextArea("une fois sortie de chez cet étrange personnage, vous décidez d'interroger")
-                    mainWindow.printInTextArea("quelque personne au sujet de votre quête, deux choses reviennent souvent:")
-                    mainWindow.printInTextArea("quelques rumeures disent que le voleur aurait été appercut en direction de Bayfort")
-                    mainWindow.printInTextArea("d'autre personne vous ont dis d'aller voir le sorcier à Starhill qui pourras")
-                    mainWindow.printInTextArea("surement vous aider.")
+                    mainWindow.printInTextArea("une fois sorti de chez cet étrange personnage, vous décidez d'interroger")
+                    mainWindow.printInTextArea("quelques personne au sujet de votre quête, deux choses reviennent souvent:")
+                    mainWindow.printInTextArea("quelques rumeures disent que le voleur aurait été apperçu en direction de Bayfort")
+                    mainWindow.printInTextArea("d'autre personnes vous ont dis d'aller voir le sorcier à Starhill qui pourra")
+                    mainWindow.printInTextArea("sûrement vous aider.")
                     place = 9
                     
         while place == 9: #voir sorcier ou directement Bayfort
@@ -449,12 +449,12 @@ def jeu(mainWindow):
                 choix = choix.lower()
             if choix == "aller à bayfort":
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous préférez ne pas perde de temps est partez directement en direction")
+                mainWindow.printInTextArea("Vous préférez ne pas perdre de temps est partez directement en direction")
                 mainWindow.printInTextArea("de Bayfort vers les côtes du royaume sur les traces du voleur.")
                 place = 8
             elif choix == "aller chez ce sorcier":
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous préférez demander conseil au sorcier car les sorcier sont")
+                mainWindow.printInTextArea("Vous préférez demander conseil au sorcier car ils sont")
                 mainWindow.printInTextArea("réputés pour leur grand savoir sur le royaume, vous partez donc")
                 mainWindow.printInTextArea("vers Starhill.")
                 place = 10
@@ -462,15 +462,15 @@ def jeu(mainWindow):
         while place == 11: #bataille final:
             if sorcier == False: #sans l'aide du sorcier
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous arrivez à l'entrée du pont menant à Bayfort, vous appercevez dans")
+                mainWindow.printInTextArea("Vous arrivez à l'entrée du pont menant à Bayfort, vous apercevez dans")
                 mainWindow.printInTextArea("la pénombre de l'autre côté une silhouette s'arreter de courir en")
-                mainWindow.printInTextArea("direction des bateaux poue désormais vous faire face.")
-                mainWindow.printInTextArea("Vous êtes sure, c'est bien la personne que vous traquez depuis tout ce temps,")
+                mainWindow.printInTextArea("direction des bateaux pour désormais vous faire face.")
+                mainWindow.printInTextArea("Vous êtes sûr, c'est bien la personne que vous traquez depuis tout ce temps,")
                 mainWindow.printInTextArea("sans hésitation, arme à la main vous traversez le pont pour le combat")
-                mainWindow.printInTextArea("qui vous permettra de récupéré les crystaux du royaume.")
-                mainWindow.printInTextArea("arrivé à la moitié du pont, vous vous arrétez net, le voleur vient de sortir")
+                mainWindow.printInTextArea("qui vous permettra de récupérer les crystaux du royaume.")
+                mainWindow.printInTextArea("Arrivé à la moitié du pont, vous vous arrêtez net, le voleur vient de sortir")
                 mainWindow.printInTextArea("de son sac un des trois crystaux...")
-                combat_final1 = AA.combat_final1
+                combat_final1 = perso.combat_final1
                 if combat_final1 is False: #combat perdu
                     mainWindow.printInTextArea("")
                     place = 0
@@ -491,15 +491,15 @@ def jeu(mainWindow):
                     place = "fin1"
             elif sorcier == True: #avec l'aide du sorcier
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous appercevez dans")
+                mainWindow.printInTextArea("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous apercevez dans")
                 mainWindow.printInTextArea("la pénombre de l'autre côté une silhouette s'arreter de courir en")
-                mainWindow.printInTextArea("direction des bateaux poue désormais vous faire face.")
-                mainWindow.printInTextArea("Vous êtes sure, c'est bien la personne que vous traquez depuis tout ce temps,")
+                mainWindow.printInTextArea("direction des bateaux pour désormais vous faire face.")
+                mainWindow.printInTextArea("Vous êtes sûr, c'est bien la personne que vous traquez depuis tout ce temps,")
                 mainWindow.printInTextArea("sans hésitation, arme à la main, à vous deux vous traversez le pont pour le combat")
-                mainWindow.printInTextArea("qui vous permettra de récupéré les crystaux du royaume.")
-                mainWindow.printInTextArea("arrivés à la moitié du pont, vous vous arrétez net, le voleur vient de sortir")
+                mainWindow.printInTextArea("qui vous permettra de récupérer les crystaux du royaume.")
+                mainWindow.printInTextArea("arrivés à la moitié du pont, vous vous arrêtez net, le voleur vient de sortir")
                 mainWindow.printInTextArea("de son sac un des trois crystaux...")
-                combat_final2 = AA.combat_final2
+                combat_final2 = perso.combat_final2
                 if combat_final2 is False: #combat perdu
                     mainWindow.printInTextArea("")
                     place = 0
