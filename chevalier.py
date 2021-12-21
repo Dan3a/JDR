@@ -475,7 +475,6 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("mi-clos: cet homme se pencher et récupérer les crystaux avant de dire ce mot:")
                     mainWindow.printInTextArea("-Enfin.")
                     place = "fin1"
-                    raise SystemExit(0)
             elif sorcier == True: #avec l'aide du sorcier
                 mainWindow.printInTextArea("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous apercevez dans")
                 mainWindow.printInTextArea("la pénombre de l'autre côté une silhouette s'arreter de courir en")
@@ -528,10 +527,20 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Après être sorti de la boutique, vous pouvez enfin vous rendre à Bayfort.")
                 place = 11
 
-<<<<<<< Updated upstream
-=======
         while place == "fin1":
             mainWindow.printInTextArea("")
+            mainWindow.printInTextArea("")
+            mainWindow.printInTextArea("Bravo tu as fini cette fin c'est la fin: 1/2")
+            mainWindow.printInTextArea("FIN DU CHAPITRE 1")
+            raise SystemExit(0)
+
+        while place == "fin2":
+            mainWindow.printInTextArea("")
+            mainWindow.printInTextArea("")
+            mainWindow.printInTextArea("Bravo tu as fini cette fin c'est la fin: 2/2")
+            mainWindow.printInTextArea("FIN DU CHAPITRE 1")
+            raise SystemExit(0)
+
 
             
->>>>>>> Stashed changes
+
