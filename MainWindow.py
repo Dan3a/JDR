@@ -99,4 +99,5 @@ class MainWindow(tk.Tk):
             pass
         text = self.lastEntry
         self.lastEntry = ""
+        self.printInTextArea(text)
         return text
