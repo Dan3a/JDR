@@ -616,3 +616,92 @@ class Perso:
             return False
         else :
             return True
+
+
+    def boutique_forgeron1(self): #achat arme et armure
+        self.mainWindow.printInTextArea("")
+        self.mainWindow.printInTextArea("Vous rentrez dans cette boutique où sont accrochés diverses armes")
+        self.mainWindow.printInTextArea("et armures, un homme robuste arrive vers vous et vous demande")
+        self.mainWindow.printInTextArea("se que vous souhaitez acheter vous regarder alors les prix sur")
+        self.mainWindow.printInTextArea("les étagères: [épée 15 PO], [masse 20 PO], [Master_Sword 50 PO]")
+        self.mainWindow.printInTextArea("Vous pensez à garder de l'argent pour acheter une armure:")
+        self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [Bouclier_Hylien 80 PO]")
+        self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
+        self.mainWindow.printInTextArea("vous avez actuellement :", self.PO ,"pièces d'or.")
+        choix = ""
+        while (choix != "épée" and choix != "masse" and choix != "Master_Sword"and choix != "rien"): #choix arme
+            choix = self.mainWindow.waitForEntryText("Qu'achetez-vous? ( épée/ masse/ Master_Sword/ rien")
+            choix = choix.lower()
+        if choix == "épée":
+            if self.PO < 15:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "épée"
+                self.PO -= 15
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté une épée il vous reste", self.PO ,"pièces d'or")
+        elif choix == "masse":
+            if self.PO < 20:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "masse"
+                self.PO -= 20
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté une masse il vous reste", self.PO ,"pièces d'or")
+        elif choix == "Master_Sword":
+            if self.PO < 50:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "masse"
+                self.PO -= 50
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté Mester_Sword il vous reste", self.PO ,"pièces d'or")
+        elif choix == "rien":
+            self.mainWindow.printInTextArea("")
+            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste", self.PO ,"pièces d'or")
+        self.mainWindow.printInTextArea("")
+        self.mainWindow.printInTextArea("vous pouvez maintenant acheter une armure.")
+        choix = ""
+        while (choix != "armure de fer" and choix != "armure d'acier" and choix != "Bouclier_Hylien" and choix != "rien"): #choix armure
+            choix = self.mainWindow.waitForEntryText(" Qu'achetez-vous? ( armure de fer/ armure d'acier/ Bouclier_Hylien/ rien")
+            choix = choix.lower()
+        if choix == "armure de fer":
+            if self.PO < 30:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "armure de fer"
+                self.PO -= 30
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté une arumre de fer il vous reste", self.PO ,"pièces d'or")
+        elif choix == "armure d'acier":
+            if self.PO < 40:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "armure d'acier"
+                self.PO -= 40
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste", self.PO ,"pièces d'or")
+        elif choix == "Bouclier_Hylien":
+            if self.PO < 80:
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("vous sortez de la boutique")
+            else:
+                self.arme = "Bouclier_Hylien"
+                self.PO -= 80
+                self.mainWindow.printInTextArea("")
+                self.mainWindow.printInTextArea("Vous avez acheté un Bouclier_Hylien il vous reste", self.PO ,"pièces d'or")
+        elif choix == "rien":
+            self.mainWindow.printInTextArea("")
+            self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste", self.PO ,"pièces d'or")
+        return True

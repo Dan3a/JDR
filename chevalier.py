@@ -9,8 +9,6 @@ def jeu(mainWindow):
     place = 1
     prologue = False
     choix_moral1 = ""
-    choix_moral2 = ""
-    choix_moral3 = ""
     fight_debut = False
     fight_dernier_gardien = False
     sorcier = False
@@ -18,6 +16,7 @@ def jeu(mainWindow):
     fight_souterrain = False
     combat_final1 = False
     combat_final2 = False
+    boutique_forgeron = False
 
     
 
@@ -452,7 +451,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("Vous préférez ne pas perde de temps est partez directement en direction")
                 mainWindow.printInTextArea("de Bayfort vers les côtes du royaume sur les traces du voleur.")
-                place = 11
+                place = 8
             elif choix == "aller chez ce sorcier":
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("Vous préférez demander conseil au sorcier car les sorcier sont")
@@ -478,7 +477,18 @@ def jeu(mainWindow):
                 else: #combat gagné
                     mainWindow.printInTextArea("")
                     mainWindow.printInTextArea("Epuisé, et blessé, vous regardez votre ennemi gisant face contre terre,")
-                    mainWindow.printInTextArea("")
+                    mainWindow.printInTextArea("vous allez enfin pouvoir ramener les crystaux à Icegate et sauver le royaume.")
+                    mainWindow.printInTextArea("Après toute cette traque, vous souhaitez enfin découvrir le visage de votre")
+                    mainWindow.printInTextArea("énemi, vous vous avancez pour le relever quand quelque chose attire votre")
+                    mainWindow.printInTextArea("regard vous levez les yeux et vous voyez de l'autre côté du pont, une homme,")
+                    mainWindow.printInTextArea("un homme un peu barbu. Au moment où vous alliez lui demander qui il était et")
+                    mainWindow.printInTextArea("pourquoi il était là, sans avoir eu le temps de réagir, une boule de feu traversant")
+                    mainWindow.printInTextArea("le pont à plein vitesse vous aveugle avant de vous frapper en pleine poitrine.")
+                    mainWindow.printInTextArea("Sous le choc et la douleur, vous tombez à terre; vos yeux commencent à se fermer,")
+                    mainWindow.printInTextArea("avant de sombrer dans un sommeil éternel, vous appercevez à travers vos yeux")
+                    mainWindow.printInTextArea("mi-clos: cet homme se pencher et récupérer les crystaux vavnt de dire ce mot:")
+                    mainWindow.printInTextArea("-Enfin.")
+                    place = "fin1"
             elif sorcier == True: #avec l'aide du sorcier
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("Vous et le sorcier arrivez à l'entrée du pont menant à Bayfort, vous appercevez dans")
@@ -497,5 +507,12 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("")
                     mainWindow.printInTextArea("")
 
+
+        while place == "boutique_forgeron": #boutique forgeron achat arme et armure
+            boutique_forgeron = perso.boutique_forgeron1
+            if boutique_forgeron == True:
+                mainWindow.printInTextArea("")
+                mainWindow.printInTextArea("Après être sortie de la boutique, vous pouvez enfin vous rendre à Bayfort.")
+                place = 11
 
             
