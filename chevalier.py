@@ -143,7 +143,7 @@ def jeu(mainWindow):
             choix = ""
             while (choix != "chercher des traces du voleur" and choix != "regarder dans la montagne"
                     and choix != "aller voir les gardiens"):
-                choix = mainWindow.waitForEntryText("Que faites vous ? ( chercher des traces du voleur/ regarder dans la montagne/ aller voir les gardiens)")
+                choix = mainWindow.waitForEntryText("Que faites vous ? ( chercher des traces du voleur/ regarder dans la montagne/aller voir les gardiens)")
                 choix = choix.lower()
             if choix == "chercher des traces du voleur" :
                 mainWindow.printInTextArea("")
@@ -265,71 +265,72 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea(".......")
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("De ce sommeil, vous ne vous réveillerez jamais et vous n'en saurait donc jamais la raison.")
+                mainWindow.printInTextArea("De ce sommeil, vous ne vous réveillerez jamais et vous n'en saurez donc jamais la raison.")
+                mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("VOUS ÊTES MORT")
                 mainWindow.printInTextArea("FIN PAISIBLE")
                 place = 0
 
             elif choix == "continuer les recherches":
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous décidez de na pas rester trop longtemps, et entamez avant de partir")
+                mainWindow.printInTextArea("Vous décidez de ne pas rester trop longtemps. Vous entamez avant de partir")
                 mainWindow.printInTextArea("une petite discussion autour de ce qui pèse sur le royaume et vous essayez")
                 mainWindow.printInTextArea("d'en savoir un peu plus. Au moment de vous quitter, votre ami vous apprendra")
                 mainWindow.printInTextArea("que les crystaux ont étés créés par les sorciers de cet même contrée de Starhill.")
-                mainWindow.printInTextArea("Vous décidez donc de vous rendre chez un des dernier sorcier habitant pas loin d'ici.")
+                mainWindow.printInTextArea("Vous décidez de vous rendre chez un des dernier sorcier habitant non loin d'ici.")
                 mainWindow.printInTextArea("")
                 place = 10
 
         while place == 10: #chez le sorcier
-                mainWindow.printInTextArea("Vous arrivez à la demeure du sorcier, quand la porte souvre d'un coup devant vous,")
-                mainWindow.printInTextArea("vous entrez prudement quand un homme un peu barbu ariive en face de vous")
-                mainWindow.printInTextArea("Vous vous appretez à lui parler quand il annoce qu'il sait qui vous êtes")
-                mainWindow.printInTextArea("et pourquoi vous êtes là, il vous dis que se sont les personne comme")
-                mainWindow.printInTextArea(" lui qui ont créés les trois crystaux il y a plusieur siècle et perssone")
-                mainWindow.printInTextArea("n'a le droit d'y toucher encore moin de les voler.")
-                mainWindow.printInTextArea("Vous lui annoncer que vous êtes à la recherche de cet individu et que vous n'allez")
-                mainWindow.printInTextArea("pas rester, vous lui demandez si il n'aurait pas quelques informations")
+                mainWindow.printInTextArea("Vous arrivez à la demeure du sorcier, lorsque la porte s'ouvre d'un coup devant vous,")
+                mainWindow.printInTextArea("vous entrez prudemment, quand soudainement un homme un peu barbu arrive en face de vous.")
+                mainWindow.printInTextArea("Vous vous apprêtez à lui parler quand il annonce qu'il sait qui vous êtes")
+                mainWindow.printInTextArea("et pourquoi vous êtes là, il vous dit que se sont les personne comme")
+                mainWindow.printInTextArea("lui qui ont créé les trois crystaux il y a plusieurs siècles et personne")
+                mainWindow.printInTextArea("n'a le droit d'y toucher et encore moins de les voler.")
+                mainWindow.printInTextArea("Vous lui annoncer que vous êtes à la recherche de cet individu et que vous n'alliez")
+                mainWindow.printInTextArea("pas rester. Vous lui demandez s'il n'aurait pas quelques informations")
                 mainWindow.printInTextArea("qui vous seraient utiles, il vous répond d'un aire sombre qu'il ressent")
                 mainWindow.printInTextArea("leur pouvoir en direction des côtes de Bayfort, vous décidez donc")
-                mainWindow.printInTextArea("de vous y rendre et il vous demande il peut vous accompagné pour vous")
+                mainWindow.printInTextArea("de vous y rendre et il vous demande s'il peut vous accompagner.")
                 mainWindow.printInTextArea("aider lors de votre combat.")
                 choix2 = "" #accepter ou refuser l'aide du sorcier
                 while (choix2 != "accepter son aide" and choix2 != "refuser son aide"):
-                    choix2 = mainWindow.waitForEntryText("Que voulez-vous faire? ( accepter son aide/ refuser son aide")
+                    choix2 = mainWindow.waitForEntryText("Que voulez-vous faire? (accepter son aide/ refuser son aide)")
                     choix2 = choix2.lower()
                 if choix2 == "accepter son aide":
                     mainWindow.printInTextArea("")
-                    mainWindow.printInTextArea("Sans réfléchir, vous accepter son aide, vous ne savez pas qui est votre")
-                    mainWindow.printInTextArea("adversaire et ne savez donc pas de quoi il est capable, il vous parrait donc")
-                    mainWindow.printInTextArea("logique d'avoir avec vous une personne aussi puissante que le sorcier")
+                    mainWindow.printInTextArea("Sans réfléchir, vous acceptez son aide, vous ne savez pas qui est votre")
+                    mainWindow.printInTextArea("adversaire et ne savez donc pas de quoi il est capable, il vous paraît donc")
+                    mainWindow.printInTextArea("logique d'avoir avec vous une personne aussi puissante que le sorcier,")
                     mainWindow.printInTextArea("qui poursuit le même but que vous.")
-                    mainWindow.printInTextArea("Vous partez donc en direction de Bayfort accompagné de ce nouvel ami")
+                    mainWindow.printInTextArea("Vous partez donc en direction de Bayfort accompagné de ce nouvel coéquipier.")
                     sorcier = True
                     place = 8
                 elif choix2 == "refuser son aide":
                     mainWindow.printInTextArea("")
-                    mainWindow.printInTextArea("Vous ne savez pas ce qui vous arrivera arrivé à Bayfort et vous ne voulez")
+                    mainWindow.printInTextArea("Vous ne savez pas ce qui vous arrivera à Bayfort et vous ne voulez")
                     mainWindow.printInTextArea("pas qu'une autre personne puisse courir un risque aussi important, de plus")
                     mainWindow.printInTextArea("vous ne connaissez que peu le sorcier et ne lui faites pas forcément confiance.")
-                    mainWindow.printInTextArea("En lui annoncant votre refus, il parait désolé et insite et présisant")
+                    mainWindow.printInTextArea("En lui annonçant votre refus, il paraît désolé et insiste en précisant")
                     mainWindow.printInTextArea("qu'il connait et maitrise le pouvoir des crystaux et qu'il est important")
-                    mainWindow.printInTextArea("pour lui de les retrouvé rapidement pour le bien du royaume...")
+                    mainWindow.printInTextArea("pour lui de les retrouver rapidement pour le bien du royaume...")
                     choix3 = "" #sorcier insiste choix
                     while (choix3 != "accpeter finalement son aide" and choix3 != "continuer à refuser poliment"):
-                        choix3 = mainWindow.waitForEntryText("Que décidez-vous? ( accepter finalement son aide/ continuer à refuser poliment")
+                        choix3 = mainWindow.waitForEntryText("Que décidez-vous? (accepter finalement son aide/ continuer à refuser poliment")
                         choix3 = choix3.lower()
                     if choix3 == "accepter finalement son aide":
                         mainWindow.printInTextArea("")
-                        mainWindow.printInTextArea("Vous accepter finalement qu'il vienne avec vous, il ne peut que vous")
-                        mainWindow.printInTextArea("être utile et qu'il à les même intention que vous, vous partez")
-                        mainWindow.printInTextArea("donc tous les deux en direction de Bayfort.")
+                        mainWindow.printInTextArea("Vous acceptez finalement qu'il vienne avec vous, il ne peut que vous")
+                        mainWindow.printInTextArea("être utile puisqu'il a les même intentions que vous.")
+                        mainWindow.printInTextArea("Vous partez donc tous les deux en direction de Bayfort.")
                         sorcier = True
                         place = 8
                     elif choix3 == "continuer à refuser poliment":
                         mainWindow.printInTextArea("")
                         mainWindow.printInTextArea("Vous lui dites avec toutes les précaution possible, que vous")
                         mainWindow.printInTextArea("n'avez pas besoin de son aide et que préférez continuer seul.")
-                        mainWindow.printInTextArea("il vous regarde longuement avant de vous souhaiter bonne route,")
+                        mainWindow.printInTextArea("Il vous regarde longuement avant de vous souhaiter bonne route,")
                         mainWindow.printInTextArea("vous le saluez et partez donc seul en direction de Bayfort.")
                         sorcier = False
                         place = 8
@@ -338,12 +339,12 @@ def jeu(mainWindow):
         while place == 7: #retourner à DeadFalls avec les clefs
             choix = ""
             while (choix != "aller dans la taverne" and choix != "aller dans les souterrains"):
-                choix = mainWindow.waitForEntryText("Que choisissez-vous? ( aller dans la taverne/ aller dans les souterrains")
+                choix = mainWindow.waitForEntryText("Que choisissez-vous? (aller dans la taverne/ aller dans les souterrains)")
                 choix = choix.lower()
             if choix == "aller dans la taverne":
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("Vous vous sentez un peu fatigué et vous avez faim, vous vous rendez donc dans la")
-                mainWindow.printInTextArea("taverne. Vous manger un petit peu et une table de jeu attire votre attention,")
+                mainWindow.printInTextArea("taverne. Vous mangez un petit peu et une table de jeu attire votre attention,")
                 mainWindow.printInTextArea("vous décidez donc en grand amateur de jeu de chance de vous joindre à la partie.")
                 place = "jeu_taverne"
             elif choix == "aller dans les souterrains":
@@ -368,31 +369,31 @@ def jeu(mainWindow):
                 place = 0
             else:
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Votre énemi et à terre, avant de lui donner le coup fatal,")
-                mainWindow.printInTextArea("vous décidez de voire son visage...")
-                mainWindow.printInTextArea("Un peu défiguré mais vous le reconnaissez, c'est un gardien,")
+                mainWindow.printInTextArea("Votre ennemi est à terre. Avant de lui donner le coup fatal,")
+                mainWindow.printInTextArea("vous décidez de voir son visage...")
+                mainWindow.printInTextArea("Il est un peu défiguré mais vous le reconnaissez, c'est un gardien,")
                 mainWindow.printInTextArea("un des gardiens des troix crystaux, immédiatement vous le relevez.")
-                mainWindow.printInTextArea("Il vous explique alors ce qu'il s'est passé, un intru à pénétré")
-                mainWindow.printInTextArea("dans la monbtagne et à voler les crystaux, personne ne l'avait")
-                mainWindow.printInTextArea("repéré mais quand les gardiens ont couluent s'interposer lors de sa fuite,")
-                mainWindow.printInTextArea("il a utilisé le pouvoir des crystaux, tous les gardiens")
-                mainWindow.printInTextArea("y sont restés, lui a réussit à fuire et vous voyant pensant que c'était le voleur")
-                mainWindow.printInTextArea("venu l'achevé, à voulu vous tué.")
-                mainWindow.printInTextArea("Après avoir vous avoir conté son histoire, vous remarquer qu'il ne va pas bien")
-                mainWindow.printInTextArea("il est blessé en plusieurs endroits, vous proposé de le ramener à Farville pour le soigner.")
-                mainWindow.printInTextArea("Il refuse et vous pris d'aller arrêter l'intru, pour vous aider, il vous laisse")
-                mainWindow.printInTextArea("les clefs des souterrains de Deadfalls ou se trouverait un grand trésor et également")
-                mainWindow.printInTextArea("une épée, une épée mythique des gardiens: FROSTMOURNE.")
-                mainWindow.printInTextArea("vous décidez donc de continuer votre quête et de partir en direction de Deadfalls")
-                mainWindow.printInTextArea("laissant le derniers des gardiens de Icegate succomber.")
+                mainWindow.printInTextArea("Il vous explique alors ce qu'il s'est passé: un intru a pénétré")
+                mainWindow.printInTextArea("dans la montagne et a volé les crystaux, personne ne l'avait")
+                mainWindow.printInTextArea("repéré mais lorsque les gardiens ont voulus s'interposer lors de sa fuite,")
+                mainWindow.printInTextArea("il a utilisé le pouvoir des crystaux. Tous les autres gardiens")
+                mainWindow.printInTextArea("y sont restés, lui a réussi à fuire et vous voyant pensant que c'était le voleur")
+                mainWindow.printInTextArea("venu l'achever, a voulu vous tué.")
+                mainWindow.printInTextArea("Après vous avoir conté son histoire, vous remarquez qu'il ne va pas bien.")
+                mainWindow.printInTextArea("Il est blessé en plusieurs endroits, vous proposez de le ramener à Farville pour le soigner.")
+                mainWindow.printInTextArea("Il refuse et vous prie d'aller arrêter le voleur. Pour vous aider, il vous laisse")
+                mainWindow.printInTextArea("les clefs des souterrains de Deadfalls, où se trouverait un grand trésor et également")
+                mainWindow.printInTextArea("une épée; l'épée mythique des gardiens: FROSTMOURNE.")
+                mainWindow.printInTextArea("Vous décidez donc de continuer votre quête et de partir en direction de Deadfalls,")
+                mainWindow.printInTextArea("laissant le dernier gardien d'Icegate succomber.")
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous arrivé près des souterrains de Deadfalls vous vous sentez fatigué par ce combat.")
+                mainWindow.printInTextArea("Vous arrivez près des souterrains de Deadfalls. Vous vous sentez fatigué par ce combat.")
                 place = 7
 
         while place == "jeu_taverne": #jeu de chance code dans personnage
             mainWindow.printInTextArea("")
-            mainWindow.printInTextArea("Vous vous approchez de la table pour y voir unn petit groupe de personne")
-            mainWindow.printInTextArea("à un jeu de dès peu commun.")
+            mainWindow.printInTextArea("Vous vous approchez de la table pour y voir un petit groupe de personnes")
+            mainWindow.printInTextArea("jouant à un jeu de dès peu commun.")
             choix = ""
             while (choix != "jouer au jeu"):
                 choix = mainWindow.waitForEntryText("Alors que faites-vous? ( jouer au jeu ) ")
@@ -402,18 +403,18 @@ def jeu(mainWindow):
                 jeu_taverne = perso.jeu_taverne1()
                 if jeu_taverne is True:
                     mainWindow.printInTextArea("")
-                    mainWindow.printInTextArea("Vous ressorter de la taverne en pleine forme, il ne vous reste")
-                    mainWindow.printInTextArea("plus qu'à oubrir les portes des souterrains, vous vous y dirigez")
+                    mainWindow.printInTextArea("Vous ressortez de la taverne en pleine forme, il ne vous reste")
+                    mainWindow.printInTextArea("plus qu'à ouvrir les portes des souterrains. Vous vous y dirigez")
                     mainWindow.printInTextArea("d'un pas pressé mais en gardant en tête que le monstre sensé")
-                    mainWindow.printInTextArea("se trouver à l'interrieur est un des plus dangereux.")
+                    mainWindow.printInTextArea("se trouver à l'intérieur est un des plus dangereux.")
                     place = "souterrain"
 
         while place == "souterrain": #combat et trésort dans souterrain à Deadfalls
-            mainWindow.printInTextArea("vous descendez de plus en plus prfofnd, dans une obscurité la plus total,")
-            mainWindow.printInTextArea("vous hésitez à abandonner et à remonter, mais vous pensez à quel point se")
-            mainWindow.printInTextArea("trésort si vous parvenez à atteindre peut être important dans votre quête.")
-            mainWindow.printInTextArea("D'un coup après plusieurs minutes dans un dédalle de galerie, vous débouchez")
-            mainWindow.printInTextArea("dans une immense caverne illuminée de plusieur cristaux...")
+            mainWindow.printInTextArea("Vous descendez de plus en plus profond, dans l'obscurité la plus totale,")
+            mainWindow.printInTextArea("vous hésitez à abandonner et à remonter, mais vous pensez à quel point ce")
+            mainWindow.printInTextArea("trésor peut être important dans votre quête si vous parvenez à l'atteindre.")
+            mainWindow.printInTextArea("Après plusieurs minutes dans un dédalle de galerie, vous débouchez")
+            mainWindow.printInTextArea("dans une immense caverne illuminée de plusieurs cristaux...")
             fight_souterrain = perso.fight_souterrain1()
             if fight_souterrain is False:
                 place = 0
@@ -476,7 +477,7 @@ def jeu(mainWindow):
                     place = 0
                 else: #combat gagné
                     mainWindow.printInTextArea("")
-                    mainWindow.printInTextArea("Epuisé, et blessé, vous regardez votre énemi gisant face contre terre,")
+                    mainWindow.printInTextArea("Epuisé, et blessé, vous regardez votre ennemi gisant face contre terre,")
                     mainWindow.printInTextArea("")
             elif sorcier == True: #avec l'aide du sorcier
                 mainWindow.printInTextArea("")

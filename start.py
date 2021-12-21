@@ -40,9 +40,7 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
 import os
 os.system("python -m pip install --upgrade pip --user")
 os.system("python -m pip install pyglet --user")
-os.system("python -m pip install base64 --user")
-os.system("python -m pip install click --user")
-
+# os.system("python -m pip install base64 --user")
 
 import tkinter as tk
 import base64,pyglet
@@ -53,16 +51,18 @@ from pygame import mixer
 class StartMenu(tk.Frame):
     def __init__(self, root):
         tk.Frame.__init__(self, root)
+
         # Définition de la taille et de la position de la fenêtre
         w = 800
         h = 600
+
         ws = root.winfo_screenwidth()
         hs = root.winfo_screenheight()
+
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        # Définition de  
+        root.geometry('%dx%d+%d+%d' % (w, h, x, y))
         root.resizable(False, False)
         root.wm_title("Crystal Quest Launcher")
 
@@ -99,7 +99,7 @@ class StartMenu(tk.Frame):
         
         def StartGameMenu():
             mixer.music.stop()
-            os.system("python GameStartup.py")
+            os.system("python CrystalQuest.py")
 
 # Purement pour la musique
 def playIntroSong(): 
