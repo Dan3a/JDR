@@ -212,6 +212,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("sur le chemin une lueur attire votre attention.")
                 perso.illusion_mental()
                 choix2 = "" #suivre ou pas illusion
+
                 while (choix2 != "aller voir de plus près" and choix != "continuer vers Deadfalls"):
                     choix2 = mainWindow.waitForEntryText("Que choisissez-vous? ( aller voir de plus près/ continuer vers Deadfalls)")
                     choix2 = choix.lower()
@@ -231,7 +232,6 @@ def jeu(mainWindow):
                         mainWindow.printInTextArea("et une taverne se trouve près de l'entrée de Deadfalls.")
                         place = 7
                     elif choix3 == "boire la fiole": #-6 pv physique
-                        mainWindow.printInTextArea("")
                         mainWindow.printInTextArea("Cette potion n'était qu'une dangereuse illusion dû eux points")
                         mainWindow.printInTextArea("de vie mentaux perdu à cause de ce choix malsain, vous perdez")
                         mainWindow.printInTextArea("6 points de vie physique et vous partez vers les souterrains de Deadfalls.")
@@ -271,6 +271,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("De ce sommeil, vous ne vous réveillerez jamais et vous n'en saurez donc jamais la raison.")
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("VOUS ÊTES MORT")
+                mainWindow.printInTextArea("FIN MORT...ANTI-AMICALE")
                 place = 0
 
             elif choix == "continuer les recherches":
@@ -375,13 +376,12 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Après vous avoir conté son histoire, vous remarquez qu'il ne va pas bien.")
                 mainWindow.printInTextArea("Il est blessé en plusieurs endroits, vous proposez de le ramener à Farville pour le soigner.")
                 mainWindow.printInTextArea("Il refuse et vous prie d'aller arrêter le voleur. Pour vous aider, il vous laisse")
-                mainWindow.printInTextArea("les clefs des souterrains de Deadfalls, où se trouverait un grand trésor et vous laisse")
-                mainWindow.printInTextArea("également une épée; l'épée mythique des gardiens: FROSTMOURNE.")
+                mainWindow.printInTextArea("les clefs des souterrains de Deadfalls, où se trouverait un grand trésor et également")
+                mainWindow.printInTextArea("une épée; l'épée mythique des gardiens: FROSTMOURNE.")
                 mainWindow.printInTextArea("Vous décidez donc de continuer votre quête et de partir en direction de Deadfalls,")
                 mainWindow.printInTextArea("laissant le dernier gardien d'Icegate succomber.")
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("Vous arrivez près des souterrains de Deadfalls. Vous vous sentez fatigué par ce    combat.")
-                perso.frostmourne1()
                 place = 7
 
         while place == "jeu_taverne": #jeu de chance code dans personnage
@@ -413,11 +413,10 @@ def jeu(mainWindow):
             else:
                 mainWindow.printInTextArea("L'immense créature gisant à côté de vous, vous découvrez derrière lui")
                 mainWindow.printInTextArea("un renfoncement dans lequel se trouve un amoncellement des plusieurs centaines")
-                mainWindow.printInTextArea("de pièces d'or. Vous en emportez un maximum (+100 PO), puis vous sortez de cet horrible")
-                mainWindow.printInTextArea("souterrain emportant également avec vous une écaille de l'immense reptile.")
+                mainWindow.printInTextArea("de pièces d'or. Vous en emportez un maximum, puis vous sortez de cet ")
+                mainWindow.printInTextArea("horrible souterrain emportant avec vous une écaille de l'immense reptile.")
                 mainWindow.printInTextArea("Vous souhaitez repartir à la recherche du voleur, vous pouvez aller à Lostpoint")
                 mainWindow.printInTextArea("pour échanger votre écaille chez un marabou en échange d'une potion spéciale.")
-                perso.tresor_basilic()
                 choix2 = ""#aller à lostpoint
                 while (choix2 != "aller à lostpoint"):
                     choix2 = mainWindow.waitForEntryText("Que faites-vous? ( aller à lostpoint )")
@@ -432,9 +431,6 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("quelques rumeures disent que le voleur aurait été apperçu en direction de Bayfort")
                     mainWindow.printInTextArea("d'autre personnes vous ont dis d'aller voir le sorcier à Starhill qui pourra")
                     mainWindow.printInTextArea("sûrement vous aider.")
-                    mainWindow.printInTextArea("Au passage vu buvez par curiosité la potion et elle vous donne un bonus de")
-                    mainWindow.printInTextArea("points de vie suplémentaire.")
-                    perso.potion()
                     place = 9
                     
         while place == 9: #voir sorcier ou directement Bayfort

@@ -334,8 +334,6 @@ class Perso:
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 self.force = 20
                 self.Armes["frostmourne"] = [50, 0, 1, 20]
-                print(self.Armes["frostmourne"])
-                print(self.force)
                 
                 return True
             else :
@@ -642,9 +640,6 @@ class Perso:
         elif choix == "rien":
             self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
         return True
-
-    def frostmourne1(self): #recevoir l'arme FROSTMOURNE
-        self.Armes.update({"FROSTMOURNE":[50, 0, 1, 20]})
 
     def illusion_mental(self):#-4 pv mentaux a cause du mauvais choix
         self.pv_mental -= 4
