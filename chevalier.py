@@ -1,4 +1,4 @@
-# Copyright 2021, Dan3A, rremi0     Contact : 21985756+Dan3a@users.noreply.github.com
+# Copyright (c) 2021, Dan3A, rremi0     <21985756+Dan3a@users.noreply.github.com>
 
 # This file is part of Crystal Quest.
 
@@ -22,6 +22,7 @@ import classe_personnage_fix as AA
 def jeu(mainWindow):
     perso = AA.Perso()
     perso.debut(mainWindow)
+    global place
     place = 1
     prologue = False
     choix_moral1 = ""
@@ -347,7 +348,6 @@ def jeu(mainWindow):
                 choix = mainWindow.waitForEntryText("Que faites-vous? ( rentrer dans la boutique )")
                 choix = choix.lower()
             if choix == "rentrer dans la boutique":
-                mainWindow.printInTextArea("")
                 place = "boutique_forgeron"
 
         while place == "combat_gardien": #combat contre dernier gardien
@@ -483,7 +483,6 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("")
                     place = 0
                 else: #combat gagné
-                    mainWindow.printInTextArea("")
                     mainWindow.printInTextArea("")
 
 

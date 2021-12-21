@@ -1,4 +1,4 @@
-# Copyright 2021, Dan3A, rremi0     Contact : 21985756+Dan3a@users.noreply.github.com
+# Copyright (c) 2021, Dan3A, rremi0     <21985756+Dan3a@users.noreply.github.com>
 
 # This file is part of Crystal Quest.
 
@@ -15,8 +15,7 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Crystal Quest.  If not, see https://www.gnu.org/licenses/. 
 
-
-from random import randint, randrange
+from random import randrange
 
 personnage = "chevalier"
 sdes = 12
@@ -37,7 +36,7 @@ class Perso:
         self.pv_mental = 10 
         self.etat = ""
         self.vitesse = 0
-        self.PO = 40
+        self.PO = 50
         self.arme = []
         self.armure = []
         self.sort = []
@@ -106,33 +105,6 @@ class Perso:
             else :
                 self.armure = [0]
             
-
-        #choix des sorts
-        # if sort is True :
-        #     while (choix != "boule de feu mineur" and choix != "boule de feu majeur"
-        #            and choix != "FLAMME" and choix != "TEMPUS"
-        #            and choix != "DEPRETIO"
-        #            and choix != "rien") :
-        #         choix = self.mainWindow.waitForEntryText("Choix du sort : ")
-        #         choix = choix.lower()
-        #     if (choix == list(self.Sorts.keys())[0] and self.Sorts["boule de feu mineur"][2] > 0
-        #         and self.Sorts["boule de feu mineur"][5] <= self.pouvoir) :
-        #         self.sort = self.Sorts["boule de feu mineur"]
-        #     elif (choix == list(self.Sorts.keys())[1] and self.Sorts["boule de feu majeur"][2] > 0
-        #           and self.Sorts["boule de feu majeur"][5] <= self.pouvoir) :
-        #         self.sort = self.Sorts["boule de feu majeur"]
-        #     elif (choix == list(self.Sorts.keys())[2] and self.Sorts["FLAMME"][2] > 0
-        #           and self.Sorts["FLAMME"][5] <= self.pouvoir) :
-        #         self.sort = self.Sorts["FLAMME"]
-        #     elif (choix == list(self.Sorts.keys())[3] and self.Sorts["TEMPUS"][2] > 0
-        #           and self.Sorts["TEMPUS"][5] <= self.pouvoir) :
-        #         self.sort = self.Sorts["TEMPUS"]
-        #     elif (choix == list(self.Sorts.keys())[4] and self.Sorts["DEPRETIO"][2] > 0
-        #           and self.Sorts["DEPRETIO"][5] <= self.pouvoir) :
-        #         self.sort = self.Sorts["DEPRETIO"]
-        #     else :
-        #         self.sort = []
-
     #PREMIERE PARTIE DE L'INVENTAIRE DES PERSONNAGES
     def inventaire(self) :
 
@@ -165,9 +137,6 @@ class Perso:
         for key,nb in self.Armures.items() :
             if nb[2] > 0 :
                 self.mainWindow.printInTextArea ("- ",nb[2]," ",key)
-        # for key,nb in self.Sorts.items() :
-        #     if nb[3] > 0 :
-        #         self.mainWindow.printInTextArea ("-",nb[3],key)
         self.mainWindow.printInTextArea("")
 
     #DEFINITION DES DIFFERENTS MODULES DES COMBATS
@@ -205,18 +174,6 @@ class Perso:
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop pr�s pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
@@ -309,7 +266,7 @@ class Perso:
                         self.mainWindow.printInTextArea("Ils n'arrivent pas à te toucher")
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("VOUS ÊTES MORT")
-            self.mainWindow.printInTextArea("FIN LAMENTABLE")
+            self.mainWindow.printInTextArea("FIN FUYARDE")
             raise SystemExit(0) 
         else :
             return True
@@ -317,7 +274,6 @@ class Perso:
     
     def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
     
-        self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
         self.mainWindow.printInTextArea("Vous distinguez à quelques mètres de vous un homme")
         self.mainWindow.printInTextArea("de votre taille lourdement habillé, il se trouve dans l'ombre")
@@ -459,7 +415,9 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
-            self.mainWindow.printInTextArea("Il t'a tué!")
+            self.mainWindow.printInTextArea("VOUS ÊTES MORT")
+            self.mainWindow.printInTextArea("FIN HERBE ROYALE")
+
             return False
         else :
             return True

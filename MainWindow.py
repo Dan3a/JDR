@@ -1,4 +1,4 @@
-# Copyright 2021, Dan3A, rremi0     Contact : 21985756+Dan3a@users.noreply.github.com
+# Copyright (c) 2021, Dan3A, rremi0     <21985756+Dan3a@users.noreply.github.com>
 
 # This file is part of Crystal Quest.
 
@@ -17,7 +17,6 @@
 
 import tkinter as tk
 import base64, pyglet, AnimatedGif
-
 
 class MainWindow(tk.Tk):
     iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
@@ -63,11 +62,12 @@ class MainWindow(tk.Tk):
     def __init__(self, width=800, height=600):
         super().__init__()
 
+        # defintion de paramètres de la fenêtre
         self.width = width
         self.height = height
 
-        ws = self.winfo_screenwidth() # width of the screen
-        hs = self.winfo_screenheight() # height of the screen
+        ws = self.winfo_screenwidth() 
+        hs = self.winfo_screenheight() 
 
         x = (ws/2) - (width/2)
         y = (hs/2) - (height/2)
@@ -77,26 +77,26 @@ class MainWindow(tk.Tk):
         self.wm_title(self.windowTitle)
         self.configure(bg='black')
 
+        # icone 
         img = base64.b64decode(self.iconimgdata)
         photo = tk.PhotoImage(data=img)
         self.iconphoto(False, photo)
 
-        # self.minimapImg = tk.PhotoImage(file="mapanimquick.gif")
-        # self.minimapLabel = tk.Label(self, image=self.minimapImg)
-        # self.minimapLabel.configure(bd=0)
-        # self.minimapLabel.place(x=620, y=0)
-
+        # minimap
         self.minimapGif = AnimatedGif.AnimatedGif(self, 'mapanim.gif', 30)
         self.minimapGif.place(x=620, y=0)
         self.minimapGif.configure(bd=0)
         self.minimapGif.start()
 
+        # defintion des widgets
         run_string = tk.StringVar()
 
         self.entry_run = tk.Entry(self, textvariable=run_string, width=50)
         self.text_widget = tk.Text(self)
 
         self.button_run = tk.Button(self, text="Run", command = self.runCallback)
+        
+        self.placeIndicatorMap = tk.Label(self, text="!", font=('Luxurious Roman',20))
 
         self.text_widget.configure(bg='#111111', fg='white', font=('Luxurious Roman',12))
         self.entry_run.configure(bg='#3a3a3a', fg='white', font=('Luxurious Roman',12))
@@ -107,6 +107,7 @@ class MainWindow(tk.Tk):
         self.text_widget.place(x=0, y=0, width=620, height=550)    
 
 
+    # remplacant du print()
     def printInTextArea(self, *args, end="\n"):
         for i in range(len(args)):
             self.text_widget.insert(tk.END, args[i])
@@ -118,9 +119,12 @@ class MainWindow(tk.Tk):
         self.entry_run.delete(0, tk.END)
         return text
 
+    # action du bouton Run
     def runCallback(self):
         self.lastEntry = self.getEntryText()
 
+    # remplacants du input()
+    # surchargement de la fonction afin qu'elle fonctionne dans tous les cas
     def waitForEntryText(self):
         self.waitForEntryText("")
 
@@ -132,3 +136,9 @@ class MainWindow(tk.Tk):
         self.lastEntry = ""
         self.text_widget.delete(1.0, tk.END)
         return text
+
+    def placeIndicatorMapLocation(self, place):
+
+        
+        self.placeIndicatorMap.place()
+

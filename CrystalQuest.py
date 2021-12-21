@@ -1,4 +1,4 @@
-# Copyright 2021, Dan3A, rremi0     Contact : 21985756+Dan3a@users.noreply.github.com
+# Copyright (c) 2021, Dan3A, rremi0     <21985756+Dan3a@users.noreply.github.com>
 
 # This file is part of Crystal Quest.
 
@@ -22,8 +22,11 @@ class App:
 
     def run(self):
         self.mainWindow = MainWindow()
-        self.logicThreadInstance = thread.Thread(target=self.logicThread)
+        
+        #Multithreading pour gérer en même temps la fenêtre et le script du jeu (mainloop blocant)
+        self.logicThreadInstance = thread.Thread(target=self.logicThread) 
         self.logicThreadInstance.start()
+
         self.mainWindow.mainloop()
     
     def logicThread(self):
