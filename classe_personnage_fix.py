@@ -655,7 +655,11 @@ class Perso:
         self.pv_physique = 40
         self.inventaire()
 
-    def combat_final1(self): #combat final avec l'aide du sorcier
+    def tresor_basilic(self): # +100 pièce d'or quand basilic battu
+        self.PO += 100
+
+
+    def combat_final2(self): #combat final avec l'aide du sorcier
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("")
         nb_recul = 1

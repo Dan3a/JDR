@@ -472,7 +472,7 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("le pont à plein vitesse vous aveugle avant de vous frapper en pleine poitrine.")
                     mainWindow.printInTextArea("Sous le choc et la douleur, vous tombez à terre; vos yeux commencent à se fermer,")
                     mainWindow.printInTextArea("avant de sombrer dans un sommeil éternel, vous appercevez à travers vos yeux")
-                    mainWindow.printInTextArea("mi-clos: cet homme se pencher et récupérer les crystaux vavnt de dire ce mot:")
+                    mainWindow.printInTextArea("mi-clos: cet homme se pencher et récupérer les crystaux avant de dire ce mot:")
                     mainWindow.printInTextArea("-Enfin.")
                     place = "fin1"
                     raise SystemExit(0)
@@ -491,7 +491,36 @@ def jeu(mainWindow):
                     place = 0
                 else: #combat gagné
                     mainWindow.printInTextArea("")
-
+                    mainWindow.printInTextArea("Epuisé et blessé, vous regardez votre ennemi gisant face contre terre,")
+                    mainWindow.printInTextArea("vous allez enfin pouvoir ramener les crystaux à Icegate et sauver le royaume.")
+                    mainWindow.printInTextArea("Après toute cette traque, vous souhaitez enfin découvrir le visage de votre")
+                    mainWindow.printInTextArea("ennemi, vous vous avancez pour le relever quand quelque chose attire votre")
+                    mainWindow.printInTextArea("regard. Le sorcier qui vous a aidé git gravement blessé derrière vous,")
+                    choix = ""
+                    while (choix != "laisser le sorcier" and choix != "aider le sorcier"):
+                        choix = mainWindow.waitForEntryText("Que décidez-vous? (laisser le sorcier/ aider le sorcier)")
+                        choix = choix.lower()
+                    if choix == "laisser le sorcier": # vous perdez tous pv mentaux et sombrer dans la folie
+                        mainWindow.printInTextArea("")
+                        mainWindow.printInTextArea("Vous suivez votre instinct et laisser le sorcier périr et vous")
+                        mainWindow.printInTextArea("partez ramenez les crystaux à Icegate. Mais c'est la deuxième fois")
+                        mainWindow.printInTextArea("que vous leissez quelqu'un mourir sans l'aider vous commencer alors")
+                        mainWindow.printInTextArea("à perdre vos points de vie mentaux et à sombrer petit à petit dans")
+                        mainWindow.printInTextArea("une folie inarétable.")
+                        mainWindow.printInTextArea("")
+                        mainWindow.printInTextArea("Plus tard, le royaume ne retrouva jamais les crystaux, la rumeur disait")
+                        mainWindow.printInTextArea("qu'un fou les avait volé...")
+                        place = "fin2"
+                    elif choix == "aider le sorcier": #le sorcier vous trahi
+                        mainWindow.printInTextArea("")
+                        mainWindow.printInTextArea("vous aidez le sorcier à se relever, puis vous vous tournez vers le sac")
+                        mainWindow.printInTextArea("dans lequel se trouvent les trois crystaux. Quand soudainement, une ")
+                        mainWindow.printInTextArea("lame ressort de l'avant de votre poitrine.")
+                        mainWindow.printInTextArea("Sous le choc et la douleur, vous tombez à terre; vos yeux commencent à se fermer,")
+                        mainWindow.printInTextArea("avant de sombrer dans un sommeil éternel, vous appercevez à travers vos yeux")
+                        mainWindow.printInTextArea("mi-clos: le sorcier se pencher et récupérer les crystaux avant de dire ce mot:")
+                        mainWindow.printInTextArea("-Enfin.")
+                        place = "fin1"
 
         while place == "boutique_forgeron": #boutique forgeron achat arme et armure
             boutique_forgeron = perso.boutique_forgeron1()
@@ -499,3 +528,10 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Après être sorti de la boutique, vous pouvez enfin vous rendre à Bayfort.")
                 place = 11
 
+<<<<<<< Updated upstream
+=======
+        while place == "fin1":
+            mainWindow.printInTextArea("")
+
+            
+>>>>>>> Stashed changes
