@@ -33,17 +33,17 @@ class Perso:
         self.attaque = 1
         self.armure = 1
         self.pouvoir = 1
-        self.pv_physique = 20
+        self.pv_physique = 30
         self.pv_mental = 10 
         self.etat = ""
         self.vitesse = 0
-        self.PO = 1
+        self.PO = 40
         self.arme = []
         self.armure = []
         self.sort = []
         #Armes [degats, prix, nombre, force mini]
-        self.Armes = {"dague":[2, 5, 1, 1], "épée":[4, 15, 0, 3], "masse":[5, 20, 0, 5], "fléau":[6, 25, 0, 5],
-                        "Master_Sword":[12, 50, 0, 10], "Mjölnir":[15, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
+        self.Armes = {"dague":[4, 5, 1, 1], "épée":[10, 15, 0, 3], "masse":[15, 20, 0, 5], "fléau":[18, 25, 0, 5],
+                        "Master_Sword":[35, 50, 0, 10], "Mjölnir":[42, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
         #Armures [protection, prix, nombre, force mini]
         self.Armures = {"gambison de cuir":[1, 10, 0, 1], "armure de fer":[3, 30, 0, 3], "armure d'acier":[4, 40, 0, 5],
                         "Armure_ancestral":[10, 60, 0, 7], "Bouclier_Hylien":[20, 80, 0, 10], "DAEDRIQUE":[60, 0, 0, 20]}
@@ -52,7 +52,7 @@ class Perso:
     def debut(self, mainWindow):
         self.mainWindow = mainWindow
         self.name = self.mainWindow.waitForEntryText("Quel est votre nom ? : ")
-        self.pv_physique = 20
+        self.pv_physique = 30
         self.pv_mental = 10
         self.force = 5
         self.eloquence = 10
@@ -184,7 +184,7 @@ class Perso:
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
                    and choix != "attaquer" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
+                choix = self.mainWindow.waitForEntryText("Que faites-vous? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -308,16 +308,15 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Ils n'arrivent pas à te toucher")
         if self.pv_physique <= 0 :
-            self.mainWindow.printInTextArea("Ils t'ont tué!")
-            mainWindow.printInTextArea("VOUS ÊTES MORT")
-            mainWindow.printInTextArea("FIN LAMENTABLE")
+            self.mainWindow.printInTextArea("VOUS ÊTES MORT")
+            self.mainWindow.printInTextArea("FIN LAMENTABLE")
             raise SystemExit(0) 
         else :
             return True
 
     
     def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
-        
+    
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
         self.mainWindow.printInTextArea("Vous distinguez à quelques mètres de vous un homme")
@@ -337,7 +336,7 @@ class Perso:
             self.mainWindow.printInTextArea("il est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaquer" and choix != "sort") :
+                    and choix != "attaquer" and choix != "sort") :
                 choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
@@ -353,25 +352,15 @@ class Perso:
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige "),self.arme[0]," dégàts"
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaquer" and distance > 1 :
+            elif choix == "attaque" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop près pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
+
+
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 return True
@@ -387,7 +376,7 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
-                    toucher = randrange(1, 20)
+                    toucher = randrange(1, 50)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
@@ -395,11 +384,11 @@ class Perso:
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
-            self.mainWindow.printInTextArea("Il t'a tué!")
-            
+            self.mainWindow.printInTextArea("Il t'as tué")
             return False
         else :
             return True
+
 
 
     def fight_souterrain1(self) : #combat dans souterrain contre basillic
@@ -446,19 +435,8 @@ class Perso:
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop près pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
+
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 return True
@@ -487,18 +465,17 @@ class Perso:
             return True
 
 
-    def jeu_taverne1(self, mise): #jeu de chance dans la taverne 
+    def jeu_taverne1(self): #jeu de chance dans la taverne 
 
-        self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("les règles sont simples: devant vous se trouve un dé à 8 faces,")
         self.mainWindow.printInTextArea("Avant qu'il ne soit lancé, vous devez miser une somme de pièce d'or")
         self.mainWindow.printInTextArea("et ensuite parier soit sur un résultat paire ou impaire ce qui doublera")
         self.mainWindow.printInTextArea("votre mise soit sur un résultat précis ce qui quadruplera votre mise.")
         self.mainWindow.printInTextArea("Vous vous asseyez.")
-        self.mainWindow.printInTextArea(", vous avez actuellement ",self.PO," pièces d'or")
+        self.mainWindow.printInTextArea("Vous avez actuellement ",self.PO," pièces d'or")
         mise = 0
         mise = int(self.mainWindow.waitForEntryText("Combien voulez vous miser?"))
-        int("Vous avez misez ",mise," pièces d'or")
+        self.mainWindow.printInTextArea("Vous avez misé ",mise," pièces d'or")
         choix = ""
         while (choix != "miser sur un chiffre paire ou impaire" and choix != "miser sur un chiffre précis"):
             choix = self.mainWindow.waitForEntryText("Comment misez vous? ( miser sur un chiffre paire ou impaire/ miser sur un chiffre précis)")

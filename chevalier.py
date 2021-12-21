@@ -171,12 +171,11 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("enfoncez au coeur de la grande salle, quand soudain...")
                 place = "combat_gardien"
             elif choix == "aller voir les gardiens" :
-                mainWindow.printInTextArea("Après une longue exploration des lieux,")
-                mainWindow.printInTextArea("vous êtes forcés de constater que les ")
+                mainWindow.printInTextArea("Après une longue exploration des lieux, vous êtes forcés de constater que les")
                 mainWindow.printInTextArea("gardiens ont disparu.")
                 choix2 =""
                 while (choix2 != "chercher dans la montagne" and choix2 != "trouver des traces du voleur"):
-                    choix2 = mainWindow.waitForEntryText("Que souhaitez-vous faire? (chercher dans la montagne/ trouver des traces du voleur)")
+                    choix2 = mainWindow.waitForEntryText("Que souhaitez-vous faire? (chercher dans la montagne/trouver des traces du voleur)")
                     choix2 = choix2.lower()
                 if choix2 == "chercher dans la montagne" :
                     mainWindow.printInTextArea("A la recherche des gardiens vous vous aventurez")
@@ -375,7 +374,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Vous décidez donc de continuer votre quête et de partir en direction de Deadfalls,")
                 mainWindow.printInTextArea("laissant le dernier gardien d'Icegate succomber.")
                 mainWindow.printInTextArea("")
-                mainWindow.printInTextArea("Vous arrivez près des souterrains de Deadfalls. Vous vous sentez fatigué par ce combat.")
+                mainWindow.printInTextArea("Vous arrivez près des souterrains de Deadfalls. Vous vous sentez fatigué par ce    combat.")
                 place = 7
 
         while place == "jeu_taverne": #jeu de chance code dans personnage
@@ -457,11 +456,11 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("")
                     place = 0
                 else: #combat gagné
-                    mainWindow.printInTextArea("Epuisé, et blessé, vous regardez votre ennemi gisant face contre terre,")
+                    mainWindow.printInTextArea("Epuisé et blessé, vous regardez votre ennemi gisant face contre terre,")
                     mainWindow.printInTextArea("vous allez enfin pouvoir ramener les crystaux à Icegate et sauver le royaume.")
                     mainWindow.printInTextArea("Après toute cette traque, vous souhaitez enfin découvrir le visage de votre")
-                    mainWindow.printInTextArea("énemi, vous vous avancez pour le relever quand quelque chose attire votre")
-                    mainWindow.printInTextArea("regard vous levez les yeux et vous voyez de l'autre côté du pont, une homme,")
+                    mainWindow.printInTextArea("ennemi, vous vous avancez pour le relever quand quelque chose attire votre")
+                    mainWindow.printInTextArea("regard. Vous levez les yeux et vous voyez de l'autre côté du pont, une homme,")
                     mainWindow.printInTextArea("un homme un peu barbu. Au moment où vous alliez lui demander qui il était et")
                     mainWindow.printInTextArea("pourquoi il était là, sans avoir eu le temps de réagir, une boule de feu traversant")
                     mainWindow.printInTextArea("le pont à plein vitesse vous aveugle avant de vous frapper en pleine poitrine.")
@@ -489,7 +488,7 @@ def jeu(mainWindow):
 
 
         while place == "boutique_forgeron": #boutique forgeron achat arme et armure
-            boutique_forgeron = perso.boutique_forgeron1
+            boutique_forgeron = perso.boutique_forgeron1()
             if boutique_forgeron == True:
                 mainWindow.printInTextArea("Après être sorti de la boutique, vous pouvez enfin vous rendre à Bayfort.")
                 place = 11

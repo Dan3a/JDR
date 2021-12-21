@@ -16,7 +16,8 @@
 #     along with Crystal Quest.  If not, see https://www.gnu.org/licenses/. 
 
 import tkinter as tk
-import base64, pyglet
+import base64, pyglet, AnimatedGif
+
 
 class MainWindow(tk.Tk):
     iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
@@ -80,10 +81,15 @@ class MainWindow(tk.Tk):
         photo = tk.PhotoImage(data=img)
         self.iconphoto(False, photo)
 
-        self.minimapImg = tk.PhotoImage(file="map.gif")
-        self.minimapLabel = tk.Label(self, image=self.minimapImg)
-        self.minimapLabel.configure(bd=0)
-        self.minimapLabel.place(x=620, y=0)
+        # self.minimapImg = tk.PhotoImage(file="mapanimquick.gif")
+        # self.minimapLabel = tk.Label(self, image=self.minimapImg)
+        # self.minimapLabel.configure(bd=0)
+        # self.minimapLabel.place(x=620, y=0)
+
+        self.minimapGif = AnimatedGif.AnimatedGif(self, 'mapanim.gif', 30)
+        self.minimapGif.place(x=620, y=0)
+        self.minimapGif.configure(bd=0)
+        self.minimapGif.start()
 
         run_string = tk.StringVar()
 
