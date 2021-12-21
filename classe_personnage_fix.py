@@ -41,8 +41,13 @@ class Perso:
         self.armure = []
         self.sort = []
         #Armes [degats, prix, nombre, force mini]
+<<<<<<< Updated upstream
         self.Armes = {"dague":[4, 5, 1, 1], "épée":[10, 15, 0, 3], "masse":[15, 20, 0, 5], "fléau":[18, 25, 0, 5],
                         "Master_Sword":[35, 50, 0, 10], "Mjölnir":[42, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
+=======
+        self.Armes = {"dague":[5, 5, 1, 1], "épée":[7, 15, 0, 3], "masse":[8, 20, 0, 5], "fléau":[10, 25, 0, 5],
+                        "Master_Sword":[12, 50, 0, 10], "Mjölnir":[15, 70, 0, 10], "FROSTMOURNE":[50, 0, 0, 20]}
+>>>>>>> Stashed changes
         #Armures [protection, prix, nombre, force mini]
         self.Armures = {"gambison de cuir":[1, 10, 0, 1], "armure de fer":[3, 30, 0, 3], "armure d'acier":[4, 40, 0, 5],
                         "Armure_ancestral":[10, 60, 0, 7], "Bouclier_Hylien":[20, 80, 0, 10], "DAEDRIQUE":[60, 0, 0, 20]}
@@ -273,8 +278,14 @@ class Perso:
 
     
     def fight_dernier_gardien(self) : #combat contre le dernier guardien à Icegate
+<<<<<<< Updated upstream
     
         self.mainWindow.printInTextArea("Vous entez une présence très poche juste derrière vous,")
+=======
+        
+        self.mainWindow.printInTextArea("")
+        self.mainWindow.printInTextArea("Vous sentez une présence très poche juste derrière vous,")
+>>>>>>> Stashed changes
         self.mainWindow.printInTextArea("Vous distinguez à quelques mètres de vous un homme")
         self.mainWindow.printInTextArea("de votre taille lourdement habillé, il se trouve dans l'ombre")
         self.mainWindow.printInTextArea("et vous ne voyer pas son visage vous aller demander qui il est quand...")
@@ -284,6 +295,8 @@ class Perso:
         pv = 25
         vit = 4
         att = 6
+        sdes1 = 12
+        sdes2 = 9
         self.mainWindow.printInTextArea ("Il vous attaque")
         self.inventaire()
         self.selection(True,True)
@@ -306,7 +319,7 @@ class Perso:
             elif choix == "attaquer" and distance == 1 :
                 self.selection(1,0)
                 toucher = randrange(1, 20)
-                if toucher <= sdes :
+                if toucher <= sdes1 :
                     pv -= self.arme[0]
                     self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
                 else :
@@ -332,8 +345,13 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
+<<<<<<< Updated upstream
                     toucher = randrange(1, 50)
                     if toucher <= sdes :
+=======
+                    toucher = randrange(1, 20)
+                    if toucher <= sdes2 :
+>>>>>>> Stashed changes
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
 
