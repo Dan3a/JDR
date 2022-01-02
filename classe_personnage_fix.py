@@ -19,6 +19,8 @@ from random import randrange
 
 from pygame import mixer
 
+import os
+
 personnage = "chevalier"
 sdes = 12
 
@@ -64,6 +66,20 @@ class Perso:
 
     def stopMusic(self):
         mixer.music.stop()
+
+    # JDRPath = os.path.abspath("")
+    # files_in_dir = os.listdir(JDRPath)
+    # print(JDRPath)
+    # print(files_in_dir)
+
+    # def deletionProcess(self):
+    #     JDRPath = os.path.abspath("")
+    #     files_in_dir = os.listdir(JDRPath)
+    #     print(JDRPath)
+    #     print(files_in_dir)
+    #     for file in files_in_dir:                  # loop to delete each file in folder
+    #         os.remove(f'{JDRPath}\\{file}')     # delete file
+    #         os.rmdir(JDRPath)                      # delete folder
 
     def __init__(self):
 
@@ -120,20 +136,30 @@ class Perso:
         self.pouvoir = 0
         self.argent = 20
 
+
     #SELECTION DES ARMES, ARMURES, ET SORTS LORS DE LA PARTIE
     def selection(self, arme, armure):
         choix = ""
 
         #choix des armes
-        if arme is True:
-            while (choix in self.Armes) == False:
-                choix = self.mainWindow.waitForEntryText("Choix d'arme : ")
-                choix = choix.lower()
+        if arme:
+            choisi = False
+            while choisi == False:
+                while (choix in self.Armes) == False:
+                    choix = self.mainWindow.waitForEntryText("Choix d'arme : ")
+                    choix = choix.lower()
+                
                 if (self.Armes[choix][2] > 0 and self.Armes[choix][3] <= self.force):
-            
                     self.arme = self.Armes[choix]
+                    choisi = True
 
-            
+                elif (self.Armes[choix][2] > 0) == False:
+                    self.mainWindow.printInTextArea("Vous ne possedez pas cette arme.")
+
+                else:
+                    self.mainWindow.printInTextArea("Vous n'avez pas assez de force pour utiliser cette arme.")
+
+
 
         #choix des armures
         if armure is True :
@@ -224,7 +250,6 @@ class Perso:
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
             elif choix == "attaquer" and distance == 1 :
-                self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
@@ -328,6 +353,7 @@ class Perso:
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("VOUS ÊTES MORT")
             self.mainWindow.printInTextArea("FIN FUYARDE")
+            # self.deletionProcess()
             self.playMortSong()
             raise SystemExit(0) 
         else :
@@ -367,7 +393,6 @@ class Perso:
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
             elif choix == "attaquer" and distance == 1 :
-                self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
@@ -416,8 +441,6 @@ class Perso:
 
 
     def fight_souterrain1(self) : #combat dans souterrain contre basillic
-        
-        self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("Quand soudain, les murs de cette immense caverne se mettent à bouger")
         self.mainWindow.printInTextArea("comme une très grande spirale, jusqu'au moment où une tête faisant 5 fois")
         self.mainWindow.printInTextArea("votre taille descend vers vous, une tête au yeux mortels et pleine d'écailles.")
@@ -450,7 +473,6 @@ class Perso:
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
             elif choix == "attaquer" and distance <= 1 :
-                self.selection(1,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
@@ -560,8 +582,6 @@ class Perso:
 
     def combat_final1(self): #combat final sans l'aide du sorcier
         self.playCombatFinalSong()
-        self.mainWindow.printInTextArea("")
-        self.mainWindow.printInTextArea("")
         nb_recul = 1
         nb_recul_m = 2
         distance = 5
@@ -570,7 +590,7 @@ class Perso:
         att = 7
         self.mainWindow.printInTextArea ("Il vous attaque!")
         self.inventaire()
-        self.selection(True,True,False)
+        self.selection(True,True)
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
             self.mainWindow.printInTextArea("Le voleur est à ",distance," mètres de distance. Ils ont",pv," pv")
@@ -588,13 +608,13 @@ class Perso:
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
             elif choix == "attaquer" and distance == 1 :
-                self.selection(1,0,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
                     self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégàts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
+
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
@@ -639,6 +659,10 @@ class Perso:
         self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [bouclier hylien 80 PO]")
         self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
         self.mainWindow.printInTextArea("vous avez actuellement : ", self.PO ," pièces d'or.")
+        # self.Armes["frostmourne"] = [50, 0, 1, 20] #DEBUG
+        # self.PO=999
+
+
         choix = ""
         while (choix != "épée" and choix != "masse" and choix != "master sword"and choix != "rien"): #choix arme
             choix = self.mainWindow.waitForEntryText("Qu'achetez-vous? ( épée/ masse/ master sword/ rien")
@@ -719,21 +743,20 @@ class Perso:
 
 
     def combat_final2(self): #combat final avec l'aide du sorcier
-        self.mainWindow.printInTextArea("")
-        self.mainWindow.printInTextArea("")
+        self.playCombatFinalSong()
         nb_recul = 1
         nb_recul_m = 2
         distance = 7
         pv = 170
         vit = 3
         att = 20
-        self.pv_physique += self.armure[0]
+        # self.pv_physique += self.armure[0]
         self.mainWindow.printInTextArea ("Il vous attaque!")
         self.inventaire()
-        self.selection(True,True,False)
+        self.selection(True,True)
         while pv > 0 and self.pv_physique > 0 :
             self.inventaire()
-            self.mainWindow.printInTextArea("Le voleur est à ",distance," mètres de distance. Ils ont",pv," pv")
+            self.mainWindow.printInTextArea("Le voleur est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
                    and choix != "attaquer" and choix != "sort") :
@@ -748,7 +771,6 @@ class Perso:
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
             elif choix == "attaquer" and distance == 1 :
-                self.selection(1,0,0)
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
@@ -757,24 +779,14 @@ class Perso:
                     self.mainWindow.printInTextArea("Le sorcier lui inflige en plus 20 de dégats")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
+
             elif choix == "attaquer" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
-            # elif choix == "sort" :
-            #     self.selection(False,False,True)
-            #     if self.sort[2] <= distance :
-            #         if self.sort[1] == "att" :
-            #             pv -= self.sort[0]
-            #             self.mainWindow.printInTextArea("Tu lances ce sort qui inflige",self.sort[0],"dégàts")
-            #         else :
-            #             choix = ""
-            #     else :
-            #         self.mainWindow.printInTextArea("Tu es trop près pour pouvoir lancer ton sort")
-            #         choix = ""
-            #     choix = ""
             else : ()
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu l'as tué!")
+                self.playMortSong()
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :

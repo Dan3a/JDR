@@ -66,7 +66,10 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("où toutes les histoires se racontent. Mais seul quelques personnes")
                 mainWindow.printInTextArea("passent de temps en temps; vous devez essayer de savoir si des rumeurs")
                 mainWindow.printInTextArea("circulent autour d'un voleur ou des crystaux.")
+
+                # place = 9
                 place = 1
+
                 prologue = True
                 
 
@@ -457,7 +460,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("qui vous permettra de récupérer les crystaux du royaume.")
                 mainWindow.printInTextArea("Arrivé à la moitié du pont, vous vous arrêtez net, le voleur vient de sortir")
                 mainWindow.printInTextArea("de son sac un des trois crystaux...")
-                combat_final1 = perso.combat_final1
+                combat_final1 = perso.combat_final1()
                 if combat_final1 is False: #combat perdu
                     mainWindow.printInTextArea("")
                     place = 0
@@ -484,7 +487,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("qui vous permettra de récupérer les crystaux du royaume.")
                 mainWindow.printInTextArea("arrivés à la moitié du pont, vous vous arrêtez net, le voleur vient de sortir")
                 mainWindow.printInTextArea("de son sac un des trois crystaux...")
-                combat_final2 = perso.combat_final2
+                combat_final2 = perso.combat_final2()
                 if combat_final2 is False: #combat perdu
                     mainWindow.printInTextArea("")
                     place = 0
