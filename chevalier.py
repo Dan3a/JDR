@@ -34,12 +34,11 @@ def jeu(mainWindow):
     combat_final2 = False
     boutique_forgeron = False
 
-    
-
     while place > 0:
 
         while prologue is False:
-            
+            # perso.initMixer()
+
             mainWindow.printInTextArea("Vous vous réveillez par un bruit de pas;")
             mainWindow.printInTextArea("le bruit de pas de gardes royaux au pied de votre porte.")
             mainWindow.printInTextArea("Vous vous levez, ouvrez la porte et un message vous est tendu : ")
@@ -269,6 +268,7 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("De ce sommeil, vous ne vous réveillerez jamais et vous n'en saurez donc jamais la raison.")
                 mainWindow.printInTextArea("")
+                perso.playMortSong()
                 mainWindow.printInTextArea("VOUS ÊTES MORT")
                 mainWindow.printInTextArea("FIN MORT...ANTI-AMICALE")
                 place = 0

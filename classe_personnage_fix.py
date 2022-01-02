@@ -24,9 +24,52 @@ sdes = 12
 
 class Perso:
 
+    mixer.init()
+
+
+    def playGardienSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/gardien.wav")
+        mixer.music.play(loops=999)
+    
+    def playGardiensDebutSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/combat_garde.wav")
+        mixer.music.play(loops=999)
+
+    def playTaverneBoutiqueSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/taverne+boutique.wav")
+        mixer.music.play(loops=999)
+    
+    def playCombatFinalSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/combat_final.wav")
+        mixer.music.play(loops=999)
+    
+    def playBasiliqueSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/basilique.wav")
+        mixer.music.play(loops=999)
+    
+    def playMortSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/mort.wav")
+        mixer.music.play(loops=0)
+
+    def playBackgroundSong(self):
+        mixer.music.stop()
+        mixer.music.load("assets/songs/background.wav")
+        mixer.music.play(loops=999)
+
+    def stopMusic(self):
+        mixer.music.stop()
+
     def __init__(self):
 
         #global
+        
+
         self.name = ""
         self.force = 30
         self.ruse = 1
@@ -42,13 +85,14 @@ class Perso:
         self.arme = []
         self.armure = []
         self.sort = []
+
         #Armes [degats, prix, nombre, force mini]
         self.Armes = {
             "dague":[4, 5, 1, 1], 
             "épée":[10, 15, 0, 3], 
             "masse":[15, 20, 0, 5], 
             "fléau":[18, 25, 0, 5],
-            "master_sword":[35, 50, 0, 10], 
+            "master sword":[35, 50, 0, 10], 
             "mjölnir":[42, 70, 0, 10], 
             "frostmourne":[50, 0, 0, 20]}
 
@@ -64,6 +108,7 @@ class Perso:
     #REPARTITION DES CARACTERISTIQUE DES PERSONNAGE AU DEBUT DE LA PARTIE
     def debut(self, mainWindow):
         self.mainWindow = mainWindow
+        self.playBackgroundSong()
         self.name = self.mainWindow.waitForEntryText("Quel est votre nom ? : ")
         self.pv_physique = 30
         self.pv_mental = 10
@@ -226,6 +271,7 @@ class Perso:
         pv = 100
         vit = 3
         att = 7
+        self.playGardiensDebutSong()
         self.inventaire()
         self.selection(True,True)
         self.mainWindow.printInTextArea ("Les gardes vous attaquent")
@@ -282,6 +328,7 @@ class Perso:
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("VOUS ÊTES MORT")
             self.mainWindow.printInTextArea("FIN FUYARDE")
+            self.playMortSong()
             raise SystemExit(0) 
         else :
             return True
@@ -299,6 +346,7 @@ class Perso:
         pv = 24
         vit = 4
         att = 6
+        self.playGardienSong()
         self.mainWindow.printInTextArea ("Il vous attaque")
         self.inventaire()
         self.selection(True,True)
@@ -336,6 +384,7 @@ class Perso:
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 self.force = 20
                 self.Armes["frostmourne"] = [50, 0, 1, 20]
+                self.playBackgroundSong()
                 
                 return True
             else :
@@ -359,6 +408,7 @@ class Perso:
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'as tué")
+            self.playMortSong()
             return False
         else :
             return True
@@ -379,6 +429,7 @@ class Perso:
         pv = 200
         vit = 2
         att = 15
+        self.playBasiliqueSong()
         self.mainWindow.printInTextArea ("Il vous attaque")
         self.inventaire()
         self.selection(True,True)
@@ -414,6 +465,7 @@ class Perso:
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
                 self.PO += 100
+                self.playBackgroundSong()
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
@@ -443,7 +495,7 @@ class Perso:
 
 
     def jeu_taverne1(self): #jeu de chance dans la taverne 
-
+        self.playTaverneBoutiqueSong()
         self.mainWindow.printInTextArea("les règles sont simples: devant vous se trouve un dé à 8 faces,")
         self.mainWindow.printInTextArea("Avant qu'il ne soit lancé, vous devez miser une somme de pièce d'or")
         self.mainWindow.printInTextArea("et ensuite parier soit sur un résultat paire ou impaire ce qui doublera")
@@ -496,15 +548,18 @@ class Perso:
                 self.mainWindow.printInTextArea(dé,"Vous avez gagné")
                 self.PO = self.PO + (mise * 4)
                 self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
+                self.playBackgroundSong()
             else:
                 self.mainWindow.printInTextArea(dé,"Vous avez perdu")
                 self.PO = self.PO - mise
                 self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
+                self.playBackgroundSong()
         self.pv_physique = 30
         self.inventaire()
         return True 
 
     def combat_final1(self): #combat final sans l'aide du sorcier
+        self.playCombatFinalSong()
         self.mainWindow.printInTextArea("")
         self.mainWindow.printInTextArea("")
         nb_recul = 1
@@ -546,6 +601,7 @@ class Perso:
             else : ()
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu l'as tué!")
+                self.playBackgroundSong()
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
@@ -567,46 +623,48 @@ class Perso:
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
+            self.playMortSong()
             return False
         else :
             return True
 
 
     def boutique_forgeron1(self): #achat arme et armure
+        self.playTaverneBoutiqueSong()
         self.mainWindow.printInTextArea("Vous rentrez dans cette boutique où sont accrochés diverses armes")
         self.mainWindow.printInTextArea("et armures, un homme robuste arrive vers vous et vous demande")
         self.mainWindow.printInTextArea("se que vous souhaitez acheter vous regarder alors les prix sur")
-        self.mainWindow.printInTextArea("les étagères: [épée 15 PO], [masse 20 PO], [Master_Sword 50 PO]")
+        self.mainWindow.printInTextArea("les étagères: [épée 15 PO], [masse 20 PO], [master word 50 PO]")
         self.mainWindow.printInTextArea("Vous pensez à garder de l'argent pour acheter une armure:")
         self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [bouclier hylien 80 PO]")
         self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
         self.mainWindow.printInTextArea("vous avez actuellement : ", self.PO ," pièces d'or.")
         choix = ""
-        while (choix != "épée" and choix != "masse" and choix != "Master_Sword"and choix != "rien"): #choix arme
-            choix = self.mainWindow.waitForEntryText("Qu'achetez-vous? ( épée/ masse/ Master_Sword/ rien")
+        while (choix != "épée" and choix != "masse" and choix != "master sword"and choix != "rien"): #choix arme
+            choix = self.mainWindow.waitForEntryText("Qu'achetez-vous? ( épée/ masse/ master sword/ rien")
             choix = choix.lower()
         if choix == "épée":
             if self.PO < 15:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
                 self.Armes.update({"épée":[10, 15, 1, 3]})
                 self.PO -= 15
                 self.mainWindow.printInTextArea("Vous avez acheté une épée il vous reste ", self.PO ," pièces d'or")
         elif choix == "masse":
             if self.PO < 20:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
                 self.Armes.update({"masse":[15, 20, 1, 5]})
                 self.PO -= 20
                 self.mainWindow.printInTextArea("Vous avez acheté une masse il vous reste ", self.PO ," pièces d'or")
-        elif choix == "Master_Sword":
+        elif choix == "master sword":
             if self.PO < 50:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
-                self.Armes.update({"Master_Sword":[35, 50, 1, 10]})
+                self.Armes.update({"master sword":[35, 50, 1, 10]})
                 self.PO -= 50
                 self.mainWindow.printInTextArea("Vous avez acheté Mester_Sword il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
@@ -618,30 +676,31 @@ class Perso:
             choix = choix.lower()
         if choix == "armure de fer":
             if self.PO < 30:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
                 self.Armures.update({"armure de fer":[3, 30, 1, 3]})
                 self.PO -= 30
                 self.mainWindow.printInTextArea("Vous avez acheté une arumre de fer il vous reste ", self.PO ," pièces d'or")
         elif choix == "armure d'acier":
             if self.PO < 40:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
                 self.Armures.update({"armure d'acier":[4, 40, 1, 5]})
                 self.PO -= 40
                 self.mainWindow.printInTextArea("Vous avez acheté une armure d'acier il vous reste ", self.PO ," pièces d'or")
         elif choix == "bouclier hylien":
             if self.PO < 80:
-                self.mainWindow.printInTextArea("vous n'avez pas assez d'argent")
-                self.mainWindow.printInTextArea("vous sortez de la boutique")
+                self.mainWindow.printInTextArea("Vous n'avez pas assez d'argent")
+                self.mainWindow.printInTextArea("Vous sortez de la boutique")
             else:
                 self.Armures.update({"bouclier hylien":[20, 80, 1, 10]})
                 self.PO -= 80
                 self.mainWindow.printInTextArea("Vous avez acheté un bouclier hylien il vous reste ", self.PO ," pièces d'or")
         elif choix == "rien":
             self.mainWindow.printInTextArea("Vous n'avez rien acheté il vous reste ", self.PO ," pièces d'or")
+        self.playBackgroundSong()
         return True
 
     def illusion_mental(self):#-4 pv mentaux a cause du mauvais choix
@@ -737,29 +796,9 @@ class Perso:
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
             self.mainWindow.printInTextArea("Il t'a tué!")
+            self.playMortSong()
             return False
         else :
+            self.playBackgroundSong()
             return True
 
-    def playGardienSong():
-        mixer.music.load("assets/songs/gardien.wav")
-        mixer.music.play(loops=999)
-    
-    def playGardiensDebutSong():
-        mixer.music.load("assets/songs/combat garde.wav")
-        mixer.music.play(loops=999)
-
-    def playTaverneBoutiqueSong():
-        mixer.music.load("assets/songs/taverne+boutique.wav")
-        mixer.music.play(loops=999)
-    
-    def playCombatFinalSong():
-        mixer.music.load("assets/songs/combat_final.wav")
-        mixer.music.play(loops=999)
-    
-    def playBasiliqueSong():
-        mixer.music.load("assets/songs/basilique.wav")
-        mixer.music.play(loops=999)
-            
-    def stopMusic():
-        mixer.music.stop()
