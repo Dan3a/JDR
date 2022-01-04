@@ -500,7 +500,7 @@ class Perso:
                         distance = 1
                     else :
                         distance -= vit
-                elif distance == 1 :
+                elif distance >3 :
                     toucher = randrange(1, 50)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
