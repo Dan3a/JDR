@@ -433,6 +433,7 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("quelques rumeures disent que le voleur aurait été apperçu en direction de Bayfort")
                     mainWindow.printInTextArea("d'autre personnes vous ont dis d'aller voir le sorcier à Starhill qui pourra")
                     mainWindow.printInTextArea("sûrement vous aider.")
+                    perso.potion()
                     place = 9
                     
         while place == 9: #voir sorcier ou directement Bayfort

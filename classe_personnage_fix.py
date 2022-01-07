@@ -207,7 +207,7 @@ class Perso:
             self.etat = " est gravement blessé"
         self.mainWindow.printInTextArea (self.name,self.etat)
 
-        self.mainWindow.printInTextArea("### Argent : ",self.argent," pièces d'or")
+        self.mainWindow.printInTextArea("### Argent : ",self.PO," pièces d'or")
 
         self.mainWindow.printInTextArea("### Force  : ",self.force)
 
@@ -295,7 +295,7 @@ class Perso:
         distance = 5
         pv = 100
         vit = 3
-        att = 7
+        att = 20
         self.playGardiensDebutSong()
         self.inventaire()
         self.selection(True,True)
@@ -438,9 +438,8 @@ class Perso:
         else :
             return True
 
-
-
     def fight_souterrain1(self) : #combat dans souterrain contre basillic
+    
         self.mainWindow.printInTextArea("Quand soudain, les murs de cette immense caverne se mettent à bouger")
         self.mainWindow.printInTextArea("comme une très grande spirale, jusqu'au moment où une tête faisant 5 fois")
         self.mainWindow.printInTextArea("votre taille descend vers vous, une tête au yeux mortels et pleine d'écailles.")
@@ -448,11 +447,11 @@ class Perso:
         self.mainWindow.printInTextArea("ont finis pétrifiés. Vous restez figé, il s'immobilise jusqu'au moment où...")
         nb_recul = 1
         nb_recul_m = 2
-        distance = 10
+        distance = 9
         pv = 200
-        vit = 2
-        att = 15
-        self.playBasiliqueSong()
+        vit = 4
+        att = 14
+        self.playGardienSong()
         self.mainWindow.printInTextArea ("Il vous attaque")
         self.inventaire()
         self.selection(True,True)
@@ -461,8 +460,8 @@ class Perso:
             self.mainWindow.printInTextArea("il est à ",distance," mètres de distance. Il a ",pv," pv")
             choix = ""
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
-                   and choix != "attaquer" and choix != "sort") :
-                choix = self.mainWindow.waitForEntryText("Que fais-tu? ( avancer/ reculer/ attaquer/ rien)")
+                    and choix != "attaquer" and choix != "sort") :
+                choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :
@@ -472,22 +471,25 @@ class Perso:
                 distance += self.vitesse
             elif choix == "reculer" and nb_recul < 0 :
                 self.mainWindow.printInTextArea("Tu ne peux plus reculer")
-            elif choix == "attaquer" and distance <= 1 :
+            elif choix == "attaquer" and distance == 1 :
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégâts")
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
-            elif choix == "attaquer" and distance > 1 :
+            elif choix == "attaque" and distance > 1 :
                 self.mainWindow.printInTextArea("Impossible tu es trop loin de la cible")
                 choix = ""
             else : ()
 
+
             if pv <= 0 :
                 self.mainWindow.printInTextArea("Tu as vaincu!")
-                self.PO += 100
+                self.force = 20
+                self.Armes["frostmourne"] = [50, 0, 1, 20]
                 self.playBackgroundSong()
+                
                 return True
             else :
                 if distance > 1 and att < self.arme[0] and nb_recul_m > 0 :
@@ -500,20 +502,21 @@ class Perso:
                         distance = 1
                     else :
                         distance -= vit
-                elif distance >3 :
+                elif distance == 1 :
                     toucher = randrange(1, 50)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
+
                     else :
                         self.mainWindow.printInTextArea("Il n'arrive pas à te toucher")
         if self.pv_physique <= 0 :
-            self.mainWindow.printInTextArea("VOUS ÊTES MORT")
-            self.mainWindow.printInTextArea("FIN HERBE ROYALE")
-
+            self.mainWindow.printInTextArea("Il t'as tué")
+            self.playMortSong()
             return False
         else :
             return True
+
 
 
     def jeu_taverne1(self): #jeu de chance dans la taverne 

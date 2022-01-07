@@ -9,7 +9,7 @@
 
 #     Crystal Quest is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     MERCHANTABI LITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
 
 #     You should have received a copy of the GNU General Public License
@@ -55,7 +55,7 @@ iconimgdata = b'iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAAGFElEQVRIiWVWS' \
 
 # Installation automatique des dépendances
 import os
-os.system("python -m pip install --upgrade pip --user")
+# os.system("python -m pip install --upgrade pip --user")
 os.system("python -m pip install pyglet --user")
 os.system("python -m pip install pygame --user")
 
