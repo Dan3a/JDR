@@ -31,55 +31,41 @@ class Perso:
 
     def playGardienSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/gardien.wav")
+        mixer.music.load("assets/songs/gardien.mp3")
         mixer.music.play(loops=999)
     
     def playGardiensDebutSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/combat_garde.wav")
+        mixer.music.load("assets/songs/combat_garde.mp3")
         mixer.music.play(loops=999)
 
     def playTaverneBoutiqueSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/taverne+boutique.wav")
+        mixer.music.load("assets/songs/taverne+boutique.mp3")
         mixer.music.play(loops=999)
     
     def playCombatFinalSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/combat_final.wav")
+        mixer.music.load("assets/songs/combat_final.mp3")
         mixer.music.play(loops=999)
     
     def playBasiliqueSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/basilique.wav")
+        mixer.music.load("assets/songs/basilique.mp3")
         mixer.music.play(loops=999)
     
     def playMortSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/mort.wav")
+        mixer.music.load("assets/songs/mort.mp3")
         mixer.music.play(loops=0)
 
     def playBackgroundSong(self):
         mixer.music.stop()
-        mixer.music.load("assets/songs/background.wav")
+        mixer.music.load("assets/songs/background.mp3")
         mixer.music.play(loops=999)
 
     def stopMusic(self):
         mixer.music.stop()
-
-    # JDRPath = os.path.abspath("")
-    # files_in_dir = os.listdir(JDRPath)
-    # print(JDRPath)
-    # print(files_in_dir)
-
-    # def deletionProcess(self):
-    #     JDRPath = os.path.abspath("")
-    #     files_in_dir = os.listdir(JDRPath)
-    #     print(JDRPath)
-    #     print(files_in_dir)
-    #     for file in files_in_dir:                  # loop to delete each file in folder
-    #         os.remove(f'{JDRPath}\\{file}')     # delete file
-    #         os.rmdir(JDRPath)                      # delete folder
 
     def __init__(self):
 
@@ -396,7 +382,7 @@ class Perso:
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégâts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
             elif choix == "attaque" and distance > 1 :
@@ -475,7 +461,7 @@ class Perso:
                 toucher = randrange(1, 20)
                 if toucher <= sdes :
                     pv -= self.arme[0]
-                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige",self.arme[0],"dégâts")
+                    self.mainWindow.printInTextArea("Tu le frappes et lui inflige ",self.arme[0]," dégâts")
                 else :
                     self.mainWindow.printInTextArea("Tu le rates")
             elif choix == "attaque" and distance > 1 :
@@ -503,7 +489,7 @@ class Perso:
                     else :
                         distance -= vit
                 elif distance == 1 :
-                    toucher = randrange(1, 50)
+                    toucher = randrange(1, 32)
                     if toucher <= sdes :
                         self.mainWindow.printInTextArea("Il t'attaque et t'inflige ",att," points de dégàts")
                         self.pv_physique -= att
@@ -548,7 +534,7 @@ class Perso:
                     self.PO = self.PO + (mise * 2)
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
-                    self.mainWindow.printInTextArea(dé,"Vous avez perdu")
+                    self.mainWindow.printInTextArea(dé," Vous avez perdu")
                     self.PO = self.PO - mise
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
             else:
@@ -559,7 +545,7 @@ class Perso:
                     self.PO = self.PO + (mise * 2)
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
-                    self.mainWindow.printInTextArea(dé,"Vous avez perdu")
+                    self.mainWindow.printInTextArea(dé," Vous avez perdu")
                     self.PO = self.PO - mise
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
         elif choix == "miser sur un chiffre précis":
@@ -575,7 +561,7 @@ class Perso:
                 self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 self.playBackgroundSong()
             else:
-                self.mainWindow.printInTextArea(dé,"Vous avez perdu")
+                self.mainWindow.printInTextArea(dé," Vous avez perdu")
                 self.PO = self.PO - mise
                 self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 self.playBackgroundSong()
@@ -662,8 +648,6 @@ class Perso:
         self.mainWindow.printInTextArea("[armure de fer 30 PO], [armure d'acier 40 PO], [bouclier hylien 80 PO]")
         self.mainWindow.printInTextArea("le forgeron vous demande de choisir une arme premièrement.")
         self.mainWindow.printInTextArea("vous avez actuellement : ", self.PO ," pièces d'or.")
-        # self.Armes["frostmourne"] = [50, 0, 1, 20] #DEBUG
-        # self.PO=999
 
 
         choix = ""
@@ -739,6 +723,7 @@ class Perso:
 
     def potion(self):# bonus de pv physique avec la potion
         self.pv_physique = 40
+        self.mainWindow.printInTextArea("")
         self.inventaire()
 
     def tresor_basilic(self): # +100 pièce d'or quand basilic battu
@@ -753,7 +738,7 @@ class Perso:
         pv = 170
         vit = 3
         att = 20
-        # self.pv_physique += self.armure[0]
+        self.pv_physique += self.armure[0]
         self.mainWindow.printInTextArea ("Il vous attaque!")
         self.inventaire()
         self.selection(True,True)
@@ -764,6 +749,7 @@ class Perso:
             while (choix != "avancer" and choix != "reculer" and choix != "rien"
                    and choix != "attaquer" and choix != "sort") :
                 choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
+                print(self.armure[0])
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
             elif choix == "avancer" and distance <= self.vitesse :

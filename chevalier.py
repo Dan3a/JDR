@@ -394,7 +394,6 @@ def jeu(mainWindow):
                 choix = mainWindow.waitForEntryText("Alors que faites-vous? ( jouer au jeu ) ")
                 choix = choix.lower()
             if choix == "jouer au jeu":
-                mainWindow.printInTextArea("")
                 jeu_taverne = perso.jeu_taverne1()
                 if jeu_taverne is True:
                     mainWindow.printInTextArea("Vous ressortez de la taverne en pleine forme, il ne vous reste")
@@ -431,7 +430,7 @@ def jeu(mainWindow):
                     mainWindow.printInTextArea("une fois sorti de chez cet étrange personnage, vous décidez d'interroger")
                     mainWindow.printInTextArea("quelques personne au sujet de votre quête, deux choses reviennent souvent:")
                     mainWindow.printInTextArea("quelques rumeures disent que le voleur aurait été apperçu en direction de Bayfort")
-                    mainWindow.printInTextArea("d'autre personnes vous ont dis d'aller voir le sorcier à Starhill qui pourra")
+                    mainWindow.printInTextArea("d'autres personnes vous ont dit d'aller voir le sorcier à Starhill qui pourra")
                     mainWindow.printInTextArea("sûrement vous aider.")
                     perso.potion()
                     place = 9
@@ -503,11 +502,10 @@ def jeu(mainWindow):
                     while (choix != "laisser le sorcier" and choix != "aider le sorcier"):
                         choix = mainWindow.waitForEntryText("Que décidez-vous? (laisser le sorcier/ aider le sorcier)")
                         choix = choix.lower()
-                    if choix == "laisser le sorcier": # vous perdez tous pv mentaux et sombrer dans la folie
-                        mainWindow.printInTextArea("")
+                    if choix == "laisser le sorcier": # vous perdez tous vos pv mentaux et sombrer dans la folie
                         mainWindow.printInTextArea("Vous suivez votre instinct et laisser le sorcier périr et vous")
                         mainWindow.printInTextArea("partez ramenez les crystaux à Icegate. Mais c'est la deuxième fois")
-                        mainWindow.printInTextArea("que vous leissez quelqu'un mourir sans l'aider vous commencer alors")
+                        mainWindow.printInTextArea("que vous laissiez quelqu'un mourir sans l'aider, vous commencer alors")
                         mainWindow.printInTextArea("à perdre vos points de vie mentaux et à sombrer petit à petit dans")
                         mainWindow.printInTextArea("une folie inarétable.")
                         mainWindow.printInTextArea("")
@@ -515,7 +513,6 @@ def jeu(mainWindow):
                         mainWindow.printInTextArea("qu'un fou les avait volé...")
                         place = "fin2"
                     elif choix == "aider le sorcier": #le sorcier vous trahi
-                        mainWindow.printInTextArea("")
                         mainWindow.printInTextArea("vous aidez le sorcier à se relever, puis vous vous tournez vers le sac")
                         mainWindow.printInTextArea("dans lequel se trouvent les trois crystaux. Quand soudainement, une ")
                         mainWindow.printInTextArea("lame ressort de l'avant de votre poitrine.")
@@ -534,14 +531,14 @@ def jeu(mainWindow):
         while place == "fin1":
             mainWindow.printInTextArea("")
             mainWindow.printInTextArea("")
-            mainWindow.printInTextArea("Bravo tu as fini cette fin c'est la fin: 1/2")
+            mainWindow.printInTextArea("Bravo vous avez fini cette fin: 1/2")
             mainWindow.printInTextArea("FIN DU CHAPITRE 1")
             raise SystemExit(0)
 
         while place == "fin2":
             mainWindow.printInTextArea("")
             mainWindow.printInTextArea("")
-            mainWindow.printInTextArea("Bravo tu as fini cette fin c'est la fin: 2/2")
+            mainWindow.printInTextArea("Bravo vous avez fini cette fin: 2/2")
             mainWindow.printInTextArea("FIN DU CHAPITRE 1")
             raise SystemExit(0)
 
