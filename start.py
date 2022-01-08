@@ -122,7 +122,7 @@ class StartMenu(tk.Frame):
 
 # Purement pour la musique
 def playIntroSong(): 
-    mixer.music.load("assets/songs/intro.wav")
+    mixer.music.load("assets/songs/intro.mp3")
     mixer.music.play(loops=999)
 
 pyglet.font.add_file('MiddleAges_PERSONAL_USE.ttf')
