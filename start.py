@@ -59,8 +59,6 @@ import os
 os.system("python -m pip install pyglet --user")
 os.system("python -m pip install pygame --user")
 
-# os.system("python -m pip install base64 --user")
-
 import tkinter as tk
 import base64,pyglet
 from pygame import mixer

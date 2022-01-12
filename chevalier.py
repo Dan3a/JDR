@@ -37,8 +37,6 @@ def jeu(mainWindow):
     while place > 0:
 
         while prologue is False:
-            # perso.initMixer()
-
             mainWindow.printInTextArea("Vous vous réveillez par un bruit de pas;")
             mainWindow.printInTextArea("le bruit de pas de gardes royaux au pied de votre porte.")
             mainWindow.printInTextArea("Vous vous levez, ouvrez la porte et un message vous est tendu : ")

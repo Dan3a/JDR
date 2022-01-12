@@ -529,23 +529,23 @@ class Perso:
             if choix2 == "paire":
                 self.mainWindow.printInTextArea("Vous avez choisi un résultat paire, le dé est lancé...")
                 dé = randrange(1, 8)
-                if (dé == 2 or 4 or 6 or 8):
-                    self.mainWindow.printInTextArea(dé,"Vous avez gagné")
+                if (dé % 2 == 0):
+                    self.mainWindow.printInTextArea(dé,", vous avez gagné")
                     self.PO = self.PO + (mise * 2)
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
-                    self.mainWindow.printInTextArea(dé," Vous avez perdu")
+                    self.mainWindow.printInTextArea(dé,", vous avez perdu")
                     self.PO = self.PO - mise
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
             else:
                 self.mainWindow.printInTextArea("Vous avez choisi un résultat impaire, le dé est lancé...")
                 dé = randrange(1, 8)
-                if (dé == 1 or 3 or 5 or 7):
-                    self.mainWindow.printInTextArea(dé,"Vous avez gagné")
+                if (dé % 2 != 0):
+                    self.mainWindow.printInTextArea(dé,", vous avez gagné")
                     self.PO = self.PO + (mise * 2)
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
                 else:
-                    self.mainWindow.printInTextArea(dé," Vous avez perdu")
+                    self.mainWindow.printInTextArea(dé,", vous avez perdu")
                     self.PO = self.PO - mise
                     self.mainWindow.printInTextArea("Vous avez donc maintenant: ",self.PO," pièces d'or")
         elif choix == "miser sur un chiffre précis":
