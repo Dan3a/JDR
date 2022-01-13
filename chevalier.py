@@ -102,8 +102,6 @@ def jeu(mainWindow):
                 mainWindow.printInTextArea("Vous remontez donc le royaume vers Icegate, cet endroit reculé")
                 mainWindow.printInTextArea("de Dahal qui jusque-là gardait les trois crystaux précieusement,")
                 mainWindow.printInTextArea("et qui se trouve à la frontière avec le royaume ennemi, Crézantis.")
-                # mainWindow.printInTextArea("de Dahal à la frontière avec le royaume ennemi: Crézantis, ")
-                # mainWindow.printInTextArea("endroit où le royaume garde précieusement ses trois crystaux")
                 mainWindow.printInTextArea("")
                 mainWindow.printInTextArea("A votre arrivée dans ce lieu habituellement rempli de gardes, ")
                 mainWindow.printInTextArea("vous n'êtes acceuillis que par un vent glacé et un étrange présentiment.")

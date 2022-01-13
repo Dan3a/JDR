@@ -450,7 +450,7 @@ class Perso:
                 choix = self.mainWindow.waitForEntryText("Que fais-tu? (avancer/ reculer/ attaquer/ rien )")
             if choix == "avancer" and distance > self.vitesse :
                 distance -= self.vitesse
-            elif choix == "avancer" and distance <= self.vitesse :
+            elif   choix == "avancer" and distance <= self.vitesse :
                 distance = 1
             elif choix == "reculer" and nb_recul > 0 :
                 nb_recul -= 1
