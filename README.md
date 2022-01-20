@@ -16,3 +16,5 @@ Middle Ages : https://www.dafont.com/middle-ages.font
 Music from King's Quest 1
 
 Music from Simcity 2000
+
+Music from Eternal Sonata
